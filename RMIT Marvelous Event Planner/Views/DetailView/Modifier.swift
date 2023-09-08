@@ -16,7 +16,8 @@ import SwiftUI
 struct PrimaryButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.all, 10.0)
+            .padding(.horizontal, 10.0)
+            .padding(.vertical, 7.5)
             .background(Color("primary-button"))
             .foregroundColor(.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -28,7 +29,8 @@ struct PrimaryButton: ButtonStyle {
 struct BackButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.all, 10.0)
+            .padding(.horizontal, 10.0)
+            .padding(.vertical, 7.5)
             .background(Color("opacity-background"))
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .scaleEffect(configuration.isPressed ? 1.05 : 1)
