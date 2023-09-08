@@ -35,8 +35,8 @@
 		69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		69E187CA2AAADF08002EBE01 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListItem.swift; path = "RMIT Marvelous Event Planner/Views/DetailView/ListItem.swift"; sourceTree = SOURCE_ROOT; };
-		69E187CC2AAAFF62002EBE01 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Modifier.swift; path = "RMIT Marvelous Event Planner/Views/DetailView/Modifier.swift"; sourceTree = SOURCE_ROOT; };
+		69E187CA2AAADF08002EBE01 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListItem.swift; path = "RMIT Marvelous Event Planner/Components/ListItem.swift"; sourceTree = SOURCE_ROOT; };
+		69E187CC2AAAFF62002EBE01 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Modifier.swift; path = "RMIT Marvelous Event Planner/Utilities/Modifier.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,14 +69,14 @@
 		22CC33242AA8D678003B0B4B /* RMIT Marvelous Event Planner */ = {
 			isa = PBXGroup;
 			children = (
+				69E187D12AAB1302002EBE01 /* Components */,
+				69E187D02AAB12F3002EBE01 /* Utilities */,
 				69E187C22AAADAE7002EBE01 /* Fonts */,
 				69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */,
-				22CC333B2AA8D7E1003B0B4B /* Helper */,
 				22CC33352AA8D78A003B0B4B /* Models */,
-				22CC33342AA8D781003B0B4B /* ModelView */,
+				69E187D22AAB131C002EBE01 /* ViewModels */,
 				22CC33332AA8D779003B0B4B /* Views */,
 				22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */,
-				22CC33272AA8D678003B0B4B /* ContentView.swift */,
 				22CC33292AA8D67E003B0B4B /* Assets.xcassets */,
 				22CC332B2AA8D67E003B0B4B /* Preview Content */,
 			);
@@ -94,17 +94,10 @@
 		22CC33332AA8D779003B0B4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				22CC33272AA8D678003B0B4B /* ContentView.swift */,
 				69E187BE2AAACC15002EBE01 /* DetailView */,
-				22CC333A2AA8D7B8003B0B4B /* Components */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		22CC33342AA8D781003B0B4B /* ModelView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ModelView;
 			sourceTree = "<group>";
 		};
 		22CC33352AA8D78A003B0B4B /* Models */ = {
@@ -114,22 +107,6 @@
 				22CC33382AA8D7AD003B0B4B /* Event.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		22CC333A2AA8D7B8003B0B4B /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				69E187CA2AAADF08002EBE01 /* ListItem.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		22CC333B2AA8D7E1003B0B4B /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				69E187CC2AAAFF62002EBE01 /* Modifier.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		69E187BE2AAACC15002EBE01 /* DetailView */ = {
@@ -148,6 +125,29 @@
 				69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		69E187D02AAB12F3002EBE01 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				69E187CC2AAAFF62002EBE01 /* Modifier.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		69E187D12AAB1302002EBE01 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				69E187CA2AAADF08002EBE01 /* ListItem.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		69E187D22AAB131C002EBE01 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
