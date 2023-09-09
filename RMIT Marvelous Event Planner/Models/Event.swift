@@ -51,4 +51,5 @@ struct Event: Identifiable{
         self.imageUrl = imageUrl
         self.organizerRole = organizerRole
     }
+    
 }

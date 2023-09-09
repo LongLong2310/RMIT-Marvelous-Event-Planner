@@ -25,7 +25,38 @@ class FakeDataHelper {
     var events: [Event] = []
     let faker = Faker(locale: "en-US")
     
-    func getRandomDateTimeStr() -> (String, String){
+    /**
+        Generate fake data w
+     */
+    public func generateFakeData(amounts: Int, isPostToFirestore: Bool) -> [Event]{
+        for _ in 0...amounts{
+            let fakerDateTimeStr = getRandomDateTimeStr()
+            
+            var event = Event(
+                id: UUID().uuidString,
+                name: faker.lorem.words(amount: Int.random(in: 0..<6)).capitalized,
+                description: faker.lorem.paragraphs(amount: Int.random(in: 1..<3)),
+                date: fakerDateTimeStr.0,
+                time: fakerDateTimeStr.1,
+                location: faker.address.streetAddress(includeSecondary: Bool()),
+                imageUrl: "https://picsum.photos/200/300",
+                organizerRole: OrganizerRole.allCases.randomElement()!.rawValue)
+            
+            // Since we generate fake id with UUID, we directly update data
+            if isPostToFirestore{
+                event = eventViewModel.updateEventData(event: event, name: event.name, description: event.description, date: event.date, time: event.time, location: event.location, imageUrl: event.imageUrl, organizerRole: event.organizerRole)
+            }
+            
+            events.append(event)
+        }
+        
+        return events
+    }
+    
+    /**
+        Generate Random Date and Time by faker
+     */
+    private func getRandomDateTimeStr() -> (String, String){
         let fakerDateTime = faker.date.forward(60)
         
         // Create Date Formatter
@@ -40,24 +71,4 @@ class FakeDataHelper {
         return (dateFormatter.string(from: fakerDateTime), timeFormatter.string(from: fakerDateTime))
     }
     
-    func generateFakeData(){
-        for _ in 0...2{
-            let fakerDateTimeStr = getRandomDateTimeStr()
-            
-            var event = Event(
-                id: UUID().uuidString,
-                name: faker.lorem.words(amount: Int.random(in: 0..<6)).capitalized,
-                description: faker.lorem.paragraphs(amount: Int.random(in: 1..<3)),
-                date: fakerDateTimeStr.0,
-                time: fakerDateTimeStr.1,
-                location: faker.address.streetAddress(includeSecondary: Bool()),
-                imageUrl: "https://picsum.photos/200/300",
-                organizerRole: OrganizerRole.allCases.randomElement()!.rawValue)
-            
-            // Since we generate fake id with UUID, we directly update data
-//            event = eventViewModel.updateEventData(event: event, name: event.name, description: event.description, date: event.date, time: event.time, location: event.location, imageUrl: event.imageUrl, organizerRole: event.organizerRole)
-//
-            events.append(event)
-        }
-    }
 }
