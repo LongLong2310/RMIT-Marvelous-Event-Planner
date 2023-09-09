@@ -1,5 +1,19 @@
-import SwiftUI
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 3
+ Author: Nguyen Quang Duy, Long Trinh Hoang Pham, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
+ ID: s3877991, s3879366, s3877457, s3891710, s3750789
+ Created  date: 8/09/2023
+ Last modified: 27/09/2023
+ Acknowledgement:
+    https://docs.google.com/presentation/d/1-QV6pqZBkdGgKGImB7t0izYk0OqzFdrf/edit#slide=id.g25839ad1222_0_435
+*/
 
+
+import SwiftUI
+// State variables to track various UI states.
 struct LogInSignUpView: View {
     @State var showMainPage: Bool = false
     @State var isSignUp: Bool = false
@@ -11,9 +25,8 @@ struct LogInSignUpView: View {
 
     
     var body: some View {
-        
         VStack {
-            // Welcome back text
+            // Welcome text with styling
             Text("Welcome to\nRMEP")
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -22,9 +35,9 @@ struct LogInSignUpView: View {
                 .bold()
                 .padding()
                 .background(
+                    // Stylish background elements, including a gradient circle and small circles.
                     ZStack {
-                        
-                        // gradient circle
+                        // Gradient circle
                         LinearGradient(
                             colors: [
                                 Color("Pink").opacity(0),
@@ -40,7 +53,7 @@ struct LogInSignUpView: View {
                         .offset(y: -25)
                         .ignoresSafeArea()
                         
-                        // small circles
+                        // Small circles
                         Circle()
                             .strokeBorder(
                                 Color("Pink").opacity(0.3),
@@ -64,6 +77,7 @@ struct LogInSignUpView: View {
                     }
                 )
             
+            // Scrollable view for login and signup forms.
             ScrollView(.vertical, showsIndicators: false) {
                 // Login forms
                 VStack (spacing: 15) {
@@ -72,8 +86,7 @@ struct LogInSignUpView: View {
                         .font(.system(size: 25))
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     
-                    // Custom Text Fields
-                    // Email
+                    // Custom text fields for email and password.
                     CustomTextField(
                         icon: "envelope",
                         title: "Email",
@@ -83,7 +96,6 @@ struct LogInSignUpView: View {
                     )
                     .padding(.top, 15)
                     
-                    // Email
                     CustomTextField(
                         icon: "lock",
                         title: "Password",
@@ -93,7 +105,7 @@ struct LogInSignUpView: View {
                     )
                     .padding(.top, 10)
                     
-//                     Show confirm password field only if user is registering
+                    //  Show confirm password field only if user is registering
                     if (isSignUp) {
                         CustomTextField(
                             icon: "lock",
@@ -105,7 +117,7 @@ struct LogInSignUpView: View {
                         .padding(.top, 10)
                     }
                     
-                    // Forgot Password button
+                    // "Forgot Password" button (visible only in login mode).
                     if !isSignUp {
                         Button {
 
@@ -118,7 +130,7 @@ struct LogInSignUpView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
-                    // Login Button
+                    // Login or Signup Button.
                     Button {
                         isSignUp = false
                     } label: {
@@ -133,17 +145,20 @@ struct LogInSignUpView: View {
                     }
                     .padding(.top, 25)
                     .padding(.horizontal)
-                    
+                    // A VStackwith text and a button for toggling between login and signup modes.
+                    // It displays either "Have an account?" or "Don't have an account?" based on the isSignUp state.
                     VStack (spacing: 10) {
                         HStack {
                             Text(isSignUp ? "Have an account?" : "Don't have an account?")
                                 .foregroundColor(.black)
                             // Register User button
                             Button {
+                                // Toggle the isSignUp state with animation when the button is pressed.
                                 withAnimation {
                                     isSignUp.toggle()
                                 }
                             } label: {
+                                // The button label dynamically changes between "Login" and "Sign up."
                                 Text(isSignUp ? "Login" : "Sign up")
                                     .fontWeight(.semibold)
                                     .foregroundColor(Color("Blue"))
@@ -157,6 +172,7 @@ struct LogInSignUpView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(
+                // White background with rounded top corners.
                 Color.white
                     .clipShape(CustomCorners(corners: [.topLeft, .topRight], radius: 25))
                     .ignoresSafeArea()
@@ -168,7 +184,8 @@ struct LogInSignUpView: View {
         
     }
     
-    @ViewBuilder // helps create child views
+    // Function to create custom text fields with optional secure input.
+    @ViewBuilder
     func CustomTextField(
         icon: String,
         title: String,
@@ -176,15 +193,20 @@ struct LogInSignUpView: View {
         value: Binding<String>,
         showPassword: Binding<Bool>
     ) -> some View {
-        
+        // Create a VStack to arrange the components vertically.
         VStack (alignment: .leading, spacing: 12) {
+            // Label for the text field, displaying the title.
             Label {
                 Text(title)
             } icon: {
+                // Icon displayed alongside the title.
                 Image(systemName: icon)
             }
+            // Set the text field label's text color.
             .foregroundColor(Color.black.opacity(0.8))
             
+            // Depending on the title (e.g., if it contains "Password") and showPassword state,
+            // either show a SecureField (password) or TextField (non-password) input.
             if (title.contains("Password") && !showPassword.wrappedValue) {
                 SecureField(hint, text: value)
                     .padding(.top, 2)
@@ -193,18 +215,21 @@ struct LogInSignUpView: View {
                     .padding(.top, 2)
             }
             
+            // Divider line below the text input.
             Divider()
                 .background(Color.black.opacity(0.4))
         }
-        // ShowPassword button
+        // Overlay a button to toggle password visibility (visible only for password fields).
         .overlay(
             Group {
                 if (title.contains("Password")) {
                     Button (
                         action: {
+                            // Toggle the showPassword state to hide/show the password.
                             showPassword.wrappedValue.toggle()
                         },
                         label: {
+                            // Display "Hide" when the password is shown, and "Show" when hidden.
                             Text(showPassword.wrappedValue ? "Hide" : "Show")
                                 .foregroundColor(Color("Blue"))
                         }
@@ -217,11 +242,10 @@ struct LogInSignUpView: View {
     }
 }
 
+// Custom shape for rounded corners.
 struct CustomCorners: Shape {
-    
     var corners: UIRectCorner
     var radius: CGFloat
-    
     
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
@@ -230,6 +254,7 @@ struct CustomCorners: Shape {
     
 }
 
+// Extension to get the screen's rectangle.
 extension View {
     // get rectangle
     func getRect() -> CGRect{
@@ -238,6 +263,7 @@ extension View {
     }
 }
 
+// Preview for development purposes.
 struct LogInSignUpView_Previews: PreviewProvider {
     static var previews: some View {
         LogInSignUpView()
