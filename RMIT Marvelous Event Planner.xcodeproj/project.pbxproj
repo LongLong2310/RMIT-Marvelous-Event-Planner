@@ -23,6 +23,7 @@
 		22CC332D2AA8D67E003B0B4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */; };
 		22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33362AA8D7A2003B0B4B /* Account.swift */; };
 		22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33382AA8D7AD003B0B4B /* Event.swift */; };
+		368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22CC33362AA8D7A2003B0B4B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		22CC33382AA8D7AD003B0B4B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInSignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		22CC333A2AA8D7B8003B0B4B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			files = (
 				2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */,
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
+				368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */,
 				22CC33282AA8D678003B0B4B /* ContentView.swift in Sources */,
 				22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
