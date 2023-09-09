@@ -14,7 +14,7 @@
 import Foundation
 import SwiftUI
 
-enum OrganizerRole: String{
+enum OrganizerRole: String, CaseIterable{
     case personal
     case club
     case department
@@ -29,7 +29,26 @@ struct Event: Identifiable{
     var time: String
     var location: String
     var imageUrl: String
-    var ownerId: String
     var organizerRole: String
     
+    init(id: String, name: String, description: String, date: String, time: String, location: String, imageUrl: String, organizerRole: String) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.date = date
+        self.time = time
+        self.location = location
+        self.imageUrl = imageUrl
+        self.organizerRole = organizerRole
+    }
+    
+    mutating func updateEvent(name: String, description: String, date: String, time: String, location: String, imageUrl: String, organizerRole: String){
+        self.name = name
+        self.description = description
+        self.date = date
+        self.time = time
+        self.location = location
+        self.imageUrl = imageUrl
+        self.organizerRole = organizerRole
+    }
 }
