@@ -17,6 +17,10 @@
 		2288336A2AAB84130006F2BA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 228833692AAB84130006F2BA /* FirebaseStorage */; };
 		2288336C2AAB84130006F2BA /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */; };
 		2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */; };
+		228833702AAB96B90006F2BA /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288336F2AAB96B90006F2BA /* EventViewModel.swift */; };
+		228833722AAC337F0006F2BA /* EventHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833712AAC337F0006F2BA /* EventHomePageView.swift */; };
+		228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */; };
+		228833772AAC4F3B0006F2BA /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 228833762AAC4F3B0006F2BA /* Fakery */; };
 		22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */; };
 		22CC33282AA8D678003B0B4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33272AA8D678003B0B4B /* ContentView.swift */; };
 		22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC33292AA8D67E003B0B4B /* Assets.xcassets */; };
@@ -29,6 +33,9 @@
 /* Begin PBXFileReference section */
 		2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipation.swift; sourceTree = "<group>"; };
+		2288336F2AAB96B90006F2BA /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		228833712AAC337F0006F2BA /* EventHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHomePageView.swift; sourceTree = "<group>"; };
+		228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMIT Marvelous Event Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMIT_Marvelous_Event_PlannerApp.swift; sourceTree = "<group>"; };
 		22CC33272AA8D678003B0B4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +53,7 @@
 			files = (
 				228833622AAB84130006F2BA /* FirebaseDatabaseSwift in Frameworks */,
 				228833642AAB84130006F2BA /* FirebaseFirestore in Frameworks */,
+				228833772AAC4F3B0006F2BA /* Fakery in Frameworks */,
 				2288336C2AAB84130006F2BA /* FirebaseStorageCombine-Community in Frameworks */,
 				228833602AAB84130006F2BA /* FirebaseDatabase in Frameworks */,
 				228833662AAB84130006F2BA /* FirebaseFirestoreCombine-Community in Frameworks */,
@@ -102,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				22CC333A2AA8D7B8003B0B4B /* Components */,
+				228833712AAC337F0006F2BA /* EventHomePageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +118,7 @@
 		22CC33342AA8D781003B0B4B /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
+				2288336F2AAB96B90006F2BA /* EventViewModel.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -119,6 +129,7 @@
 				22CC33362AA8D7A2003B0B4B /* Account.swift */,
 				22CC33382AA8D7AD003B0B4B /* Event.swift */,
 				2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */,
+				228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 				228833672AAB84130006F2BA /* FirebaseFirestoreSwift */,
 				228833692AAB84130006F2BA /* FirebaseStorage */,
 				2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */,
+				228833762AAC4F3B0006F2BA /* Fakery */,
 			);
 			productName = "RMIT Marvelous Event Planner";
 			productReference = 22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */;
@@ -194,6 +206,7 @@
 			mainGroup = 22CC33192AA8D678003B0B4B;
 			packageReferences = (
 				2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */,
 			);
 			productRefGroup = 22CC33232AA8D678003B0B4B /* Products */;
 			projectDirPath = "";
@@ -222,7 +235,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */,
 				2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */,
+				228833722AAC337F0006F2BA /* EventHomePageView.swift in Sources */,
+				228833702AAB96B90006F2BA /* EventViewModel.swift in Sources */,
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
 				368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */,
 				22CC33282AA8D678003B0B4B /* ContentView.swift in Sources */,
@@ -436,6 +452,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -478,6 +502,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		228833762AAC4F3B0006F2BA /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
