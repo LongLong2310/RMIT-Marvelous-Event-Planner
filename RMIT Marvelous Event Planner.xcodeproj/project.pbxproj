@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		224C759E2AAE37B100F770B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C759D2AAE37B100F770B9 /* ContentView.swift */; };
-		224C75A02AAE3C5E00F770B9 /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C759F2AAE3C5E00F770B9 /* RouterViewModel.swift */; };
 		224C75A22AAE3C9400F770B9 /* AuthStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C75A12AAE3C9400F770B9 /* AuthStateViewModel.swift */; };
 		224C75A62AAE469500F770B9 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C75A52AAE469500F770B9 /* HomeScreenView.swift */; };
 		2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */; };
@@ -25,7 +24,6 @@
 		228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */; };
 		228833772AAC4F3B0006F2BA /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 228833762AAC4F3B0006F2BA /* Fakery */; };
 		22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */; };
-		22CC33282AA8D678003B0B4B /* AuthenticatedRoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33272AA8D678003B0B4B /* AuthenticatedRoutingView.swift */; };
 		22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC33292AA8D67E003B0B4B /* Assets.xcassets */; };
 		22CC332D2AA8D67E003B0B4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */; };
 		22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33362AA8D7A2003B0B4B /* Account.swift */; };
@@ -35,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		224C759D2AAE37B100F770B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		224C759F2AAE3C5E00F770B9 /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
 		224C75A12AAE3C9400F770B9 /* AuthStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStateViewModel.swift; sourceTree = "<group>"; };
 		224C75A52AAE469500F770B9 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -44,7 +41,6 @@
 		228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMIT Marvelous Event Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMIT_Marvelous_Event_PlannerApp.swift; sourceTree = "<group>"; };
-		22CC33272AA8D678003B0B4B /* AuthenticatedRoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedRoutingView.swift; sourceTree = "<group>"; };
 		22CC33292AA8D67E003B0B4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22CC33362AA8D7A2003B0B4B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -131,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				22CC333A2AA8D7B8003B0B4B /* Components */,
-				22CC33272AA8D678003B0B4B /* AuthenticatedRoutingView.swift */,
 				368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */,
 				224C75A52AAE469500F770B9 /* HomeScreenView.swift */,
 			);
@@ -142,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				2288336F2AAB96B90006F2BA /* EventViewModel.swift */,
-				224C759F2AAE3C5E00F770B9 /* RouterViewModel.swift */,
 				224C75A12AAE3C9400F770B9 /* AuthStateViewModel.swift */,
 			);
 			path = ModelView;
@@ -267,8 +261,6 @@
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
 				368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */,
 				224C759E2AAE37B100F770B9 /* ContentView.swift in Sources */,
-				22CC33282AA8D678003B0B4B /* AuthenticatedRoutingView.swift in Sources */,
-				224C75A02AAE3C5E00F770B9 /* RouterViewModel.swift in Sources */,
 				22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */,
 				224C75A22AAE3C9400F770B9 /* AuthStateViewModel.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
