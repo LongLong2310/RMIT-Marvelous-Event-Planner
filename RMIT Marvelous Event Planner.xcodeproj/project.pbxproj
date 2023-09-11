@@ -26,6 +26,13 @@
 		22CC332D2AA8D67E003B0B4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */; };
 		22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33362AA8D7A2003B0B4B /* Account.swift */; };
 		22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33382AA8D7AD003B0B4B /* Event.swift */; };
+		691574152AAEBF7F0077D45A /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691574142AAEBF7F0077D45A /* ListItem.swift */; };
+		691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691574162AAEC2FA0077D45A /* Modifiers.swift */; };
+		69E187C02AAACC3C002EBE01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E187BF2AAACC3C002EBE01 /* DetailView.swift */; };
+		69E187C62AAADB8A002EBE01 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */; };
+		69E187C72AAADB8A002EBE01 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */; };
+		69E187C82AAADB8A002EBE01 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */; };
+		69E187C92AAADCD6002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */; };
 		368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +48,13 @@
 		22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22CC33362AA8D7A2003B0B4B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		22CC33382AA8D7AD003B0B4B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		691574142AAEBF7F0077D45A /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		691574162AAEC2FA0077D45A /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		69E187BF2AAACC3C002EBE01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RMIT-Marvelous-Event-Planner-Info.plist"; sourceTree = SOURCE_ROOT; };
+		69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInSignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,12 +97,14 @@
 		22CC33242AA8D678003B0B4B /* RMIT Marvelous Event Planner */ = {
 			isa = PBXGroup;
 			children = (
-				22CC333B2AA8D7E1003B0B4B /* Helper */,
+				69E187D02AAB12F3002EBE01 /* Helper */,
+				69E187C22AAADAE7002EBE01 /* Fonts */,
+				69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */,
 				22CC33352AA8D78A003B0B4B /* Models */,
-				22CC33342AA8D781003B0B4B /* ModelView */,
+				69E187D22AAB131C002EBE01 /* ViewModels */,
 				22CC33332AA8D779003B0B4B /* Views */,
-				22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */,
 				22CC33272AA8D678003B0B4B /* ContentView.swift */,
+				22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */,
 				2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */,
 				22CC33292AA8D67E003B0B4B /* Assets.xcassets */,
 				22CC332B2AA8D67E003B0B4B /* Preview Content */,
@@ -112,38 +128,54 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		22CC33342AA8D781003B0B4B /* ModelView */ = {
-			isa = PBXGroup;
-			children = (
-				2288336F2AAB96B90006F2BA /* EventViewModel.swift */,
-			);
-			path = ModelView;
-			sourceTree = "<group>";
-		};
 		22CC33352AA8D78A003B0B4B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				22CC33362AA8D7A2003B0B4B /* Account.swift */,
 				22CC33382AA8D7AD003B0B4B /* Event.swift */,
-				2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */,
-				228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		22CC333A2AA8D7B8003B0B4B /* Components */ = {
+		69E187BE2AAACC15002EBE01 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
-				368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */,
+				69E187BF2AAACC3C002EBE01 /* DetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		69E187C22AAADAE7002EBE01 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */,
+				69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */,
+				69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		69E187D02AAB12F3002EBE01 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				691574162AAEC2FA0077D45A /* Modifiers.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		69E187D12AAB1302002EBE01 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				691574142AAEBF7F0077D45A /* ListItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		22CC333B2AA8D7E1003B0B4B /* Helper */ = {
+		69E187D22AAB131C002EBE01 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Helper;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +251,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69E187C62AAADB8A002EBE01 /* Poppins-Medium.ttf in Resources */,
+				69E187C72AAADB8A002EBE01 /* Poppins-SemiBold.ttf in Resources */,
 				22CC332D2AA8D67E003B0B4B /* Preview Assets.xcassets in Resources */,
+				69E187C92AAADCD6002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist in Resources */,
 				22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */,
+				69E187C82AAADB8A002EBE01 /* Poppins-Regular.ttf in Resources */,
 				2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +275,9 @@
 				368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */,
 				22CC33282AA8D678003B0B4B /* ContentView.swift in Sources */,
 				22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */,
+				691574152AAEBF7F0077D45A /* ListItem.swift in Sources */,
+				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
+				69E187C02AAACC3C002EBE01 /* DetailView.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +409,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RMIT Marvelous Event Planner/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RMIT-Marvelous-Event-Planner-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -398,6 +438,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RMIT Marvelous Event Planner/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "RMIT-Marvelous-Event-Planner-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
