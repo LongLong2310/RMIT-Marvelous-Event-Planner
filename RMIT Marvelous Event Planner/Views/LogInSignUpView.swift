@@ -40,8 +40,8 @@ struct LogInSignUpView: View {
                         // Gradient circle
                         LinearGradient(
                             colors: [
-                                Color("Pink").opacity(0),
-                                Color("Pink")
+                                .accentColor.opacity(0),
+                                .accentColor
                             ],
                             startPoint: .top,
                             endPoint: .bottom
@@ -56,7 +56,7 @@ struct LogInSignUpView: View {
                         // Small circles
                         Circle()
                             .strokeBorder(
-                                Color("Pink").opacity(0.3),
+                                Color.accentColor.opacity(0.3),
                                 lineWidth: 3
                             )
                             .frame(width: 30, height: 30)
@@ -66,7 +66,7 @@ struct LogInSignUpView: View {
                         
                         Circle()
                             .strokeBorder(
-                                Color("Pink").opacity(0.3),
+                                Color.accentColor.opacity(0.3),
                                 lineWidth: 3
                             )
                             .frame(width: 23, height: 23)
@@ -124,7 +124,7 @@ struct LogInSignUpView: View {
                         } label: {
                             Text("Forgot password?")
                                 .fontWeight(.semibold)
-                                .foregroundColor(Color("Blue"))
+                                .foregroundColor(Color("primary-button"))
                         }
                         .padding(.top, 8)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -135,16 +135,11 @@ struct LogInSignUpView: View {
                         isSignUp = false
                     } label: {
                         Text(isSignUp ? "Sign Up" : "Login")
-                            .padding(.vertical, 20)
-                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .background(Color("Blue"))
-                            .cornerRadius(15)
-                            .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
-                            
                     }
+                    .buttonStyle(PrimaryButton())
+                    .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
                     .padding(.top, 25)
-                    .padding(.horizontal)
                     // A VStackwith text and a button for toggling between login and signup modes.
                     // It displays either "Have an account?" or "Don't have an account?" based on the isSignUp state.
                     VStack (spacing: 10) {
@@ -161,7 +156,7 @@ struct LogInSignUpView: View {
                                 // The button label dynamically changes between "Login" and "Sign up."
                                 Text(isSignUp ? "Login" : "Sign up")
                                     .fontWeight(.semibold)
-                                    .foregroundColor(Color("Blue"))
+                                    .foregroundColor(Color("primary-button"))
                             }
                         }
                         .padding(.top, 10)
@@ -180,7 +175,7 @@ struct LogInSignUpView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("Blue"))
+        .background(Color("primary-button"))
         
     }
     
@@ -231,7 +226,7 @@ struct LogInSignUpView: View {
                         label: {
                             // Display "Hide" when the password is shown, and "Show" when hidden.
                             Text(showPassword.wrappedValue ? "Hide" : "Show")
-                                .foregroundColor(Color("Blue"))
+                                .foregroundColor(Color("primary-button"))
                         }
                     )
                     .offset(y: 9)
