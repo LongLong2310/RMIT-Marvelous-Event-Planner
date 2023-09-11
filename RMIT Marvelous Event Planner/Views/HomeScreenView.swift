@@ -41,7 +41,10 @@ struct HomeScreenView: View {
             
             
             // Profiles
-            Text("Profile Tab")
+            VStack{
+                Text("Profile Tab")
+                Button {authState.logout()} label: {Text("Logout")}
+            }
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }

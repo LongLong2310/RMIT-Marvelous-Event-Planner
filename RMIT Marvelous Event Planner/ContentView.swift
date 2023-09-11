@@ -25,7 +25,7 @@ struct ContentView: View {
                 case .authenticated:
                     HomeScreenView()
                         .environmentObject(authState)
-                case .notAuthenticated:
+                default:
                     LogInSignUpView()
                         .environmentObject(authState)
             }

@@ -21,6 +21,7 @@
 		22AA1E7F2AAF2A3700C3AC32 /* AuthStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA1E7E2AAF2A3700C3AC32 /* AuthStateViewModel.swift */; };
 		22AA1E832AAF2B6200C3AC32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA1E822AAF2B6200C3AC32 /* ContentView.swift */; };
 		22AA1E872AAF2C1300C3AC32 /* LogInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */; };
+		22AA1E8A2AAF6E3400C3AC32 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AA1E892AAF6E3400C3AC32 /* AuthService.swift */; };
 		22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */; };
 		22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC33292AA8D67E003B0B4B /* Assets.xcassets */; };
 		22CC332D2AA8D67E003B0B4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		22AA1E7E2AAF2A3700C3AC32 /* AuthStateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthStateViewModel.swift; path = "RMIT Marvelous Event Planner/ModelView/AuthStateViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		22AA1E822AAF2B6200C3AC32 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInSignUpView.swift; sourceTree = "<group>"; };
+		22AA1E892AAF6E3400C3AC32 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMIT Marvelous Event Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMIT_Marvelous_Event_PlannerApp.swift; sourceTree = "<group>"; };
 		22CC33292AA8D67E003B0B4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22AA1E882AAF6E0300C3AC32 /* Session-Service */ = {
+			isa = PBXGroup;
+			children = (
+				22AA1E892AAF6E3400C3AC32 /* AuthService.swift */,
+			);
+			path = "Session-Service";
+			sourceTree = "<group>";
+		};
 		22CC33192AA8D678003B0B4B = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 		69E187D22AAB131C002EBE01 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				22AA1E882AAF6E0300C3AC32 /* Session-Service */,
 				22AA1E7E2AAF2A3700C3AC32 /* AuthStateViewModel.swift */,
 				698E30792AAF1B7D0038CF89 /* EventViewModel.swift */,
 			);
@@ -292,6 +303,7 @@
 				698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */,
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
+				22AA1E8A2AAF6E3400C3AC32 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
