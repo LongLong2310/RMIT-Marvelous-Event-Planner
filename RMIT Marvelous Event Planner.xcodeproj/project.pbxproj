@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */; };
+		2288335E2AAB84130006F2BA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2288335D2AAB84130006F2BA /* FirebaseAuth */; };
+		228833602AAB84130006F2BA /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2288335F2AAB84130006F2BA /* FirebaseDatabase */; };
+		228833622AAB84130006F2BA /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 228833612AAB84130006F2BA /* FirebaseDatabaseSwift */; };
+		228833642AAB84130006F2BA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 228833632AAB84130006F2BA /* FirebaseFirestore */; };
+		228833662AAB84130006F2BA /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 228833652AAB84130006F2BA /* FirebaseFirestoreCombine-Community */; };
+		228833682AAB84130006F2BA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 228833672AAB84130006F2BA /* FirebaseFirestoreSwift */; };
+		2288336A2AAB84130006F2BA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 228833692AAB84130006F2BA /* FirebaseStorage */; };
+		2288336C2AAB84130006F2BA /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */; };
+		2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */; };
+		228833702AAB96B90006F2BA /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288336F2AAB96B90006F2BA /* EventViewModel.swift */; };
+		228833722AAC337F0006F2BA /* EventHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833712AAC337F0006F2BA /* EventHomePageView.swift */; };
+		228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */; };
+		228833772AAC4F3B0006F2BA /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 228833762AAC4F3B0006F2BA /* Fakery */; };
 		22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */; };
 		22CC33282AA8D678003B0B4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33272AA8D678003B0B4B /* ContentView.swift */; };
 		22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC33292AA8D67E003B0B4B /* Assets.xcassets */; };
@@ -20,9 +34,15 @@
 		69E187C72AAADB8A002EBE01 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */; };
 		69E187C82AAADB8A002EBE01 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */; };
 		69E187C92AAADCD6002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */; };
+		368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipation.swift; sourceTree = "<group>"; };
+		2288336F2AAB96B90006F2BA /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		228833712AAC337F0006F2BA /* EventHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHomePageView.swift; sourceTree = "<group>"; };
+		228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMIT Marvelous Event Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMIT_Marvelous_Event_PlannerApp.swift; sourceTree = "<group>"; };
 		22CC33272AA8D678003B0B4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +57,7 @@
 		69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		368101A12AAC3D9000D7D886 /* LogInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInSignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +65,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228833622AAB84130006F2BA /* FirebaseDatabaseSwift in Frameworks */,
+				228833642AAB84130006F2BA /* FirebaseFirestore in Frameworks */,
+				228833772AAC4F3B0006F2BA /* Fakery in Frameworks */,
+				2288336C2AAB84130006F2BA /* FirebaseStorageCombine-Community in Frameworks */,
+				228833602AAB84130006F2BA /* FirebaseDatabase in Frameworks */,
+				228833662AAB84130006F2BA /* FirebaseFirestoreCombine-Community in Frameworks */,
+				2288336A2AAB84130006F2BA /* FirebaseStorage in Frameworks */,
+				2288335E2AAB84130006F2BA /* FirebaseAuth in Frameworks */,
+				228833682AAB84130006F2BA /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +107,7 @@
 				22CC33332AA8D779003B0B4B /* Views */,
 				22CC33272AA8D678003B0B4B /* ContentView.swift */,
 				22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */,
+				2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */,
 				22CC33292AA8D67E003B0B4B /* Assets.xcassets */,
 				22CC332B2AA8D67E003B0B4B /* Preview Content */,
 			);
@@ -96,6 +127,7 @@
 			children = (
 				69E187D12AAB1302002EBE01 /* Components */,
 				69E187BE2AAACC15002EBE01 /* DetailView */,
+				228833712AAC337F0006F2BA /* EventHomePageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +198,17 @@
 			dependencies = (
 			);
 			name = "RMIT Marvelous Event Planner";
+			packageProductDependencies = (
+				2288335D2AAB84130006F2BA /* FirebaseAuth */,
+				2288335F2AAB84130006F2BA /* FirebaseDatabase */,
+				228833612AAB84130006F2BA /* FirebaseDatabaseSwift */,
+				228833632AAB84130006F2BA /* FirebaseFirestore */,
+				228833652AAB84130006F2BA /* FirebaseFirestoreCombine-Community */,
+				228833672AAB84130006F2BA /* FirebaseFirestoreSwift */,
+				228833692AAB84130006F2BA /* FirebaseStorage */,
+				2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */,
+				228833762AAC4F3B0006F2BA /* Fakery */,
+			);
 			productName = "RMIT Marvelous Event Planner";
 			productReference = 22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */;
 			productType = "com.apple.product-type.application";
@@ -194,6 +237,10 @@
 				Base,
 			);
 			mainGroup = 22CC33192AA8D678003B0B4B;
+			packageReferences = (
+				2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */,
+			);
 			productRefGroup = 22CC33232AA8D678003B0B4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,6 +261,7 @@
 				69E187C92AAADCD6002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist in Resources */,
 				22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */,
 				69E187C82AAADB8A002EBE01 /* Poppins-Regular.ttf in Resources */,
+				2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */,
+				2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */,
+				228833722AAC337F0006F2BA /* EventHomePageView.swift in Sources */,
+				228833702AAB96B90006F2BA /* EventViewModel.swift in Sources */,
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
+				368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */,
 				22CC33282AA8D678003B0B4B /* ContentView.swift in Sources */,
 				22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */,
 				691574152AAEBF7F0077D45A /* ListItem.swift in Sources */,
@@ -431,6 +484,73 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vadymmarkov/Fakery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2288335D2AAB84130006F2BA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2288335F2AAB84130006F2BA /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		228833612AAB84130006F2BA /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		228833632AAB84130006F2BA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		228833652AAB84130006F2BA /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		228833672AAB84130006F2BA /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		228833692AAB84130006F2BA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
+		228833762AAC4F3B0006F2BA /* Fakery */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */;
+			productName = Fakery;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 22CC331A2AA8D678003B0B4B /* Project object */;
 }
