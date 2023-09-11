@@ -18,7 +18,6 @@
 		2288336C2AAB84130006F2BA /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */; };
 		2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */; };
 		228833702AAB96B90006F2BA /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288336F2AAB96B90006F2BA /* EventViewModel.swift */; };
-		228833722AAC337F0006F2BA /* EventHomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833712AAC337F0006F2BA /* EventHomePageView.swift */; };
 		228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */; };
 		228833772AAC4F3B0006F2BA /* Fakery in Frameworks */ = {isa = PBXBuildFile; productRef = 228833762AAC4F3B0006F2BA /* Fakery */; };
 		22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */; };
@@ -41,7 +40,6 @@
 		2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2288336D2AAB8E3F0006F2BA /* EventParticipation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParticipation.swift; sourceTree = "<group>"; };
 		2288336F2AAB96B90006F2BA /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
-		228833712AAC337F0006F2BA /* EventHomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHomePageView.swift; sourceTree = "<group>"; };
 		228833732AAC4B6E0006F2BA /* FakeDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMIT Marvelous Event Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMIT_Marvelous_Event_PlannerApp.swift; sourceTree = "<group>"; };
@@ -125,9 +123,7 @@
 		22CC33332AA8D779003B0B4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				69E187D12AAB1302002EBE01 /* Components */,
-				69E187BE2AAACC15002EBE01 /* DetailView */,
-				228833712AAC337F0006F2BA /* EventHomePageView.swift */,
+				22CC333A2AA8D7B8003B0B4B /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,7 +270,6 @@
 			files = (
 				228833742AAC4B6F0006F2BA /* FakeDataHelper.swift in Sources */,
 				2288336E2AAB8E400006F2BA /* EventParticipation.swift in Sources */,
-				228833722AAC337F0006F2BA /* EventHomePageView.swift in Sources */,
 				228833702AAB96B90006F2BA /* EventViewModel.swift in Sources */,
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
 				368101A22AAC3D9000D7D886 /* LogInSignUpView.swift in Sources */,
