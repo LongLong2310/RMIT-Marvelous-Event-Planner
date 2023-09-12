@@ -147,6 +147,7 @@
 			children = (
 				224C75A52AAE469500F770B9 /* HomeScreenView.swift */,
 				22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */,
+				AB6E963A2AAF2806003E278B /* SplashScreenView.swift */,
 				691CDA782AB0284800DF5CE9 /* JoinedEventsView */,
 				698E30872AAF1C890038CF89 /* Components */,
 				698E30822AAF1BFC0038CF89 /* DetailView */,
@@ -184,7 +185,6 @@
 		698E30872AAF1C890038CF89 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AB6E963A2AAF2806003E278B /* SplashScreenView.swift */,
 				698E30852AAF1C220038CF89 /* ListItem.swift */,
 				691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */,
 				691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */,
