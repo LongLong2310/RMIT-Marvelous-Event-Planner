@@ -31,28 +31,28 @@ struct SplashScreenView: View {
                 Color("primary-button")
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    Image("rmit-logo").resizable().scaledToFit().frame(width:300)
+                    Image("rmit-logo").resizable().scaledToFit().frame(width:150)
                         .foregroundColor(.red)
                     Spacer()
                     VStack{
                         LottieView(loopMode: .loop).frame(width: 250,height: 250)
                       
                         Text("RMEP")
-                            .font(Font.custom("Baskerville-Bold", size: 80))
+                            .font(Font.custom("Poppins-SemiBold", size: 80))
                             .foregroundColor(.accentColor)
                         Text("RMIT Marvelous Event Planner")
-                            .font(Font.custom("Baskerville-Bold", size: 20))
+                            .font(Font.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
                         
                     }
                  Spacer()
                     
                     Text("from")
-                        .font(Font.custom("Baskerville-Bold", size: 20))
+                        .font(Font.custom("Poppins-Regular", size: 20))
                         .foregroundColor(.white)
                     
                     Text("IOS Noobs")
-                        .font(Font.custom("Baskerville-Bold", size: 30))
+                        .font(Font.custom("Poppins-SemiBold", size: 30))
                         .foregroundColor(.accentColor)
                 }
                 .scaleEffect(size)
