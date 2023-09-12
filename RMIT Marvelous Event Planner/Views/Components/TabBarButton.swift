@@ -25,39 +25,43 @@ struct TabBarButton: View {
                 current = label
             }
         } label: {
-            VStack {
-                HStack(spacing: 5) {
+            VStack(spacing: 0) {
+                HStack(alignment: .center, spacing: 5) {
                     Image(systemName: icon)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 18)
                     Text(label)
                         .font(Font.custom(current == label ? "Poppins-Semibold" : "Poppins-Regular", size: 15))
-                    
-                    
                 }
                 .foregroundColor(current == label ? .accentColor : Color("text-color"))
-                .padding(.vertical, 2.5)
+                .padding(.vertical, 10)
                 
-                ZStack {
+                if current == label {
+                    Rectangle()
+                        .fill(Color.accentColor)
+                        .frame(height: 2)
+                        .matchedGeometryEffect(id: "Tab", in: animation)
+                }
+                else {
                     Rectangle()
                         .fill(Color.clear)
                         .frame(height: 2)
-                    
-                    if current == label {
-                        Rectangle()
-                            .fill(Color.accentColor)
-                            .frame(height: 2)
-                            .matchedGeometryEffect(id: "Tab", in: animation)
-                    }
                 }
             }
         }
+        .frame(maxWidth: .infinity)
     }
 }
 
 struct TabBarButton_Previews: PreviewProvider {
     static var previews: some View {
-        JoinedEventsView()
+        @Namespace var animation
+        @State var current: String = "Upcoming"
+        
+        HStack(spacing: 0) {
+            TabBarButton(current: $current, label: "Upcoming", icon: "calendar", animation: animation)
+            TabBarButton(current: $current, label: "Past", icon: "clock.fill", animation: animation)
+        }
     }
 }

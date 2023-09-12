@@ -18,11 +18,18 @@ struct JoinedEventsView: View {
     @Namespace var animation
     
     var body: some View {
-        VStack{
+        VStack(spacing:0) {
+            // Tab section
             HStack(spacing: 0) {
                 TabBarButton(current: $currentTab, label: "Upcoming", icon: "calendar", animation: animation)
                 TabBarButton(current: $currentTab, label: "Past", icon: "clock.fill", animation: animation)
             }
+            
+            // List of joined events
+            ScrollView {
+                
+            }
+            .background(Color("list-background"))
         }
     }
 }

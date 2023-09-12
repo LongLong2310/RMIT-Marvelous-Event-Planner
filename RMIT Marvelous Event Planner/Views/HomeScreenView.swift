@@ -19,7 +19,7 @@ struct HomeScreenView: View {
     @EnvironmentObject private var authState: AuthState
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HeaderBar()
             TabView {
                 // Home Events
@@ -29,7 +29,7 @@ struct HomeScreenView: View {
                     }
                 
                 // Events Participate
-                Text("Events Participate Tab")
+                JoinedEventsView()
                     .tabItem {
                         Label("Joined", systemImage: "calendar")
                     }
