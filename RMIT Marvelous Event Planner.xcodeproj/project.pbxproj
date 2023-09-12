@@ -27,6 +27,9 @@
 		22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33362AA8D7A2003B0B4B /* Account.swift */; };
 		22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33382AA8D7AD003B0B4B /* Event.swift */; };
 		691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691574162AAEC2FA0077D45A /* Modifiers.swift */; };
+		691CDA7A2AB0287D00DF5CE9 /* JoinedEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */; };
+		691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */; };
+		691CDA7E2AB03A1D00DF5CE9 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */; };
 		698E30742AAF1AF20038CF89 /* EventParticipation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30732AAF1AF20038CF89 /* EventParticipation.swift */; };
 		698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30752AAF1B030038CF89 /* FakeDataHelper.swift */; };
 		698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30792AAF1B7D0038CF89 /* EventViewModel.swift */; };
@@ -51,6 +54,9 @@
 		22CC33362AA8D7A2003B0B4B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		22CC33382AA8D7AD003B0B4B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		691574162AAEC2FA0077D45A /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedEventsView.swift; sourceTree = "<group>"; };
+		691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
+		691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		698E30732AAF1AF20038CF89 /* EventParticipation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParticipation.swift; sourceTree = "<group>"; };
 		698E30752AAF1B030038CF89 /* FakeDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		698E30792AAF1B7D0038CF89 /* EventViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewModel.swift; path = "RMIT Marvelous Event Planner/ModelView/EventViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -129,6 +135,7 @@
 			children = (
 				224C75A52AAE469500F770B9 /* HomeScreenView.swift */,
 				22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */,
+				691CDA782AB0284800DF5CE9 /* JoinedEventsView */,
 				698E30872AAF1C890038CF89 /* Components */,
 				698E30822AAF1BFC0038CF89 /* DetailView */,
 			);
@@ -146,6 +153,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		691CDA782AB0284800DF5CE9 /* JoinedEventsView */ = {
+			isa = PBXGroup;
+			children = (
+				691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */,
+			);
+			path = JoinedEventsView;
+			sourceTree = "<group>";
+		};
 		698E30822AAF1BFC0038CF89 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				698E30852AAF1C220038CF89 /* ListItem.swift */,
+				691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */,
+				691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -284,6 +301,7 @@
 				22AA1E832AAF2B6200C3AC32 /* ContentView.swift in Sources */,
 				698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */,
 				22AA1E7F2AAF2A3700C3AC32 /* AuthStateViewModel.swift in Sources */,
+				691CDA7E2AB03A1D00DF5CE9 /* TabBarButton.swift in Sources */,
 				22AA1E872AAF2C1300C3AC32 /* LogInSignUpView.swift in Sources */,
 				698E30842AAF1C1B0038CF89 /* DetailView.swift in Sources */,
 				698E30862AAF1C220038CF89 /* ListItem.swift in Sources */,
@@ -291,7 +309,9 @@
 				698E30742AAF1AF20038CF89 /* EventParticipation.swift in Sources */,
 				698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */,
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
+				691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
+				691CDA7A2AB0287D00DF5CE9 /* JoinedEventsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
