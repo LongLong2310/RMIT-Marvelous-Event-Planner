@@ -13,7 +13,7 @@
 
 import Foundation
 
-struct ChatUser: Identifiable {
+struct Account: Identifiable {
     
     var id: String
     var email: String

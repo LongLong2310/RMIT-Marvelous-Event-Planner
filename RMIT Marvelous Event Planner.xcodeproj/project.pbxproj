@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046513DF2AB048F800775342 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046513DE2AB048F800775342 /* TabBarButton.swift */; };
+		046513E12AB04B1300775342 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046513E02AB04B1300775342 /* HeaderBar.swift */; };
+		046513E32AB05E2D00775342 /* UserProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046513E22AB05E2D00775342 /* UserProfileRow.swift */; };
 		04D546702AB03A9B00D0F2CE /* UserProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5466F2AB03A9B00D0F2CE /* UserProfileImage.swift */; };
 		04D546722AB03B7600D0F2CE /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D546712AB03B7600D0F2CE /* UserProfileView.swift */; };
 		224C75A62AAE469500F770B9 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C75A52AAE469500F770B9 /* HomeScreenView.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		046513DE2AB048F800775342 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
+		046513E02AB04B1300775342 /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
+		046513E22AB05E2D00775342 /* UserProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRow.swift; sourceTree = "<group>"; };
 		04D5466F2AB03A9B00D0F2CE /* UserProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImage.swift; sourceTree = "<group>"; };
 		04D546712AB03B7600D0F2CE /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		224C75A52AAE469500F770B9 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 			children = (
 				04D5466F2AB03A9B00D0F2CE /* UserProfileImage.swift */,
 				04D546712AB03B7600D0F2CE /* UserProfileView.swift */,
+				046513E22AB05E2D00775342 /* UserProfileRow.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -172,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				698E30852AAF1C220038CF89 /* ListItem.swift */,
+				046513DE2AB048F800775342 /* TabBarButton.swift */,
+				046513E02AB04B1300775342 /* HeaderBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -298,7 +307,9 @@
 				22AA1E832AAF2B6200C3AC32 /* ContentView.swift in Sources */,
 				698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */,
 				22AA1E7F2AAF2A3700C3AC32 /* AuthStateViewModel.swift in Sources */,
+				046513DF2AB048F800775342 /* TabBarButton.swift in Sources */,
 				22AA1E872AAF2C1300C3AC32 /* LogInSignUpView.swift in Sources */,
+				046513E12AB04B1300775342 /* HeaderBar.swift in Sources */,
 				698E30842AAF1C1B0038CF89 /* DetailView.swift in Sources */,
 				698E30862AAF1C220038CF89 /* ListItem.swift in Sources */,
 				04D546702AB03A9B00D0F2CE /* UserProfileImage.swift in Sources */,
@@ -308,6 +319,7 @@
 				698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */,
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
+				046513E32AB05E2D00775342 /* UserProfileRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
