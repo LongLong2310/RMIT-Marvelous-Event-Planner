@@ -7,7 +7,7 @@
   ID: s3877991, s3879366, s3877457, s3891710, s3750789
   Created  date: 12/09/2023
   Last modified: dd/MM/yyyy
-  Acknowledgement: None.
+  Acknowledgement: None
 */
 
 import SwiftUI
@@ -27,7 +27,13 @@ struct JoinedEventsView: View {
             
             // List of joined events
             ScrollView {
-                
+                VStack(spacing: 20) {
+                    ForEach((1...4), id: \.self) { _ in
+                        EventCard()
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
             }
             .background(Color("list-background"))
         }
