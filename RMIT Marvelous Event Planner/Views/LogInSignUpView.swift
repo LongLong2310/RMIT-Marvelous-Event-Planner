@@ -15,6 +15,8 @@
 import SwiftUI
 // State variables to track various UI states.
 struct LogInSignUpView: View {
+    @EnvironmentObject private var authState: AuthState
+    
     @State var showMainPage: Bool = false
     @State var isSignUp: Bool = false
     @State private var emailInput: String = ""
@@ -132,7 +134,13 @@ struct LogInSignUpView: View {
                     
                     // Login or Signup Button.
                     Button {
-                        isSignUp = false
+                        // call function authenticated from view model AuthState
+                        if isSignUp{
+                            signUp()
+                        }
+                        else{
+                            signIn()
+                        }
                     } label: {
                         Text(isSignUp ? "Sign Up" : "Login")
                             .frame(maxWidth: .infinity)
@@ -234,6 +242,20 @@ struct LogInSignUpView: View {
             },
             alignment: .trailing
         )
+    }
+    
+    func signIn(){
+        Task {
+            // TODO: Han - Add try catch and await for authenticated
+            authState.signIn(email: emailInput, password: passwordInput)
+        }
+    }
+    
+    func signUp(){
+        Task {
+            // TODO: Han - Add try catch and await for authenticated
+            authState.signUp(email: emailInput, password: passwordInput)
+        }
     }
 }
 
