@@ -31,15 +31,29 @@ struct SplashScreenView: View {
                 Color("primary-button")
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-//                    Image("rmit-logo-white").resizable().scaledToFit()
-//                        .foregroundColor(.red)
-                    Text("RMEP")
-                        .font(Font.custom("Baskerville-Bold", size: 26))
-                        .foregroundColor(.white.opacity(0.80))
-                    LottieView(loopMode: .loop).scaleEffect(0.5)
+                    Image("rmit-logo").resizable().scaledToFit().frame(width:300)
+                        .foregroundColor(.red)
+                    Spacer()
+                    VStack{
+                        LottieView(loopMode: .loop).frame(width: 250,height: 250)
+                      
+                        Text("RMEP")
+                            .font(Font.custom("Baskerville-Bold", size: 80))
+                            .foregroundColor(.accentColor)
+                        Text("RMIT Marvelous Event Planner")
+                            .font(Font.custom("Baskerville-Bold", size: 20))
+                            .foregroundColor(.white)
+                        
+                    }
+                 Spacer()
                     
-                  
-                    ProgressView().controlSize(.large).tint(.white)
+                    Text("from")
+                        .font(Font.custom("Baskerville-Bold", size: 20))
+                        .foregroundColor(.white)
+                    
+                    Text("IOS Noobs")
+                        .font(Font.custom("Baskerville-Bold", size: 30))
+                        .foregroundColor(.accentColor)
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
@@ -50,6 +64,7 @@ struct SplashScreenView: View {
                         self.size = 1
                         self.opacity = 1.00
                    }
+                    
                 }
             }
             .onAppear {

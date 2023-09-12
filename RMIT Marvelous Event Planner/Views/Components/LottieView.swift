@@ -14,17 +14,26 @@ import Lottie
 import SwiftUI
 
 struct LottieView: UIViewRepresentable {
-    let loopMode: LottieLoopMode
+    var loopMode: LottieLoopMode = .loop
 
-    func updateUIView(_ uiView: UIViewType, context: Context) {
+    func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
+        let view = UIView(frame: .zero)
 
+        let animationView = LottieAnimationView(name: "calendar2")
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = loopMode
+        animationView.play()
+
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(animationView)
+        NSLayoutConstraint.activate([
+            animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            animationView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+
+        return view
     }
 
-    func makeUIView(context: Context) -> Lottie.LottieAnimationView {
-        let animationView = LottieAnimationView(name: "calendar2")
-        animationView.play()
-        animationView.loopMode = loopMode
-        animationView.contentMode = .scaleAspectFit
-        return animationView
+    func updateUIView(_ uiView: UIViewType, context: Context) {
     }
 }
