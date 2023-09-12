@@ -44,7 +44,7 @@ struct DetailView: View {
                         // Event description
                         VStack(alignment: .leading, spacing: 0) {
                             HStack {
-                                Text("Event name")
+                                Text("About")
                                     .font(Font.custom("Poppins-Medium", size: 20))
                                 Spacer()
                             }

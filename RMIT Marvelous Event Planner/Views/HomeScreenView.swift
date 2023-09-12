@@ -19,35 +19,28 @@ struct HomeScreenView: View {
     @EnvironmentObject private var authState: AuthState
     
     var body: some View {
-        TabView {
-            // Home Events
-            Text("Home Events Tab")
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-            
-            // Events Participate
-            Text("Events Participate Tab")
-                .tabItem {
-                    Label("Joined", systemImage: "calendar")
-                }
-            
-            
-            // Create Events
-            Text("Create Events Tab")
-                .tabItem {
-                    Label("Add", systemImage: "plus")
-                }
-            
-            
-            // Profiles
-            VStack{
+        VStack(spacing: 0) {
+            HeaderBar()
+            TabView {
+                // Home Events
+                Text("Home Events Tab")
+                    .tabItem {
+                        Label("Home", systemImage: "house.fill")
+                    }
+                
+                // Events Participate
+                JoinedEventsView()
+                    .tabItem {
+                        Label("Joined", systemImage: "calendar")
+                    }
+                
+                
+                // Profiles
                 Text("Profile Tab")
-                Button {authState.logout()} label: {Text("Logout")}
+                    .tabItem {
+                        Label("Profile", systemImage: "person.fill")
+                    }
             }
-                .tabItem {
-                    Label("Profile", systemImage: "person.fill")
-                }
         }
     }
 }
