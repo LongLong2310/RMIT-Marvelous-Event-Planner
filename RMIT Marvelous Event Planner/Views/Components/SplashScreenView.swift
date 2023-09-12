@@ -15,7 +15,6 @@
 import SwiftUI
 
 struct SplashScreenView: View {
-    @State var isActive : Bool = false
     //starting size and opacity
     @State private var size = 0.8
     @State private var opacity = 0.5
@@ -23,9 +22,6 @@ struct SplashScreenView: View {
     // Customise your SplashScreen here
     var body: some View {
         //Change view when true
-        if isActive {
-            ContentView()
-        } else {
             //display the view
             ZStack {
                 Color("primary-button")
@@ -67,15 +63,6 @@ struct SplashScreenView: View {
                     
                 }
             }
-            .onAppear {
-                //dissapear after 2 second by setting isActive to true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    withAnimation(.easeOut(duration: 0.5)) {
-                        self.isActive = true
-                    }
-                }
-            }
-        }
     }
 }
 
