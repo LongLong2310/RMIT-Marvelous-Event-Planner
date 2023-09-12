@@ -23,7 +23,7 @@ struct RMIT_Marvelous_Event_PlannerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+           ContentView()
         }
     }
 }
