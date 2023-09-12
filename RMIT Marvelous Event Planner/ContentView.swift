@@ -29,12 +29,19 @@ struct ContentView: View {
                     LogInSignUpView()
                         .environmentObject(authState)
             }
-            
+      
+        }.overlay{
             // TODO: Quan - Add splash screen view and exist and reset showSplashScreen
             if isSplashScreenShown{
-                
-            }
-        }
+                SplashScreenView().onAppear {
+                    //dissapear after 2 second by setting isActive to true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+                        withAnimation(.easeOut(duration: 0.5)) {
+                            self.isSplashScreenShown = false
+                        }
+                    }
+                }
+            }}
     }
 }
 

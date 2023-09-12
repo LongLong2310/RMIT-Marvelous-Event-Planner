@@ -40,6 +40,11 @@
 		69E187C72AAADB8A002EBE01 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */; };
 		69E187C82AAADB8A002EBE01 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */; };
 		69E187C92AAADCD6002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */; };
+		AB6E96352AAF27DC003E278B /* calendar.json in Resources */ = {isa = PBXBuildFile; fileRef = AB6E96342AAF27DC003E278B /* calendar.json */; };
+		AB6E96372AAF27EC003E278B /* calendar2.json in Resources */ = {isa = PBXBuildFile; fileRef = AB6E96362AAF27EC003E278B /* calendar2.json */; };
+		AB6E96392AAF27F7003E278B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E96382AAF27F7003E278B /* LottieView.swift */; };
+		AB6E963B2AAF2806003E278B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E963A2AAF2806003E278B /* SplashScreenView.swift */; };
+		AB6E963E2AAF2831003E278B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AB6E963D2AAF2831003E278B /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +73,10 @@
 		69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		AB6E96342AAF27DC003E278B /* calendar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar.json; sourceTree = "<group>"; };
+		AB6E96362AAF27EC003E278B /* calendar2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar2.json; sourceTree = "<group>"; };
+		AB6E96382AAF27F7003E278B /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		AB6E963A2AAF2806003E278B /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +89,7 @@
 				228833772AAC4F3B0006F2BA /* Fakery in Frameworks */,
 				2288336C2AAB84130006F2BA /* FirebaseStorageCombine-Community in Frameworks */,
 				228833602AAB84130006F2BA /* FirebaseDatabase in Frameworks */,
+				AB6E963E2AAF2831003E278B /* Lottie in Frameworks */,
 				228833662AAB84130006F2BA /* FirebaseFirestoreCombine-Community in Frameworks */,
 				2288336A2AAB84130006F2BA /* FirebaseStorage in Frameworks */,
 				2288335E2AAB84130006F2BA /* FirebaseAuth in Frameworks */,
@@ -137,6 +147,7 @@
 			children = (
 				224C75A52AAE469500F770B9 /* HomeScreenView.swift */,
 				22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */,
+				AB6E963A2AAF2806003E278B /* SplashScreenView.swift */,
 				691CDA782AB0284800DF5CE9 /* JoinedEventsView */,
 				698E30872AAF1C890038CF89 /* Components */,
 				698E30822AAF1BFC0038CF89 /* DetailView */,
@@ -178,6 +189,7 @@
 				691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */,
 				691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */,
 				691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */,
+				AB6E96382AAF27F7003E278B /* LottieView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -185,6 +197,8 @@
 		69E187C22AAADAE7002EBE01 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				AB6E96342AAF27DC003E278B /* calendar.json */,
+				AB6E96362AAF27EC003E278B /* calendar2.json */,
 				69E187C32AAADB8A002EBE01 /* Poppins-Medium.ttf */,
 				69E187C52AAADB8A002EBE01 /* Poppins-Regular.ttf */,
 				69E187C42AAADB8A002EBE01 /* Poppins-SemiBold.ttf */,
@@ -235,6 +249,7 @@
 				228833692AAB84130006F2BA /* FirebaseStorage */,
 				2288336B2AAB84130006F2BA /* FirebaseStorageCombine-Community */,
 				228833762AAC4F3B0006F2BA /* Fakery */,
+				AB6E963D2AAF2831003E278B /* Lottie */,
 			);
 			productName = "RMIT Marvelous Event Planner";
 			productReference = 22CC33222AA8D678003B0B4B /* RMIT Marvelous Event Planner.app */;
@@ -267,6 +282,7 @@
 			packageReferences = (
 				2288335C2AAB84130006F2BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */,
+				AB6E963C2AAF2831003E278B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 22CC33232AA8D678003B0B4B /* Products */;
 			projectDirPath = "";
@@ -289,6 +305,8 @@
 				22CC332A2AA8D67E003B0B4B /* Assets.xcassets in Resources */,
 				69E187C82AAADB8A002EBE01 /* Poppins-Regular.ttf in Resources */,
 				2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */,
+				AB6E96352AAF27DC003E278B /* calendar.json in Resources */,
+				AB6E96372AAF27EC003E278B /* calendar2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +320,7 @@
 				224C75A62AAE469500F770B9 /* HomeScreenView.swift in Sources */,
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
 				22AA1E832AAF2B6200C3AC32 /* ContentView.swift in Sources */,
+				AB6E963B2AAF2806003E278B /* SplashScreenView.swift in Sources */,
 				698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */,
 				22AA1E7F2AAF2A3700C3AC32 /* AuthStateViewModel.swift in Sources */,
 				691CDA7E2AB03A1D00DF5CE9 /* TabBarButton.swift in Sources */,
@@ -316,6 +335,7 @@
 				691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
 				691CDA7A2AB0287D00DF5CE9 /* JoinedEventsView.swift in Sources */,
+				AB6E96392AAF27F7003E278B /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +554,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		AB6E963C2AAF2831003E278B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -581,6 +609,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 228833752AAC4F3A0006F2BA /* XCRemoteSwiftPackageReference "Fakery" */;
 			productName = Fakery;
+		};
+		AB6E963D2AAF2831003E278B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB6E963C2AAF2831003E278B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
