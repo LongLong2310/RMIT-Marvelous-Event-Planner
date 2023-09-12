@@ -101,7 +101,7 @@
 				69E187C22AAADAE7002EBE01 /* Fonts */,
 				69E187C12AAAD840002EBE01 /* RMIT-Marvelous-Event-Planner-Info.plist */,
 				22CC33352AA8D78A003B0B4B /* Models */,
-				69E187D22AAB131C002EBE01 /* ViewModels */,
+				69E187D22AAB131C002EBE01 /* ModelView */,
 				22CC33332AA8D779003B0B4B /* Views */,
 				22CC33272AA8D678003B0B4B /* ContentView.swift */,
 				22CC33252AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift */,
@@ -175,12 +175,12 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		69E187D22AAB131C002EBE01 /* ViewModels */ = {
+		69E187D22AAB131C002EBE01 /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
 				698E30792AAF1B7D0038CF89 /* EventViewModel.swift */,
 			);
-			path = ViewModels;
+			path = ModelView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
