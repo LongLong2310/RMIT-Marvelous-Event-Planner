@@ -25,6 +25,18 @@ struct PrimaryButton: ButtonStyle {
     }
 }
 
+struct WarningButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.all, 10.0)
+            .background(Color("warning-button"))
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .scaleEffect(configuration.isPressed ? 1.05 : 1)
+            .animation(.easeOut(duration: 0.25), value: configuration.isPressed)
+    }
+}
+
 struct BackButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
