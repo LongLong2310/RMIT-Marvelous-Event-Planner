@@ -27,7 +27,7 @@ struct JoinedEventsView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing:0) {
                 // Tab section
                 HStack(spacing: 0) {
