@@ -39,7 +39,7 @@ class FakeDataHelper {
                 date: fakerDateTimeStr.0,
                 time: fakerDateTimeStr.1,
                 location: faker.address.streetAddress(includeSecondary: Bool()),
-                imageUrl: "https://picsum.photos/200/300",
+                imageUrl: "sample-image",
                 organizerRole: OrganizerRole.allCases.randomElement()!.rawValue)
             
             // Since we generate fake id with UUID, we directly update data
@@ -61,7 +61,7 @@ class FakeDataHelper {
         
         // Create Date Formatter
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         
         // Create Time Formatter
         let timeFormatter = DateFormatter()

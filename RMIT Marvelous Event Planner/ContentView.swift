@@ -16,6 +16,7 @@ import SwiftUI
 // Body
 struct ContentView: View {
     @StateObject private var authState = AuthState()
+    @StateObject private var eventVM = EventViewModel()
     @State private var isSplashScreenShown: Bool = true
     
     var body: some View {
@@ -25,6 +26,7 @@ struct ContentView: View {
                 case .authenticated:
                     HomeScreenView()
                         .environmentObject(authState)
+                        .environmentObject(eventVM)
                 case .notAuthenticated:
                     LogInSignUpView()
                         .environmentObject(authState)
