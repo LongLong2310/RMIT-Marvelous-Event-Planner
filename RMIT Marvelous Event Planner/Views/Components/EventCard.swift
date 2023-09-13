@@ -13,9 +13,11 @@
 import SwiftUI
 
 struct EventCard: View {
+    var event: Event
+    
     var body: some View {
         ZStack {
-            Image("sample-image")
+            Image(event.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 200)
@@ -24,10 +26,13 @@ struct EventCard: View {
                 Spacer()
                 HStack {
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("Family reunion")
+                        Text(event.name)
                             .font(Font.custom("Poppins-Medium", size: 18))
-                        ListItem(icon:"clock.fill", content: "24 Dec 2020, 9:00", size: 18)
-                        ListItem(icon:"mappin.and.ellipse", content: "Dong Hoi, Quang Binh", size: 18)
+                            .foregroundColor(Color("text-color"))
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                        ListItem(icon:"clock.fill", content: "\(event.date) - \(event.time)", size: 18)
+                        ListItem(icon:"mappin.and.ellipse", content: event.location, size: 18)
                     }
                     
                     Spacer()
@@ -36,7 +41,8 @@ struct EventCard: View {
                         
                     } label: {
                         HStack {
-                            Image(systemName: "person.3.fill")
+                            Image(systemName: "square.and.arrow.down")
+                                .rotationEffect(.degrees(-90))
                             Text("Join")
                                 .font(Font.custom("Poppins-Regular", size: 18))
                         }
@@ -56,6 +62,6 @@ struct EventCard: View {
 
 struct EventCard_Previews: PreviewProvider {
     static var previews: some View {
-        EventCard()
+        EventCard(event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", date: "24 Dec 2020", time: "9:00", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
     }
 }

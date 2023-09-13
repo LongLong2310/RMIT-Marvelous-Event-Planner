@@ -22,47 +22,49 @@ struct SplashScreenView: View {
     // Customise your SplashScreen here
     var body: some View {
         //Change view when true
-            //display the view
-            ZStack {
-                Color("primary-button")
-                    .edgesIgnoringSafeArea(.all)
-                VStack {
-                    Image("rmit-logo").resizable().scaledToFit().frame(width:150)
-                        .foregroundColor(.red)
-                    Spacer()
-                    VStack{
-                        LottieView(loopMode: .loop).frame(width: 250,height: 250)
-                      
-                        Text("RMEP")
-                            .font(Font.custom("Poppins-SemiBold", size: 80))
-                            .foregroundColor(.accentColor)
-                        Text("RMIT Marvelous Event Planner")
-                            .font(Font.custom("Poppins-Regular", size: 20))
-                            .foregroundColor(.white)
-                        
-                    }
-                 Spacer()
+        //display the view
+        ZStack {
+            Color("primary-button")
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Image("rmit-logo").resizable().scaledToFit()
+                    .frame(width: 125)
+                    .foregroundColor(.red)
+                Spacer()
+                VStack{
+                    LottieView(loopMode: .loop)
+                        .frame(width: 250, height: 250)
                     
-                    Text("from")
+                    Text("RMEP")
+                        .font(Font.custom("Poppins-Medium", size: 80))
+                        .foregroundColor(.accentColor)
+                    Text("RMIT Marvelous Event Planner")
                         .font(Font.custom("Poppins-Regular", size: 20))
                         .foregroundColor(.white)
                     
-                    Text("IOS Noobs")
-                        .font(Font.custom("Poppins-SemiBold", size: 30))
-                        .foregroundColor(.accentColor)
                 }
-                .scaleEffect(size)
-                .opacity(opacity)
-                .onAppear {
-                    //animation
-                    withAnimation(.easeIn(duration: 1.2)) {
-                        //turn to true size and opacity after animation
-                        self.size = 1
-                        self.opacity = 1.00
-                   }
-                    
-                }
+                Spacer()
+                
+                Text("from")
+                    .font(Font.custom("Poppins-Regular", size: 15))
+                    .foregroundColor(.white)
+                
+                Text("iOS Noobs")
+                    .font(Font.custom("Poppins-Medium", size: 24))
+                    .foregroundColor(.accentColor)
             }
+            .scaleEffect(size)
+            .opacity(opacity)
+            .onAppear {
+                //animation
+                withAnimation(.easeIn(duration: 1.2)) {
+                    //turn to true size and opacity after animation
+                    self.size = 1
+                    self.opacity = 1.00
+                }
+                
+            }
+        }
     }
 }
 

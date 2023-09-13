@@ -153,7 +153,6 @@ struct LogInSignUpView: View {
                     VStack (spacing: 10) {
                         HStack {
                             Text(isSignUp ? "Have an account?" : "Don't have an account?")
-                                .foregroundColor(.black)
                             // Register User button
                             Button {
                                 // Toggle the isSignUp state with animation when the button is pressed.
@@ -173,14 +172,9 @@ struct LogInSignUpView: View {
                 }
                 .padding(30)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(
-                // White background with rounded top corners.
-                Color.white
-                    .clipShape(CustomCorners(corners: [.topLeft, .topRight], radius: 25))
-                    .ignoresSafeArea()
-            )
-            
+            .background()
+            .cornerRadius(10)
+            .ignoresSafeArea()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("primary-button"))
@@ -205,8 +199,6 @@ struct LogInSignUpView: View {
                 // Icon displayed alongside the title.
                 Image(systemName: icon)
             }
-            // Set the text field label's text color.
-            .foregroundColor(Color.black.opacity(0.8))
             
             // Depending on the title (e.g., if it contains "Password") and showPassword state,
             // either show a SecureField (password) or TextField (non-password) input.
@@ -220,7 +212,6 @@ struct LogInSignUpView: View {
             
             // Divider line below the text input.
             Divider()
-                .background(Color.black.opacity(0.4))
         }
         // Overlay a button to toggle password visibility (visible only for password fields).
         .overlay(
