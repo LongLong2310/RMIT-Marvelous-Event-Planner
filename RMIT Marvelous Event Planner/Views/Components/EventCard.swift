@@ -38,7 +38,8 @@ struct EventCard: View {
                         
                     } label: {
                         HStack {
-                            Image(systemName: "person.3.fill")
+                            Image(systemName: "square.and.arrow.down")
+                                .rotationEffect(.degrees(-90))
                             Text("Join")
                                 .font(Font.custom("Poppins-Regular", size: 18))
                         }
@@ -58,6 +59,6 @@ struct EventCard: View {
 
 struct EventCard_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        EventCard(event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", date: "24 Dec 2020", time: "9:00", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
     }
 }
