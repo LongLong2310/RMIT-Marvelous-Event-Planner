@@ -26,6 +26,7 @@ struct ListItem: View {
                 .foregroundColor(.accentColor)
             Text(content)
                 .font(Font.custom("Poppins-Regular", size: size - 3))
+                .foregroundColor(Color("text-color"))
         }
     }
 }
