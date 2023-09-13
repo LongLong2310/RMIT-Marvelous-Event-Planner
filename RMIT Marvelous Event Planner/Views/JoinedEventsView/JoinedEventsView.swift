@@ -21,10 +21,6 @@ struct JoinedEventsView: View {
     @State private var currentTab: String = "Upcoming"
     @Namespace var animation
     
-    init(eventVM: EventViewModel) {
-        self.eventVM.queryEventsHomePage()
-    }
-    
     var body: some View {
         NavigationStack {
             VStack(spacing:0) {
