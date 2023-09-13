@@ -6,8 +6,8 @@
   Author: Nguyen Quang Duy, Long Trinh Hoang Pham, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
   ID: s3877991, s3879366, s3877457, s3891710, s3750789
   Created  date: 11/09/2023
-  Last modified: 11/09/2023
-  Acknowledgement: None.
+  Last modified: 12/09/2023
+  Acknowledgement: None
 */
 
 import SwiftUI
@@ -22,7 +22,7 @@ struct ListItem: View {
             Image(systemName: icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: size)
+                .frame(width: size, height: size)
                 .foregroundColor(.accentColor)
             Text(content)
                 .font(Font.custom("Poppins-Regular", size: size - 3))
