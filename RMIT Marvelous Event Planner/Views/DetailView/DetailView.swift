@@ -6,19 +6,21 @@
   Author: Nguyen Quang Duy, Long Trinh Hoang Pham, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
   ID: s3877991, s3879366, s3877457, s3891710, s3750789
   Created  date: 08/09/2023
-  Last modified: 11/09/2023
+  Last modified: dd/09/2023
   Acknowledgement: None.
 */
 
 import SwiftUI
 
 struct DetailView: View {
+    var event: Event
+    
     var body: some View {
         ZStack {
             // MARK: - Event details view
             VStack(spacing: 0) {
                 // Image view
-                Image("sample-image")
+                Image(event.imageUrl)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
@@ -30,13 +32,13 @@ struct DetailView: View {
                         // Event specs
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
-                                Text("Event name")
+                                Text(event.name)
                                     .font(Font.custom("Poppins-SemiBold", size: 24))
                                 Spacer()
                             }
                             
-                            ListItem(icon: "clock.fill", content: "dd MMM yyyy - hh:mm", size: 18)
-                            ListItem(icon: "mappin.and.ellipse", content: "Location", size: 18)
+                            ListItem(icon: "clock.fill", content: "\(event.date) - \(event.time)", size: 18)
+                            ListItem(icon: "mappin.and.ellipse", content: event.location, size: 18)
                             ListItem(icon: "person.3.fill", content: "XXX participants", size: 18)
                         }
                         .padding(.top, 10)
@@ -48,7 +50,7 @@ struct DetailView: View {
                                     .font(Font.custom("Poppins-Medium", size: 20))
                                 Spacer()
                             }
-                            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum velit euismod in pellentesque massa. Lorem mollis aliquam ut porttitor leo. Purus sit amet luctus venenatis lectus. Id porta nibh venenatis cras sed felis eget velit aliquet. Fusce ut placerat orci nulla pellentesque dignissim. Faucibus vitae aliquet nec ullamcorper. Porttitor eget dolor morbi non. Pulvinar neque laoreet suspendisse interdum consectetur libero. A erat nam at lectus urna duis convallis. Molestie nunc non blandit massa enim nec dui nunc. Pellentesque nec nam aliquam sem et. Leo vel fringilla est ullamcorper eget nulla. Magna sit amet purus gravida quis blandit turpis cursus in. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet. Dui id ornare arcu odio ut sem nulla pharetra diam.")
+                            Text(event.description)
                                 .font(Font.custom("Poppins-Regular", size: 15))
                         }
                         .padding(.vertical, 10)
@@ -71,7 +73,7 @@ struct DetailView: View {
                                 VStack(alignment: .leading) {
                                     Text("Username")
                                         .font(Font.custom("Poppins-Regular", size: 15))
-                                    Text("Personal")
+                                    Text(event.organizerRole)
                                         .font(Font.custom("Poppins-Regular", size: 12))
                                 }
                             }
@@ -131,6 +133,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        ContentView()
     }
 }

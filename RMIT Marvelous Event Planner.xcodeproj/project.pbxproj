@@ -31,6 +31,7 @@
 		691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */; };
 		691CDA7E2AB03A1D00DF5CE9 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */; };
 		691CDA802AB05C1D00DF5CE9 /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */; };
+		695871CE2AB17DA9005E0B9F /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695871CD2AB17DA9005E0B9F /* EventList.swift */; };
 		698E30742AAF1AF20038CF89 /* EventParticipation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30732AAF1AF20038CF89 /* EventParticipation.swift */; };
 		698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30752AAF1B030038CF89 /* FakeDataHelper.swift */; };
 		698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30792AAF1B7D0038CF89 /* EventViewModel.swift */; };
@@ -64,6 +65,7 @@
 		691CDA7B2AB02A3900DF5CE9 /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 		691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
+		695871CD2AB17DA9005E0B9F /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		698E30732AAF1AF20038CF89 /* EventParticipation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParticipation.swift; sourceTree = "<group>"; };
 		698E30752AAF1B030038CF89 /* FakeDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		698E30792AAF1B7D0038CF89 /* EventViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewModel.swift; path = "RMIT Marvelous Event Planner/ModelView/EventViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -190,6 +192,7 @@
 				691CDA7D2AB03A1D00DF5CE9 /* TabBarButton.swift */,
 				691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */,
 				AB6E96382AAF27F7003E278B /* LottieView.swift */,
+				695871CD2AB17DA9005E0B9F /* EventList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				22AA1E7F2AAF2A3700C3AC32 /* AuthStateViewModel.swift in Sources */,
 				691CDA7E2AB03A1D00DF5CE9 /* TabBarButton.swift in Sources */,
 				22AA1E872AAF2C1300C3AC32 /* LogInSignUpView.swift in Sources */,
+				695871CE2AB17DA9005E0B9F /* EventList.swift in Sources */,
 				698E30842AAF1C1B0038CF89 /* DetailView.swift in Sources */,
 				698E30862AAF1C220038CF89 /* ListItem.swift in Sources */,
 				22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */,
