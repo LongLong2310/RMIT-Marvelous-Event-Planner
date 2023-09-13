@@ -13,9 +13,9 @@
 
 import Foundation
 
-struct ChatUser: Identifiable {
+struct Account: Identifiable {
     
-    var id: String
+    var id: String?
     var email: String
     var name: String
     var profilePicture: String

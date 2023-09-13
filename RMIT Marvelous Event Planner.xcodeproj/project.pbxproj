@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		224C75A62AAE469500F770B9 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C75A52AAE469500F770B9 /* HomeScreenView.swift */; };
+		227A39B42AB170C500A15854 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A39B32AB170C500A15854 /* AuthService.swift */; };
 		2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */; };
 		2288335E2AAB84130006F2BA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2288335D2AAB84130006F2BA /* FirebaseAuth */; };
 		228833602AAB84130006F2BA /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 2288335F2AAB84130006F2BA /* FirebaseDatabase */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		224C75A52AAE469500F770B9 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		227A39B32AB170C500A15854 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22AA1E7E2AAF2A3700C3AC32 /* AuthStateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthStateViewModel.swift; path = "RMIT Marvelous Event Planner/ModelView/AuthStateViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		22AA1E822AAF2B6200C3AC32 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		227A39B22AB1709C00A15854 /* Session-Service */ = {
+			isa = PBXGroup;
+			children = (
+				227A39B32AB170C500A15854 /* AuthService.swift */,
+			);
+			path = "Session-Service";
+			sourceTree = "<group>";
+		};
 		22CC33192AA8D678003B0B4B = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +230,7 @@
 		69E187D22AAB131C002EBE01 /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
+				227A39B22AB1709C00A15854 /* Session-Service */,
 				22AA1E7E2AAF2A3700C3AC32 /* AuthStateViewModel.swift */,
 				698E30792AAF1B7D0038CF89 /* EventViewModel.swift */,
 			);
@@ -327,6 +338,7 @@
 				698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */,
 				22AA1E7F2AAF2A3700C3AC32 /* AuthStateViewModel.swift in Sources */,
 				691CDA7E2AB03A1D00DF5CE9 /* TabBarButton.swift in Sources */,
+				227A39B42AB170C500A15854 /* AuthService.swift in Sources */,
 				22AA1E872AAF2C1300C3AC32 /* LogInSignUpView.swift in Sources */,
 				695871CE2AB17DA9005E0B9F /* EventList.swift in Sources */,
 				698E30842AAF1C1B0038CF89 /* DetailView.swift in Sources */,
