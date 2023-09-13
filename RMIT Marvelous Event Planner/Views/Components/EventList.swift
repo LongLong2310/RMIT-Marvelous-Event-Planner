@@ -13,7 +13,7 @@
 import SwiftUI
 
 struct EventList: View {
-    var events: [Event]
+    @Binding var events: [Event]
     var listType: String
     
     var body: some View {
@@ -25,15 +25,15 @@ struct EventList: View {
                     VStack(spacing: 20) {
                         ForEach(events, id: \.id) { event in
                             NavigationLink {
-                                DetailView(event: event)
+                                DetailView(event: event).navigationBarBackButtonHidden(true)
                             } label: {
                                 EventCard(event: event)
                             }
                         }
                     }
+                    .padding(.vertical, 10)
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 10)
             } else {
                 // If so, display the message
                 VStack(alignment: .center) {

@@ -28,6 +28,9 @@ struct EventCard: View {
                     VStack(alignment: .leading, spacing: 5) {
                         Text(event.name)
                             .font(Font.custom("Poppins-Medium", size: 18))
+                            .foregroundColor(Color("text-color"))
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
                         ListItem(icon:"clock.fill", content: "\(event.date) - \(event.time)", size: 18)
                         ListItem(icon:"mappin.and.ellipse", content: event.location, size: 18)
                     }

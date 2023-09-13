@@ -11,9 +11,10 @@
 */
 
 import SwiftUI
+import Foundation
 
 struct JoinedEventsView: View {
-    var eventVM: EventViewModel
+    @ObservedObject var eventVM: EventViewModel = EventViewModel()
     @State private var queriedEvents: [Event] = []
     
     @State private var today: Date = Date()
@@ -21,9 +22,7 @@ struct JoinedEventsView: View {
     @Namespace var animation
     
     init(eventVM: EventViewModel) {
-        self.eventVM = eventVM
-        eventVM.queryEventsHomePage()
-        queriedEvents = eventVM.events
+        self.eventVM.queryEventsHomePage()
     }
     
     var body: some View {
@@ -37,12 +36,15 @@ struct JoinedEventsView: View {
                 
                 // List of joined events
                 if currentTab == "Upcoming" {
-                    EventList(events: queriedEvents, listType: currentTab)
+                    EventList(events: $eventVM.events, listType: currentTab)
                 }
                 else if currentTab == "Past" {
-                    EventList(events: queriedEvents, listType: currentTab)
+                    EventList(events: $eventVM.events, listType: currentTab)
                 }
             }
+        }
+        .onAppear(){
+            self.eventVM.queryEventsHomePage()
         }
     }
 }

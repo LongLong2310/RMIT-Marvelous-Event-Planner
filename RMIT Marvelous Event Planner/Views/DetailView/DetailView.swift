@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Environment(\.dismiss) var dismiss
     var event: Event
     
     var body: some View {
@@ -24,7 +25,7 @@ struct DetailView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
-                    .frame(width: UIScreen.main.bounds.size.width, height: 300)
+                    .frame(width: UIScreen.main.bounds.size.width, height: 250)
                 
                 // Information view
                 ScrollView {
@@ -39,7 +40,7 @@ struct DetailView: View {
                             
                             ListItem(icon: "clock.fill", content: "\(event.date) - \(event.time)", size: 18)
                             ListItem(icon: "mappin.and.ellipse", content: event.location, size: 18)
-                            ListItem(icon: "person.3.fill", content: "XXX participants", size: 18)
+                            ListItem(icon: "person.3.fill", content: "\(123) participants", size: 18)
                         }
                         .padding(.top, 10)
                         
@@ -92,7 +93,7 @@ struct DetailView: View {
                 // Back button
                 HStack {
                     Button {
-                        
+                        dismiss()
                     } label: {
                         HStack {
                             Image(systemName: "chevron.backward")
@@ -106,6 +107,7 @@ struct DetailView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 20)
+                .padding(.vertical, 10)
                 
                 Spacer()
                 
