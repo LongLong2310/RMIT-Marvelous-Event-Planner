@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		048E2E7D2AACA94200F74F82 /* UserImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E2E7C2AACA94200F74F82 /* UserImage.swift */; };
-		048E2E7F2AACA95F00F74F82 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E2E7E2AACA95F00F74F82 /* UserRow.swift */; };
-		048E2E812AACA9A300F74F82 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E2E802AACA9A300F74F82 /* UserProfileView.swift */; };
 		224C75A62AAE469500F770B9 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C75A52AAE469500F770B9 /* HomeScreenView.swift */; };
 		2288335B2AAB820F0006F2BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */; };
 		2288335E2AAB84130006F2BA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2288335D2AAB84130006F2BA /* FirebaseAuth */; };
@@ -51,9 +48,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		048E2E7C2AACA94200F74F82 /* UserImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImage.swift; sourceTree = "<group>"; };
-		048E2E7E2AACA95F00F74F82 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
-		048E2E802AACA9A300F74F82 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		224C75A52AAE469500F770B9 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		2288335A2AAB820F0006F2BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22AA1E7E2AAF2A3700C3AC32 /* AuthStateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthStateViewModel.swift; path = "RMIT Marvelous Event Planner/ModelView/AuthStateViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -106,16 +100,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		048E2E7B2AACA90700F74F82 /* UserProfile */ = {
-			isa = PBXGroup;
-			children = (
-				048E2E7C2AACA94200F74F82 /* UserImage.swift */,
-				048E2E7E2AACA95F00F74F82 /* UserRow.swift */,
-				048E2E802AACA9A300F74F82 /* UserProfileView.swift */,
-			);
-			path = UserProfile;
-			sourceTree = "<group>";
-		};
 		22CC33192AA8D678003B0B4B = {
 			isa = PBXGroup;
 			children = (
@@ -161,8 +145,6 @@
 		22CC33332AA8D779003B0B4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				048E2E7B2AACA90700F74F82 /* UserProfile */,
-				22CC333A2AA8D7B8003B0B4B /* Components */,
 				224C75A52AAE469500F770B9 /* HomeScreenView.swift */,
 				22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */,
 				AB6E963A2AAF2806003E278B /* SplashScreenView.swift */,
@@ -335,8 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				048E2E812AACA9A300F74F82 /* UserProfileView.swift in Sources */,
-				048E2E7D2AACA94200F74F82 /* UserImage.swift in Sources */,
 				224C75A62AAE469500F770B9 /* HomeScreenView.swift in Sources */,
 				22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */,
 				22AA1E832AAF2B6200C3AC32 /* ContentView.swift in Sources */,
@@ -354,7 +334,6 @@
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
 				691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
-				048E2E7F2AACA95F00F74F82 /* UserRow.swift in Sources */,
 				691CDA7A2AB0287D00DF5CE9 /* JoinedEventsView.swift in Sources */,
 				AB6E96392AAF27F7003E278B /* LottieView.swift in Sources */,
 			);
