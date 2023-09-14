@@ -36,7 +36,6 @@
 		691CDA7A2AB0287D00DF5CE9 /* JoinedEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */; };
 		691CDA802AB05C1D00DF5CE9 /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */; };
 		695871CE2AB17DA9005E0B9F /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695871CD2AB17DA9005E0B9F /* EventList.swift */; };
-		698E30742AAF1AF20038CF89 /* EventParticipation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30732AAF1AF20038CF89 /* EventParticipation.swift */; };
 		698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30752AAF1B030038CF89 /* FakeDataHelper.swift */; };
 		698E307A2AAF1B7D0038CF89 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30792AAF1B7D0038CF89 /* EventViewModel.swift */; };
 		698E30842AAF1C1B0038CF89 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698E30832AAF1C1B0038CF89 /* DetailView.swift */; };
@@ -74,7 +73,6 @@
 		691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedEventsView.swift; sourceTree = "<group>"; };
 		691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
 		695871CD2AB17DA9005E0B9F /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
-		698E30732AAF1AF20038CF89 /* EventParticipation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParticipation.swift; sourceTree = "<group>"; };
 		698E30752AAF1B030038CF89 /* FakeDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDataHelper.swift; sourceTree = "<group>"; };
 		698E30792AAF1B7D0038CF89 /* EventViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewModel.swift; path = "RMIT Marvelous Event Planner/ModelView/EventViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		698E30832AAF1C1B0038CF89 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 			children = (
 				22CC33242AA8D678003B0B4B /* RMIT Marvelous Event Planner */,
 				22CC33232AA8D678003B0B4B /* Products */,
-				223DD5452AB1B0C9005C397B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,7 +188,6 @@
 				22CC33362AA8D7A2003B0B4B /* Account.swift */,
 				22CC33382AA8D7AD003B0B4B /* Event.swift */,
 				698E30752AAF1B030038CF89 /* FakeDataHelper.swift */,
-				698E30732AAF1AF20038CF89 /* EventParticipation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,7 +362,6 @@
 				22CC33262AA8D678003B0B4B /* RMIT_Marvelous_Event_PlannerApp.swift in Sources */,
 				04D546722AB03B7600D0F2CE /* UserProfileView.swift in Sources */,
 				691CDA802AB05C1D00DF5CE9 /* EventCard.swift in Sources */,
-				698E30742AAF1AF20038CF89 /* EventParticipation.swift in Sources */,
 				698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */,
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
