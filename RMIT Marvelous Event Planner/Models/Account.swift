@@ -13,12 +13,23 @@
 
 import Foundation
 
-struct Account: Identifiable {
+class Account: NSObject, Identifiable {
     
     var id: String?
     var email: String
     var name: String
     var profilePicture: String
     var major: String
+    var darkModeSetting: Bool
+    var isMajorFilterSetting: Bool
     
+    init(id: String? = nil, email: String, name: String, profilePicture: String, major: String, darkModeSetting: Bool, isMajorFilterSetting: Bool) {
+        self.id = id
+        self.email = email
+        self.name = name
+        self.profilePicture = profilePicture
+        self.major = major
+        self.darkModeSetting = darkModeSetting
+        self.isMajorFilterSetting = isMajorFilterSetting
+    }
 }

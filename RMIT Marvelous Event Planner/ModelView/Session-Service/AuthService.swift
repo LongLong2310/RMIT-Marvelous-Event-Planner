@@ -22,12 +22,13 @@ import Combine
 
 class AuthService {
     var db = Firestore.firestore()
+    private let auth = Auth.auth()
     
     func register(email: String, password: String) -> AnyPublisher<Void, Error> {
         Deferred {
             Future { promise in
                 
-                Auth.auth().createUser(withEmail: email,
+                self.auth.createUser(withEmail: email,
                                        password: password) { res, error in
                     if let err = error {
                         promise(.failure(err))
@@ -41,7 +42,9 @@ class AuthService {
                                     "email": email,
                                     "name": "",
                                     "profilePicture": "",
-                                    "major": ""
+                                    "major": "",
+                                    "darkModeSetting": false,
+                                    "isMajorFilterSetting": false
                                 ]
                             ){ err in
                                 if let err = err {
@@ -65,8 +68,7 @@ class AuthService {
                 
                 Future { promise in
                     
-                    Auth
-                        .auth()
+                    self.auth
                         .signIn(withEmail: email,
                                 password: password) { res, error in
                             
@@ -81,5 +83,9 @@ class AuthService {
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
         }
+    
+    func logout(){
+        try? auth.signOut()
+    }
 }
 

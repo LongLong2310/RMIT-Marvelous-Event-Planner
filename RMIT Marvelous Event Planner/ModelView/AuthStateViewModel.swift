@@ -21,10 +21,9 @@ import FirebaseFirestore
 import Combine
 
 
-enum AuthenticatedState{
+enum AuthenticatedState: Hashable{
     case notAuthenticated
     case authenticated
-    case failed(error: Error)
 }
 
 struct UserSessionDetails {
@@ -35,24 +34,30 @@ struct UserSessionDetails {
 }
 
 class AuthState: ObservableObject {
-    @Published var value: AuthenticatedState = .notAuthenticated
+    @Published var value: AuthenticatedState = .notAuthenticated{
+        didSet {
+            if value == .authenticated{
+                self.errorMessage = ""
+            }
+        }
+    }
     @Published var service: AuthService = AuthService()
     @Published var userDetails: Account?
+    @Published var errorMessage = ""
     
     private var db = Firestore.firestore()
     private var subscriptions = Set<AnyCancellable>()
+    private let auth = Auth.auth()
     
     init(){
-        Auth
-            .auth()
+        auth
             .addStateDidChangeListener { [weak self] _,_ in
                 guard let self = self else { return }
                 
                 let currentUser = Auth.auth().currentUser
-                self.value = currentUser == nil ? .notAuthenticated : .authenticated
                 
                 if let uid = currentUser?.uid {
-                    let ref = self.db.collection("users").document(uid)
+                    let ref = self.db.collection("user").document(uid)
                     
                     
                     ref.getDocument { (document, error) in
@@ -66,53 +71,156 @@ class AuthState: ObservableObject {
                                     email: data["email"] as? String ?? "",
                                     name: data["name"] as? String ?? "",
                                     profilePicture: data["profilePicture"] as? String ?? "",
-                                    major: data["major"] as? String ?? "")
-                                
+                                    major: data["major"] as? String ?? "",
+                                    darkModeSetting: data["darkModeSetting"] as? Bool ?? false,
+                                    isMajorFilterSetting: data["isMajorFilterSetting"] as? Bool ?? false
+                                )
                                 self.value = .authenticated
                             }
                             
                         }
-                        else if let error = error {
+                        else if error != nil {
                             // The document was not found.
-                            self.value = .failed(error: error)
+                            self.errorMessage = "Document was not found"
                         }
                     }
                 }
             }
     }
     
-    func logout() {
-        try? Auth.auth().signOut()
+    // Logout, call firebase auth to remove
+    public func logout() {
+        service.logout()
     }
 
-    func signUp(email: String, password: String){
+    // Create user with email and password
+    // If successful then store the uid to the firestore
+    public func signUp(email: String, password: String){
         service
             .register(email: email, password: password)
             .sink { [weak self] res in
-            
+                // Receive promise from service and return status
                 switch res {
-                    case .failure(let error):
-                        self?.value = .failed(error: error)
+                    case .failure(_):
+                        self?.errorMessage = "Failed to create user! Email already exist"
                     default: break
                 }
             } receiveValue: { [weak self] in
+                // Success message then will direct to home page
                 self?.value = .authenticated
             }
             .store(in: &subscriptions)
     }
     
-    func signIn(email: String, password: String){
+    // Sign in function
+    public func signIn(email: String, password: String){
         service
             .login(email: email, password: password)
             .sink { res in
+                // Receive promise from service and return status
                 switch res {
-                    case .failure(let err):
-                        self.value = .failed(error: err)
+                    case .failure(_):
+                        self.errorMessage = "Authenticate fail!! Wrong email or password"
                     default: break
                 }
             } receiveValue: { [weak self] in
+                // Success message then will direct to home page
                 self?.value = .authenticated
             }
             .store(in: &subscriptions)
+    }
+    
+    // Update data on Firebase
+    public func setAccountData(name: String, profilePicture: String, major: String){
+        let data:[String:AnyObject] = [
+            "name": name as AnyObject,
+            "profilePicture": profilePicture as AnyObject,
+            "major": major as AnyObject
+        ]
+        self.updateAccountDataFirebase(data: data)
+    }
+    
+    // Toggle darkMode
+    public func setDarkModeSetting(darkModeSetting: Bool){
+        let data:[String:AnyObject] = [
+            "darkModeSetting": darkModeSetting as AnyObject
+        ]
+        self.updateAccountDataFirebase(data: data)
+    }
+    
+    // Async data settings
+    public func setisMajorFilterSetting(isMajorFilterSetting: Bool){
+        let data:[String:AnyObject] = [
+            "isMajorFilterSetting": isMajorFilterSetting as AnyObject
+        ]
+        self.updateAccountDataFirebase(data: data)
+    }
+    
+    private func updateAccountDataFirebase(data: [String:AnyObject]){
+        // Find user id
+        if let uid = auth.currentUser?.uid {
+            let ref = self.db.collection("user").document(uid)
+            // Update data with document with user id
+            ref.setData(
+                data
+            ){ err in
+                if err != nil {
+                    // Return error true to log error
+                    self.errorMessage = "Cannot save user data"
+                } else {
+                    for (key,value) in data {
+                        print("\(key) = \(value)")
+                        self.userDetails?.setValue(value, forKey: key)
+                    }
+                }
+            }
+        }
+        else {
+            // Not find the user then return error to true to log error
+            self.errorMessage = "Token has expired, please refresh"
+        }
+    }
+    
+    // ----------- FAKE DATA TO FIREBASE HELPER --------------------//
+    private func create_fake_accounts(){
+        // Create fake account
+        for index in 1...15{
+            self.signUp(email: "user_\(index)@example.com", password: "123456")
+        }
+    }
+    
+    private func create_fake_events(){
+        // Fetch all accounts and add events to the account
+        db.collectionGroup("user").getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            if let snapshot = snapshot {
+                let eventVM = EventViewModel()
+                for document in snapshot.documents {
+                    eventVM.addFakeDataToFirestore(uid: document.documentID)
+                }
+          }
+        }
+    }
+    
+    private func accounts_join_events(){
+        // Fetch all accounts and add events to the account
+        db.collectionGroup("user").getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            if let snapshot = snapshot {
+                let eventVM = EventViewModel()
+                
+                for document in snapshot.documents {
+                    eventVM.addEventToJoinEventsWithUid(uid: document.documentID)
+                }
+          }
+        }
     }
 }
