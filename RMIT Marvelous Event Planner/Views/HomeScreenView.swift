@@ -19,31 +19,35 @@ struct HomeScreenView: View {
     @EnvironmentObject private var authState: AuthState
     
     var body: some View {
-        VStack(spacing: 0) {
-            HeaderBar()
-            TabView {
-                // Home Events
-                Text("Home Events Tab")
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                
-                // Events Participate
-                JoinedEventsView()
-                    .tabItem {
-                        Label("Joined", systemImage: "calendar")
-                    }
-                
-                
-                // Profiles
-                Text("Profile Tab")
-                    .tabItem {
-                        Label("Profile", systemImage: "person.fill")
-                    }
+        NavigationStack {
+            VStack(spacing: 0) {
+                HeaderBar()
+                TabView {
+                    // Home Events
+                    HomeEventListView()
+                        .tabItem {
+                            Label("Home", systemImage: "house.fill")
+                        }
+                    
+                    // Events Participate
+                    JoinedEventsView()
+                        .tabItem {
+                            Label("Joined", systemImage: "calendar")
+                        }
+                    
+                    
+                    // Profiles
+                    Text("Profile Tab")
+                        .tabItem {
+                            Label("Profile", systemImage: "person.fill")
+                        }
+                }
             }
         }
     }
 }
+
+
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {

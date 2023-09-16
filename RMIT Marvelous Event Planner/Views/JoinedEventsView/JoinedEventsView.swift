@@ -40,7 +40,7 @@ struct JoinedEventsView: View {
             }
         }
         .onAppear(){
-            self.eventVM.queryEventsHomePage()
+            self.eventVM.queryEventParticipation()
         }
     }
 }
