@@ -26,26 +26,22 @@ class FakeDataHelper {
     let faker = Faker(locale: "en-US")
     
     /**
-        Generate fake data w
+        Generate fake data with faker libary
      */
-    public func generateFakeData(amounts: Int, isPostToFirestore: Bool) -> [Event]{
+    public func generateFakeData(amounts: Int) -> [Event]{
+        let default_image_list = self.generate_image_list()
+        
         for _ in 0...amounts{
-            let fakerDateTimeStr = getRandomDateTimeStr()
             
             var event = Event(
                 id: UUID().uuidString,
                 name: faker.lorem.words(amount: Int.random(in: 0..<6)).capitalized,
                 description: faker.lorem.paragraphs(amount: Int.random(in: 1..<3)),
-                date: fakerDateTimeStr.0,
-                time: fakerDateTimeStr.1,
+                date: getRandomDateTimeStr().0,
+                time: getRandomDateTimeStr().1,
                 location: faker.address.streetAddress(includeSecondary: Bool()),
-                imageUrl: "sample-image",
+                imageUrl: default_image_list.randomElement() ?? "event_image_1",
                 organizerRole: OrganizerRole.allCases.randomElement()!.rawValue)
-            
-            // Since we generate fake id with UUID, we directly update data
-            if isPostToFirestore{
-                event = eventViewModel.updateEventData(event: event, name: event.name, description: event.description, date: event.date, time: event.time, location: event.location, imageUrl: event.imageUrl, organizerRole: event.organizerRole)
-            }
             
             events.append(event)
         }
@@ -69,6 +65,14 @@ class FakeDataHelper {
         
         // range from current date to 60 dates
         return (dateFormatter.string(from: fakerDateTime), timeFormatter.string(from: fakerDateTime))
+    }
+    
+    private func generate_image_list() -> [String] {
+        var image_str_list: [String] = []
+        for index in 0...10{
+            image_str_list.append("event_image_\(index)")
+        }
+        return image_str_list
     }
     
 }

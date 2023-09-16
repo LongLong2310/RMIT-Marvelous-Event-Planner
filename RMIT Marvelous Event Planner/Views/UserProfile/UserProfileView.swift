@@ -217,6 +217,6 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView(account: Account(id:"1", email: "haoconboha@gmail.com", name: "Pham Viet Hao", profilePicture: "", major: "Information Technology"))
+        UserProfileView(account: Account(id:"1", email: "haoconboha@gmail.com", name: "Pham Viet Hao", profilePicture: "", major: "Information Technology", darkModeSetting: false, isMajorFilterSetting: false))
     }
 }
