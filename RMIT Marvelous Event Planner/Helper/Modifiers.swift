@@ -25,6 +25,18 @@ struct PrimaryButton: ButtonStyle {
     }
 }
 
+struct SecondaryButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.all, 10.0)
+            .background(Color("list-background"))
+            .foregroundColor(Color("text-color"))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .scaleEffect(configuration.isPressed ? 1.05 : 1)
+            .animation(.easeOut(duration: 0.25), value: configuration.isPressed)
+    }
+}
+
 struct WarningButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -46,5 +58,17 @@ struct BackButton: ButtonStyle {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .scaleEffect(configuration.isPressed ? 1.05 : 1)
             .animation(.easeOut(duration: 0.25), value: configuration.isPressed)
+    }
+}
+
+// Customize the text field
+struct CustomTextField: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .font(Font.custom("Poppins", size: 15))
+            .multilineTextAlignment(.leading)
+            .padding(.all, 10)
+            .background(Color("list-background"))
+            .cornerRadius(10)
     }
 }

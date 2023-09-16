@@ -367,7 +367,6 @@
 				691CDA802AB05C1D00DF5CE9 /* EventCard.swift in Sources */,
 				698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */,
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
-				691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */,
 				AB2BF38C2AB1A18300B260A7 /* EventForm.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
 				046513E32AB05E2D00775342 /* UserProfileRow.swift in Sources */,
