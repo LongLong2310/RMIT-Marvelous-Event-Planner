@@ -21,9 +21,9 @@ struct HomeScreenView: View {
     var body: some View {
         VStack(spacing: 0) {
             HeaderBar()
+            //Home
             TabView {
-                // Home Events
-                Text("Home Events Tab")
+                HomeEventListView()
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
                     }
@@ -44,6 +44,8 @@ struct HomeScreenView: View {
         }
     }
 }
+
+
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
