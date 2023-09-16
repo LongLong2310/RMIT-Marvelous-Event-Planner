@@ -32,6 +32,7 @@
 		22CC332D2AA8D67E003B0B4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */; };
 		22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33362AA8D7A2003B0B4B /* Account.swift */; };
 		22CC33392AA8D7AD003B0B4B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CC33382AA8D7AD003B0B4B /* Event.swift */; };
+		366501962AB081C500AA87EF /* HomeEventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366501922AB081C400AA87EF /* HomeEventListView.swift */; };
 		691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691574162AAEC2FA0077D45A /* Modifiers.swift */; };
 		691CDA7A2AB0287D00DF5CE9 /* JoinedEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */; };
 		691CDA802AB05C1D00DF5CE9 /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */; };
@@ -70,6 +71,7 @@
 		22CC332C2AA8D67E003B0B4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22CC33362AA8D7A2003B0B4B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		22CC33382AA8D7AD003B0B4B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		366501922AB081C400AA87EF /* HomeEventListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeEventListView.swift; sourceTree = "<group>"; };
 		691574162AAEC2FA0077D45A /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		691CDA792AB0287D00DF5CE9 /* JoinedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinedEventsView.swift; sourceTree = "<group>"; };
 		691CDA7F2AB05C1D00DF5CE9 /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				04D5466E2AB03A8A00D0F2CE /* UserProfile */,
+				366501912AB0805800AA87EF /* HomeListView */,
 				224C75A52AAE469500F770B9 /* HomeScreenView.swift */,
 				22AA1E862AAF2C1300C3AC32 /* LogInSignUpView.swift */,
 				AB6E963A2AAF2806003E278B /* SplashScreenView.swift */,
@@ -192,6 +195,14 @@
 				698E30752AAF1B030038CF89 /* FakeDataHelper.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		366501912AB0805800AA87EF /* HomeListView */ = {
+			isa = PBXGroup;
+			children = (
+				366501922AB081C400AA87EF /* HomeEventListView.swift */,
+			);
+			path = HomeListView;
 			sourceTree = "<group>";
 		};
 		691CDA782AB0284800DF5CE9 /* JoinedEventsView */ = {
@@ -367,6 +378,8 @@
 				691CDA802AB05C1D00DF5CE9 /* EventCard.swift in Sources */,
 				698E30762AAF1B030038CF89 /* FakeDataHelper.swift in Sources */,
 				691574172AAEC2FA0077D45A /* Modifiers.swift in Sources */,
+				366501962AB081C500AA87EF /* HomeEventListView.swift in Sources */,
+				691CDA7C2AB02A3900DF5CE9 /* HeaderBar.swift in Sources */,
 				AB2BF38C2AB1A18300B260A7 /* EventForm.swift in Sources */,
 				22CC33372AA8D7A3003B0B4B /* Account.swift in Sources */,
 				046513E32AB05E2D00775342 /* UserProfileRow.swift in Sources */,
