@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct EventForm: View {
+    @Environment(\.dismiss) var dismiss
     //declare variable
     @State private var name: String = ""
     @State private var dateTime: Date = Date.now
@@ -24,7 +25,6 @@ struct EventForm: View {
     @State private var selectedUrl: String = "sample-image"
     
     let type = ["SSET", "SBM", "SCD"]
-    let organizerRoles = ["Personal", "Club", "Department"]
     let imageUrls = ["sample-image", "sample-avatar"]   // Add actual value of images here (URL name should be meaningful)
     
     var body: some View {
@@ -96,8 +96,8 @@ struct EventForm: View {
                 
                 // Organizer role input
                 Picker(selection: $selectedRole) {
-                    ForEach(organizerRoles, id: \.self) {
-                        Text($0)
+                    ForEach(OrganizerRole.allCases, id: \.self) {
+                        Text($0.rawValue)
                     }
                 } label: {
                     Text("Organizer role")
@@ -116,7 +116,7 @@ struct EventForm: View {
                 HStack {
                     // Discard button
                     Button {
-                        
+                        dismiss()
                     } label: {
                         HStack {
                             Image(systemName: "xmark")
