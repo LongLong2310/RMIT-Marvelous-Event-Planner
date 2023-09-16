@@ -24,7 +24,7 @@ struct HomeScreenView: View {
                 HeaderBar()
                 TabView {
                     // Home Events
-                    Text("Home Events Tab")
+                    HomeEventListView()
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
