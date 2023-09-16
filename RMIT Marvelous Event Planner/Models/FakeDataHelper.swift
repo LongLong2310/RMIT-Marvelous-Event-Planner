@@ -19,6 +19,13 @@
 import Foundation
 import Fakery
 
+let fakeDataHelper = FakeDataHelper()
+
+let numberOfEventsToGenerate = 15
+let isPostToFirestore = false
+
+let fakeEvents = fakeDataHelper.generateFakeData(amounts: numberOfEventsToGenerate, isPostToFirestore: isPostToFirestore)
+
 class FakeDataHelper {
     let eventViewModel: EventViewModel = EventViewModel()
     // Create fake data for event
