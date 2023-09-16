@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "rmit-sgs-trading-lab-05@1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "rmit-sgs-trading-lab-05@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "rmit-sgs-trading-lab-05@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
