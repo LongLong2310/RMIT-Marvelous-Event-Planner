@@ -19,7 +19,8 @@ struct UserProfileView: View {
     @State private var useremail: String = ""
     @State private var password: String = ""
     @State private var showPasswordL: Bool = false
-    
+    @State private var showingAlert = false
+
     
     @Namespace var animation
 //  Function to return to the profile information page
@@ -40,6 +41,7 @@ struct UserProfileView: View {
     func errorCheck() -> String?{
         if username.trimmingCharacters(in: .whitespaces).isEmpty ||
             major.trimmingCharacters(in: .whitespaces).isEmpty{
+            showingAlert = true
             return "Please fill all the field"
         }else{
             previousPhase()
@@ -201,14 +203,14 @@ struct UserProfileView: View {
                             Spacer()
                         }
                         CustomTextField(
-                            title: "Username",
-                            hint: "username",
+                            title: "Name",
+                            hint: "\(account.name)",
                             value: $username,
                             showPassword: .constant(false)
                         )
                         CustomTextField(
                             title: "Major",
-                            hint: "Major",
+                            hint: "\(account.major)",
                             value: $major,
                             showPassword: .constant(false)
                         )
@@ -220,12 +222,12 @@ struct UserProfileView: View {
                     Spacer()
 //  Buttons section edit profile
                     HStack(spacing:20){
-                        
                         VStack{
                             Button{
                                 previousPhase()
                               
                             }label:{
+//  Button
                                 HStack{
                                     Image(systemName: "multiply")
                                     Text("Discard")
@@ -248,6 +250,8 @@ struct UserProfileView: View {
                     }
                     .padding(.horizontal,20)
                     .padding(.top, 10)
+                } .alert(" Please enter all the require field", isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) { }
                 }
                 
             }
