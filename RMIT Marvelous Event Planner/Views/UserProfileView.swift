@@ -11,27 +11,46 @@ struct UserProfileView: View {
     @EnvironmentObject private var authState: AuthState
     @StateObject var eventVM: EventViewModel = EventViewModel()
     
+    @State var avatarName = "Avatar"
     @State var Phase = 1
     @State private var currentTab: String = "Events"
     @State private var username: String = ""
+    @State private var major: String = ""
     @State private var useremail: String = ""
     @State private var password: String = ""
     @State private var showPasswordL: Bool = false
+    @State private var showingAlert = false
+
     
     @Namespace var animation
-    
+//  Function to return to the profile information page
     func previousPhase() {
         if (Phase > 1 ) {
             Phase -= 1
         }
     }
-    
+ 
+//  Function to go to the edit profile page
     func nextPhase() {
         if (Phase < 3) {
             Phase += 1
         }
     }
     
+//  Function to validate if any field is emty
+    func errorCheck() -> String?{
+        if username.trimmingCharacters(in: .whitespaces).isEmpty ||
+            major.trimmingCharacters(in: .whitespaces).isEmpty{
+            showingAlert = true
+            return "Please fill all the field"
+        }else{
+            previousPhase()
+        }
+        return nil
+    }
+    
+    
+//  Custom texfield for edit profile
     @ViewBuilder
     func CustomTextField(
 //        icon: String,
@@ -80,8 +99,9 @@ struct UserProfileView: View {
         ).padding(.top, 3)
     }
     
+    
     var body: some View {
-        
+// If the current phase is equal to 1, the screen will show the user profile page
         ZStack{
             if(Phase == 1){
                 VStack(spacing:20){
@@ -94,7 +114,6 @@ struct UserProfileView: View {
                             Text("\(authState.account!.email)")
                                 .font(Font.custom("Poppins-Regular", size: 15))
                         }
-                        
                         Spacer()
                     }.padding(.horizontal,20)
                     
@@ -132,6 +151,7 @@ struct UserProfileView: View {
                     }
                     
                     TabView(selection: $currentTab) {
+//  Check if current tab is equal to "About" then display profile information
                         if(currentTab == "About"){
                             ScrollView {
                                 VStack(spacing:10){
@@ -142,51 +162,72 @@ struct UserProfileView: View {
                                 .padding(.vertical, 10)
                                 .padding(.horizontal, 20)
                             }
-                        }
-                        else{
-                            EventList(events: $eventVM.events, listType: currentTab)
+//  Check if current tab is equal to "Events" then display joined event list
+                        }else if(currentTab == "Events"){
+                            VStack {
+                                EventList(events: $eventVM.events, listType: currentTab)
+                            }
+                            .frame(width: UIScreen.main.bounds.size.width)
+                            .background(Color("list-background"))
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                     Spacer()
                 }
+
+// If phase is equal to 2 display the edit profile
             }else if(Phase == 2){
-                VStack(spacing: 10){
+                
+                VStack(spacing: 20){
                     Text("Edit profile")
                         .font(Font.custom("Poppins-SemiBold", size: 30))
-                    UserProfileImage(image: Image(""))
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading, spacing: 20){
                         Text("Basic Information")
                             .font(Font.custom("Poppins-SemiBold", size: 20))
+                        
+                        let avatarView = UserProfileImage(image: avatarName)
+
+//  Select an avatar for edit profile
+                        Text("Select an avatar")
+                                    Picker("Pick your avatar:", selection: $avatarName) {
+                                        Text("Avatar 1").tag("profile_picture_1")
+                                        Text("Avatar 2").tag("profile_picture_2")
+                                        Text("Avatar 3").tag("profile_picture_3")
+                                        Text("Avatar 4").tag("profile_picture_4")
+                                        Text("Avatar 5").tag("profile_picture_5")
+                                    }.offset(x: -10)
+//  Edit profile
+                        HStack{
+                            Spacer()
+                            avatarView
+                            Spacer()
+                        }
                         CustomTextField(
-                            title: "Username",
-                            hint: "username",
+                            title: "Name",
+                            hint: "\(account.name)",
                             value: $username,
                             showPassword: .constant(false)
                         )
                         CustomTextField(
-                            title: "Email",
-                            hint: "Email",
-                            value: $useremail,
+                            title: "Major",
+                            hint: "\(account.major)",
+                            value: $major,
                             showPassword: .constant(false)
                         )
-                        CustomTextField(
-                            title: "Password",
-                            hint: "Password",
-                            value: $password,
-                            showPassword: .constant(false)
-                        )
+
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 20)
                 
                     Spacer()
-                    
+//  Buttons section edit profile
                     HStack(spacing:20){
                         VStack{
                             Button{
                                 previousPhase()
+                              
                             }label:{
+//  Button
                                 HStack{
                                     Image(systemName: "multiply")
                                     Text("Discard")
@@ -197,7 +238,7 @@ struct UserProfileView: View {
                         }
                         VStack{
                             Button{
-                                previousPhase()
+                                errorCheck()
                             }label:{
                                 HStack{
                                     Image(systemName: "checkmark")
@@ -209,7 +250,10 @@ struct UserProfileView: View {
                     }
                     .padding(.horizontal,20)
                     .padding(.top, 10)
+                } .alert(" Please enter all the require field", isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) { }
                 }
+                
             }
         }
         .onAppear(){
