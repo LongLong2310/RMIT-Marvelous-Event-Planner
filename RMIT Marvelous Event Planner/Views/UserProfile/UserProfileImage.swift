@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct UserProfileImage: View {
-    let image: Image
+    let image: String
     var body: some View {
         ZStack{
-            image
+            Image(image)
                 .resizable()
                 .frame( width: 100, height: 100)
                 .clipShape(Circle())
@@ -19,7 +19,6 @@ struct UserProfileImage: View {
                     Circle()
                         .stroke(lineWidth: 2)
                 ).shadow(radius: 7)
-            
         }
     }
 }
@@ -27,6 +26,6 @@ struct UserProfileImage: View {
 
 struct UserProfileImage_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileImage(image: Image(""))
+        UserProfileImage(image: "cat")
     }
 }
