@@ -32,16 +32,16 @@ class FakeDataHelper {
         let default_image_list = self.generate_image_list()
         
         for _ in 0...amounts{
-            
+            let randomDateTime: String = self.generateRandomDateTimeRange()
             var event = Event(
                 id: UUID().uuidString,
-                name: faker.lorem.words(amount: Int.random(in: 0..<6)).capitalized,
+                name: faker.lorem.words(amount: Int.random(in: 1..<6)).capitalized,
                 description: faker.lorem.paragraphs(amount: Int.random(in: 1..<3)),
-                date: getRandomDateTimeStr().0,
-                time: getRandomDateTimeStr().1,
+                dateTime: randomDateTime,
                 location: faker.address.streetAddress(includeSecondary: Bool()),
                 imageUrl: default_image_list.randomElement() ?? "event_image_1",
-                organizerRole: OrganizerRole.allCases.randomElement()!.rawValue)
+                organizerRole: OrganizerRole.allCases.randomElement()!.rawValue,
+                major: SchoolDepartment.allCases.randomElement()!.rawValue)
             
             events.append(event)
         }
@@ -52,20 +52,23 @@ class FakeDataHelper {
     /**
         Generate Random Date and Time by faker
      */
-    private func getRandomDateTimeStr() -> (String, String){
-        let fakerDateTime = faker.date.forward(60)
-        
-        // Create Date Formatter
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        
-        // Create Time Formatter
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        
-        // range from current date to 60 dates
-        return (dateFormatter.string(from: fakerDateTime), timeFormatter.string(from: fakerDateTime))
+    func generateRandomDateTimeRange() -> String {
+
+        // Get the start and end dates for the range.
+        let startDate = faker.date.backward(days: 60)
+        let endDate =  faker.date.forward(90)
+
+        // Generate a random number between the start and end dates.
+        let randomTimestamp = TimeInterval.random(in: startDate.timeIntervalSince1970...endDate.timeIntervalSince1970)
+
+        // Create a new Date object from the random number.
+        let randomDateTime = Date(timeIntervalSince1970: randomTimestamp)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter.string(from: randomDateTime)
     }
+    
     
     private func generate_image_list() -> [String] {
         var image_str_list: [String] = []

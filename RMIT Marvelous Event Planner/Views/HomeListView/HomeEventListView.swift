@@ -24,7 +24,7 @@ struct HomeEventListView: View {
     
     // Filtered events based on the search text
     var filteredEvents: [Event] {
-        if searchText.isEmpty {
+        if searchText.isEmpty || eventVM.events.isEmpty{
             return eventVM.events
         } else {
             return eventVM.events.filter { event in
@@ -43,7 +43,8 @@ struct HomeEventListView: View {
                     .padding(.leading)
                     .padding(.trailing)
                 
-                HomeEventList(events: Binding(get: { filteredEvents }, set: { _ in }))
+                
+                EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: "Home Event")
             }
         }
         .onAppear(){
@@ -56,48 +57,6 @@ struct HomeEventListView: View {
 struct HomeEventListView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-struct HomeEventList: View {
-    @Binding var events: [Event]
-    
-    var body: some View {
-        VStack {
-            // Check if the list of events is empty
-            if !events.isEmpty {
-                // If not, display that list in scroll view
-                ScrollView {
-                    VStack(spacing: 20) {
-                        ForEach(events, id: \.id) { event in
-                            NavigationLink {
-                                DetailView(event: event).navigationBarBackButtonHidden(true)
-                            } label: {
-                                EventCard(event: event)
-                            }
-                        }
-                    }
-                    .padding(.vertical, 10)
-                }
-                .padding(.horizontal, 20)
-            } else {
-                // If so, display the message
-                VStack(alignment: .center) {
-                    Spacer()
-                    Image(systemName: "calendar")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 24, height: 24)
-                
-                    Text("Events will appear here.")
-                        .font(Font.custom("Poppins-Regular", size: 18))
-                        .multilineTextAlignment(.center)
-                    Spacer()
-                }
-            }
-        }
-        .frame(width: UIScreen.main.bounds.size.width)
-        .background(Color("list-background"))
     }
 }
 

@@ -26,7 +26,7 @@ struct HeaderBar: View {
             // User action buttons
             HStack(spacing: 20) {
                 // Add a new event button
-                NavigationLink(destination: EventForm()) {
+                NavigationLink(destination: EventForm(formViewModel: EventFormViewModel(event: nil))) {
                     Image(systemName: "plus")
                         .resizable()
                         .aspectRatio(contentMode: .fit)

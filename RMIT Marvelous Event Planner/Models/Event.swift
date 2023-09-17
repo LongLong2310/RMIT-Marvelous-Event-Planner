@@ -25,31 +25,61 @@ struct Event: Identifiable{
     var id: String
     var name: String
     var description: String
-    var date: String
-    var time: String
+    var dateTime: String
     var location: String
     var imageUrl: String
     var organizerRole: String
+    var ownerId: String
+    var major: String
     
-    init(id: String, name: String, description: String, date: String, time: String, location: String, imageUrl: String, organizerRole: String) {
+    let dateTimeFormatter = DateFormatter()
+    let dateFormatter = DateFormatter()
+    let timeFormatter = DateFormatter()
+    
+    var dateTimeFormat: Date{
+        get {
+            return dateTimeFormatter.date(from: dateTime) ?? Date()
+        }
+        set(value) {
+            self.dateTime = dateTimeFormatter.string(from: value)
+        }
+    }
+    
+    var date: String{
+        return dateFormatter.string(from: dateTimeFormat)
+    }
+    
+    var time: String{
+        return timeFormatter.string(from: dateTimeFormat)
+    }
+    
+    init(id: String = "", name: String = "", description: String = "", dateTime: String = "", time: String = "", location: String = "", imageUrl: String = "", organizerRole: String = "Personal", ownerId: String = "", major: String="SSET") {
         self.id = id
         self.name = name
         self.description = description
-        self.date = date
-        self.time = time
+        self.dateTime = dateTime
         self.location = location
         self.imageUrl = imageUrl
         self.organizerRole = organizerRole
+        self.ownerId = ownerId
+        self.major = major
+        
+        dateTimeFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        timeFormatter.dateFormat = "HH:mm"
     }
     
-    mutating func updateEvent(name: String, description: String, date: String, time: String, location: String, imageUrl: String, organizerRole: String){
+    mutating func updateEvent(name: String, description: String, dateTime: String, location: String, imageUrl: String, organizerRole: String, major: String=""){
         self.name = name
         self.description = description
-        self.date = date
-        self.time = time
+        self.dateTime = date
         self.location = location
         self.imageUrl = imageUrl
         self.organizerRole = organizerRole
+        self.major = major
     }
     
+    func getDateTime() -> String{
+        return dateTimeFormatter.string(from: self.dateTimeFormat)
+    }
 }

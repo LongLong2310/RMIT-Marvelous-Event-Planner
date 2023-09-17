@@ -22,39 +22,6 @@ class EventViewModel: ObservableObject {
     private var db = Firestore.firestore()
     private let auth = Auth.auth()
     
-    /**
-        Update event to firestore
-     */
-    public func updateEventData(event: Event, name: String, description: String, date: String, time: String, location: String, imageUrl: String, organizerRole: String) -> Event{
-        
-        var event = event
-        
-        // Update event data
-        event.updateEvent(name: name, description: description, date: date, time: time, location: location, imageUrl: imageUrl, organizerRole: organizerRole)
-        
-        // Update data event in firestore
-        self.postPutFirestore(event: event, uid: nil)
-        
-        return event
-    }
-    
-    /**
-        Add event to firestore
-     */
-    public func addNewEventData(name: String = "", description: String = "", date: String = "", time: String = "", location: String = "", imageUrl: String = "", organizerRole: String = "") -> Event{
-        
-        // Initialize dcoument ID in firestore by letting in generate
-        let id = db.collection("events").document().documentID
-        
-        // Call event constructor
-        let event: Event = Event(id: id, name: name, description: description, date: date, time: time, location: location, imageUrl: imageUrl, organizerRole: organizerRole)
-        
-        // Add data process to firestore
-        self.postPutFirestore(event: event, uid: nil)
-        
-        return event
-    }
-    
     
     /**
         Add event user join to firestore
@@ -120,24 +87,6 @@ class EventViewModel: ObservableObject {
         self.queryEventsFirestore(query: query)
     }
     
-    public func removeOwnedEvent(event: Event){
-        // Specify the document to delete
-        db.collection("events").document(event.id).delete{ error in
-            if error == nil {
-                print("Remove suscessfully!")
-                self.events = self.events.filter { $0.id != event.id }
-            } else {
-                print("Error removing events")
-            }
-        }
-        
-        /* Remove all events from event participation collection*/
-        /**
-             Since we don't display number of participation so no need to remove
-             If we do have then do the delete function here
-         **/
-    }
-    
     public func removeAccountFromEventParticipation(event: Event){
         guard let uid = auth.currentUser?.uid else {return}
         
@@ -193,42 +142,19 @@ class EventViewModel: ObservableObject {
                     id: data["id"] as? String ?? "",
                     name: data["name"] as? String ?? "",
                     description: data["description"] as? String ?? "",
-                    date: data["date"] as? String ?? "",
-                    time: data["time"] as? String ?? "",
+                    dateTime: data["dateTime"] as? String ?? "",
                     location: data["location"] as? String ?? "",
                     imageUrl: data["imageUrl"] as? String ?? "",
-                    organizerRole: data["organizerRole"] as? String ?? "")
+                    organizerRole: data["organizerRole"] as? String ?? "",
+                    ownerId: data["ownerId"] as? String ?? "",
+                    major: data["major"] as? String ?? "")
                 
                 self.events.append(event)
             }
         }
     }
     
-    /**
-     Add or update document of event movie name in the "events" collection
-     */
-    private func postPutFirestore(event: Event, uid: String?){
-        // ref is a DocumentReference
-        let ref = db.collection("events").document(event.id)
-        
-        if uid == nil{
-            guard (auth.currentUser?.uid) != nil else {return}
-        }
-        
-        ref.setData(
-            [
-                "id": event.id,
-                "name": event.name,
-                "description": event.description,
-                "date": event.date,
-                "time": event.time,
-                "location": event.location,
-                "imageUrl": event.imageUrl,
-                "ownerId": uid!,
-                "organizerRole": event.organizerRole
-            ]
-        )
-    }
+    
  
     private func filterEventsParticipationHelper(){
         guard let uid = auth.currentUser?.uid else {return}
@@ -250,72 +176,4 @@ class EventViewModel: ObservableObject {
             
         }
     }
-    
-    // ----------- FAKE DATA TO FIREBASE HELPER --------------------//
-    public func addEventToJoinEventsWithUid(uid: String){
-        let query = db.collection("events").whereField("ownerId", isNotEqualTo: uid)
-        
-        // Execute the query
-        query.addSnapshotListener { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                print("No documents")
-                return
-            }
-            
-            let events = documents.map { (queryDocumentSnapshot) -> Event in
-                let data = queryDocumentSnapshot.data()
-                return Event(
-                    id: data["id"] as? String ?? "",
-                    name: data["name"] as? String ?? "",
-                    description: data["description"] as? String ?? "",
-                    date: data["date"] as? String ?? "",
-                    time: data["time"] as? String ?? "",
-                    location: data["location"] as? String ?? "",
-                    imageUrl: data["imageUrl"] as? String ?? "",
-                    organizerRole: data["organizerRole"] as? String ?? "")
-            }
-            
-            var eventIdList: [Event] = []
-            for _ in 0...Int.random(in: 0...10){
-                let event: Event = events.randomElement() ?? events[0]
-                
-                if !eventIdList.contains(where: { existingEvent in
-                    existingEvent.id == event.id
-                }){
-                    // Create new document in eventParticipation collection
-                    let ref = self.db.collection("eventParticipation").document()
-                    
-                    // Update event with event id, and the id of user
-                    ref.setData([
-                        "eventID": event.id,
-                        "accountID": uid
-                    ])
-                    
-                    eventIdList.append(event)
-                }
-            }
-        }
-    }
-    
-    public func addFakeDataToFirestore(uid: String){
-        // generate fake data and add
-        for event in FakeDataHelper().generateFakeData(amounts: Int.random(in: 0...10)) {
-            // Initialize dcoument ID in firestore by letting in generate
-            let id = db.collection("events").document().documentID
-            
-            // Call event constructor
-            let event: Event = Event(
-                id: id, name: event.name,
-                description: event.description,
-                date: event.date,
-                time: event.time,
-                location: event.location,
-                imageUrl: event.imageUrl,
-                organizerRole: event.organizerRole)
-            
-            // Add data process to firestore
-            self.postPutFirestore(event: event, uid: uid)
-        }
-    }
-    
 }

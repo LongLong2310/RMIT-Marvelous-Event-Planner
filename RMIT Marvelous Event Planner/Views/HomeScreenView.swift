@@ -37,10 +37,11 @@ struct HomeScreenView: View {
                     
                     
                     // Profiles
-                    Text("Profile Tab")
+                    UserProfileView()
                         .tabItem {
                             Label("Profile", systemImage: "person.fill")
                         }
+                        .environmentObject(authState)
                 }
             }
         }

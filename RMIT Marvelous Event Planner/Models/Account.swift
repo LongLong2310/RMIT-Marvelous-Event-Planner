@@ -13,6 +13,12 @@
 
 import Foundation
 
+enum SchoolDepartment: String, CaseIterable{
+    case SSET
+    case SCD
+    case SBM
+}
+
 class Account: NSObject, Identifiable {
     
     var id: String?

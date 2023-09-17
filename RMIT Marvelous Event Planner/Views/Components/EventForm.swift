@@ -14,15 +14,7 @@ import SwiftUI
 
 struct EventForm: View {
     @Environment(\.dismiss) var dismiss
-    //declare variable
-    @State private var name: String = ""
-    @State private var dateTime: Date = Date.now
-    @State private var time: String = ""
-    @State private var location: String = ""
-    @State private var description: String = ""
-    @State private var selectedType = "SSET"
-    @State private var selectedRole: String = "Personal"
-    @State private var selectedUrl: String = "event_image_1"
+    @StateObject var formViewModel: EventFormViewModel
     
     let type = ["SSET", "SBM", "SCD"]
     let imageUrls = ["event_image_1","event_image_2","event_image_3","event_image_4","event_image_5","event_image_6","event_image_7","event_image_8","event_image_9","event_image_10","event_image_11","event_image_12","event_image_13","event_image_14","event_image_15"]   // Add actual value of images here (URL name should be meaningful)
@@ -32,13 +24,13 @@ struct EventForm: View {
             // Input fields
             VStack(alignment: .center, spacing: 20.0) {
                 // Form title
-                Text("Add a new event")
+                Text(formViewModel.event.id != "" ? "Edit event" : "Add a new event")
                     .font(Font.custom("Poppins-Medium", size: 24))
                 
                 // Image input
                 VStack(spacing: 10) {
                     VStack {
-                        Image(selectedUrl)
+                        Image(formViewModel.event.imageUrl)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }
@@ -48,7 +40,7 @@ struct EventForm: View {
                     .cornerRadius(10)
                     .clipped()
                     
-                    Picker(selection: $selectedUrl) {
+                    Picker(selection: $formViewModel.event.imageUrl) {
                         ForEach(imageUrls, id: \.self) {
                             Text($0)
                         }
@@ -63,11 +55,11 @@ struct EventForm: View {
                 }
                 
                 // Event name input
-                TextField("Event name (required)", text: $name)
+                TextField("Event name (required)", text: $formViewModel.event.name)
                     .textFieldStyle(CustomTextField())
                 
                 // Date time input
-                DatePicker(selection: $dateTime, in: Date.now...) {
+                DatePicker(selection: $formViewModel.event.dateTimeFormat) {
                     Text("Date and time")
                         .font(Font.custom("Poppins-Regular", size: 12))
                 }
@@ -77,11 +69,11 @@ struct EventForm: View {
                 .cornerRadius(10)
                 
                 // Location input
-                TextField("Location (required)", text: $location)
+                TextField("Location (required)", text: $formViewModel.event.location)
                     .textFieldStyle(CustomTextField())
                 
                 // Event type input
-                Picker(selection: $selectedType) {
+                Picker(selection: $formViewModel.event.major) {
                     ForEach(type, id: \.self) {
                         Text($0)
                     }
@@ -95,7 +87,7 @@ struct EventForm: View {
                 .cornerRadius(10)
                 
                 // Organizer role input
-                Picker(selection: $selectedRole) {
+                Picker(selection: $formViewModel.event.organizerRole) {
                     ForEach(OrganizerRole.allCases, id: \.self) {
                         Text($0.rawValue)
                     }
@@ -109,7 +101,7 @@ struct EventForm: View {
                 .cornerRadius(10)
                 
                 // Description input
-                TextField("Description (optional)", text: $description, axis: .vertical)
+                TextField("Description (optional)", text: $formViewModel.event.description, axis: .vertical)
                     .textFieldStyle(CustomTextField())
                 
                 // User actions
@@ -129,7 +121,14 @@ struct EventForm: View {
                     
                     // Save button
                     Button {
-                        print(name)
+                        if (formViewModel.event.id != ""){
+                            formViewModel.updateEventData()
+                            dismiss()
+                        }
+                        else {
+                            formViewModel.addNewEventData()
+                            dismiss()
+                        }
                     } label: {
                         HStack {
                             Image(systemName: "checkmark")
@@ -147,6 +146,6 @@ struct EventForm: View {
 
 struct EventForm_Previews: PreviewProvider {
     static var previews: some View {
-        EventForm()
+        EventForm(formViewModel: EventFormViewModel(event: nil))
     }
 }

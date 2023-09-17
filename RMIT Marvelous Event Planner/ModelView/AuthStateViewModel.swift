@@ -42,7 +42,7 @@ class AuthState: ObservableObject {
         }
     }
     @Published var service: AuthService = AuthService()
-    @Published var userDetails: Account?
+    @Published var account: Account?
     @Published var errorMessage = ""
     
     private var db = Firestore.firestore()
@@ -50,6 +50,10 @@ class AuthState: ObservableObject {
     private let auth = Auth.auth()
     
     init(){
+        fetchUser()
+    }
+    
+    func fetchUser(){
         auth
             .addStateDidChangeListener { [weak self] _,_ in
                 guard let self = self else { return }
@@ -66,7 +70,7 @@ class AuthState: ObservableObject {
                             let data = document.data()
                             if let data = data {
                                 // Pass data account to published user details
-                                self.userDetails = Account(
+                                self.account = Account(
                                     id: uid,
                                     email: data["email"] as? String ?? "",
                                     name: data["name"] as? String ?? "",
@@ -87,10 +91,10 @@ class AuthState: ObservableObject {
                 }
             }
     }
-    
     // Logout, call firebase auth to remove
     public func logout() {
         service.logout()
+        value = .notAuthenticated
     }
 
     // Create user with email and password
@@ -170,7 +174,7 @@ class AuthState: ObservableObject {
                 } else {
                     for (key,value) in data {
                         print("\(key) = \(value)")
-                        self.userDetails?.setValue(value, forKey: key)
+                        self.account?.setValue(value, forKey: key)
                     }
                 }
             }
@@ -189,7 +193,7 @@ class AuthState: ObservableObject {
         }
     }
     
-    private func create_fake_events(){
+    public func create_fake_events(){
         // Fetch all accounts and add events to the account
         db.collectionGroup("user").getDocuments { (snapshot, error) in
             if let error = error {
@@ -198,7 +202,7 @@ class AuthState: ObservableObject {
             }
 
             if let snapshot = snapshot {
-                let eventVM = EventViewModel()
+                let eventVM = EventFormViewModel(event: nil)
                 for document in snapshot.documents {
                     eventVM.addFakeDataToFirestore(uid: document.documentID)
                 }
@@ -206,7 +210,7 @@ class AuthState: ObservableObject {
         }
     }
     
-    private func accounts_join_events(){
+    public func accounts_join_events(){
         // Fetch all accounts and add events to the account
         db.collectionGroup("user").getDocuments { (snapshot, error) in
             if let error = error {
@@ -215,7 +219,7 @@ class AuthState: ObservableObject {
             }
 
             if let snapshot = snapshot {
-                let eventVM = EventViewModel()
+                let eventVM = EventFormViewModel(event: nil)
                 
                 for document in snapshot.documents {
                     eventVM.addEventToJoinEventsWithUid(uid: document.documentID)
