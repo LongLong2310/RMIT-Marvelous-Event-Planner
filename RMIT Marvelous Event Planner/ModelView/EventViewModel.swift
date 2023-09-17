@@ -176,22 +176,4 @@ class EventViewModel: ObservableObject {
             
         }
     }
-    
-    public func removeOwnedEvent(event: Event){
-        // Specify the document to delete
-        db.collection("events").document(event.id).delete{ error in
-            if error == nil {
-                print("Remove suscessfully!")
-                self.events = self.events.filter { $0.id != event.id }
-            } else {
-                print("Error removing events")
-            }
-        }
-        
-        /* Remove all events from event participation collection*/
-        /**
-             Since we don't display number of participation so no need to remove
-             If we do have then do the delete function here
-         **/
-    }
 }

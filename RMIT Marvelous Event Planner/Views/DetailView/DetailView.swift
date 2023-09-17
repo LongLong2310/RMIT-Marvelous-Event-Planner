@@ -137,7 +137,7 @@ struct DetailView: View {
                             }label:{
                                 HStack{
                                     Image(systemName: "rectangle.portrait.and.arrow.right")
-                                    Text("Log out")
+                                    Text("Delete Event")
                                 }
                                 .frame(maxWidth: .infinity)
                             }
@@ -145,6 +145,8 @@ struct DetailView: View {
                             .alert(isPresented: $showingPopupAlert) {
                                   Alert(title: Text("Are you sure to delete event?"), message: Text("This action is permanent."), primaryButton: .destructive(Text("Confirm"), action: {
                                     // Perform the action.
+                                      formViewModel.removeOwnedEvent()
+                                      dismiss()
                                   }), secondaryButton: .cancel())
                             }
                         }

@@ -80,6 +80,23 @@ class EventFormViewModel: ObservableObject {
         }
     }
     
+    public func removeOwnedEvent(){
+        // Specify the document to delete
+        db.collection("events").document(event.id).delete{ error in
+            if error == nil {
+                print("Remove suscessfully!")
+            } else {
+                print("Error removing events")
+            }
+        }
+        
+        /* Remove all events from event participation collection*/
+        /**
+             Since we don't display number of participation so no need to remove
+             If we do have then do the delete function here
+         **/
+    }
+    
     /**
      Add or update document of event movie name in the "events" collection
      */
