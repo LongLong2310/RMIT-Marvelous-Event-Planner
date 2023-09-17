@@ -94,6 +94,7 @@ class AuthState: ObservableObject {
     // Logout, call firebase auth to remove
     public func logout() {
         service.logout()
+        value = .notAuthenticated
     }
 
     // Create user with email and password

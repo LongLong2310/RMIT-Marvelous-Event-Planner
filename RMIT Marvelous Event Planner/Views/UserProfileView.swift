@@ -20,7 +20,7 @@ struct UserProfileView: View {
     @State private var password: String = ""
     @State private var showPasswordL: Bool = false
     @State private var showingAlert = false
-
+    @State private var showingPopupLogoutAlert = false
     
     @Namespace var animation
 //  Function to return to the profile information page
@@ -107,7 +107,7 @@ struct UserProfileView: View {
                 VStack(spacing:20){
                     
                     HStack(spacing: 10){
-                        UserProfileImage(image: Image("\(authState.account!.profilePicture)"))
+                        UserProfileImage(image: authState.account!.profilePicture)
                         VStack(alignment: .leading,spacing:5){
                             Text("\(authState.account!.name)")
                                 .font(Font.custom("Poppins-Regular", size: 24))
@@ -133,14 +133,21 @@ struct UserProfileView: View {
                         }
                         VStack{
                             Button{
-                                
+                                showingPopupLogoutAlert = true
                             }label:{
                                 HStack{
                                     Image(systemName: "rectangle.portrait.and.arrow.right")
                                     Text("Log out")
                                 }
                                 .frame(maxWidth: .infinity)
-                            }.buttonStyle(WarningButton())
+                            }
+                            .buttonStyle(WarningButton())
+                            .alert(isPresented: $showingPopupLogoutAlert) {
+                                  Alert(title: Text("Are you sure to logout?"), primaryButton: .destructive(Text("Confirm"), action: {
+                                    // Perform the action.
+                                      authState.logout()
+                                  }), secondaryButton: .cancel())
+                            }
                         }
                     }
                     .padding(.horizontal,20)
@@ -204,13 +211,13 @@ struct UserProfileView: View {
                         }
                         CustomTextField(
                             title: "Name",
-                            hint: "\(account.name)",
+                            hint: "\(authState.account!.name)",
                             value: $username,
                             showPassword: .constant(false)
                         )
                         CustomTextField(
                             title: "Major",
-                            hint: "\(account.major)",
+                            hint: "\(authState.account!.major)",
                             value: $major,
                             showPassword: .constant(false)
                         )
@@ -253,7 +260,6 @@ struct UserProfileView: View {
                 } .alert(" Please enter all the require field", isPresented: $showingAlert) {
                     Button("OK", role: .cancel) { }
                 }
-                
             }
         }
         .onAppear(){
