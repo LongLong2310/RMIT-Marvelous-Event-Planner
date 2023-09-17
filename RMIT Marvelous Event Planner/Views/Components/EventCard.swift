@@ -38,7 +38,7 @@ struct EventCard: View {
                     
                     Spacer()
                     
-                    if (authState.account!.id != event.ownerId){
+                    if (authState.account != nil && authState.account!.id != event.ownerId){
                         Button {
                             
                         } label: {

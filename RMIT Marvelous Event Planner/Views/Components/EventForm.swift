@@ -59,14 +59,17 @@ struct EventForm: View {
                     .textFieldStyle(CustomTextField())
                 
                 // Date time input
-                DatePicker(selection: $formViewModel.event.dateTimeFormat) {
+                VStack (alignment: .leading){
                     Text("Date and time")
                         .font(Font.custom("Poppins-Regular", size: 12))
+                    DatePicker(selection: $formViewModel.event.dateTimeFormat) {
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(Color("list-background"))
+                    .cornerRadius(10)
                 }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(Color("list-background"))
-                .cornerRadius(10)
+                
                 
                 // Location input
                 TextField("Location (required)", text: $formViewModel.event.location)

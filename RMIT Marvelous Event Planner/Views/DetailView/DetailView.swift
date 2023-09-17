@@ -69,14 +69,14 @@ struct DetailView: View {
                             }
                             
                             HStack(spacing: 10) {
-                                Image("sample-avatar")
+                                Image(formViewModel.event.ownerImage ?? "sample-avatar")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 40, height: 40)
                                     .clipShape(Circle())
                                     .clipped()
                                 VStack(alignment: .leading) {
-                                    Text("Username")
+                                    Text(formViewModel.event.ownerName ?? "Username")
                                         .font(Font.custom("Poppins-Regular", size: 15))
                                     Text(formViewModel.event.organizerRole)
                                         .font(Font.custom("Poppins-Regular", size: 12))
@@ -178,6 +178,9 @@ struct DetailView: View {
         .onChange(of: isEditEvent, perform: { newValue in
             formViewModel.fetchEvent()
         })
+        .onAppear(){
+            formViewModel.fetchEvent()
+        }
     }
 }
 

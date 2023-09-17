@@ -22,7 +22,7 @@ class EventFormViewModel: ObservableObject {
     private let auth = Auth.auth()
     
     init(event: Event?){
-        self.event = event ?? Event(imageUrl: "sample-image")
+        self.event = event ?? Event()
     }
     
     /**
@@ -58,6 +58,11 @@ class EventFormViewModel: ObservableObject {
         Fetch event by id
      */
     public func fetchEvent(){
+        self.fetchEventData()
+        self.fetchOwnerNameImage()
+    }
+    
+    private func fetchEventData(){
         let ref = self.db.collection("events").document(event.id)
         
         ref.getDocument { (document, error) in
@@ -74,7 +79,23 @@ class EventFormViewModel: ObservableObject {
                         imageUrl: data["imageUrl"] as? String ?? "",
                         organizerRole: data["organizerRole"] as? String ?? "",
                         major: data["major"] as? String ?? "")
-                        
+                }
+            }
+        }
+    }
+    
+    private func fetchOwnerNameImage(){
+        let ref = self.db.collection("user").document(event.ownerId)
+        ref.getDocument { (document, error) in
+            if let document = document {
+                // Parse document as account value
+                let data = document.data()
+                if let data = data {
+                    // Pass data account to published user details
+                    self.event.updateOwner(
+                        ownerName: data["email"] as? String ?? "",
+                        ownerImage: data["profilePicture"] as? String ?? ""
+                    )
                 }
             }
         }

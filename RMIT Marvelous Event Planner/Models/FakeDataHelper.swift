@@ -33,7 +33,7 @@ class FakeDataHelper {
         
         for _ in 0...amounts{
             let randomDateTime: String = self.generateRandomDateTimeRange()
-            var event = Event(
+            let event = Event(
                 id: UUID().uuidString,
                 name: faker.lorem.words(amount: Int.random(in: 1..<6)).capitalized,
                 description: faker.lorem.paragraphs(amount: Int.random(in: 1..<3)),

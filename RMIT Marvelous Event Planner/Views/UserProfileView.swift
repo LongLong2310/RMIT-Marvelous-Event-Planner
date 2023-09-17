@@ -272,6 +272,7 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView().environmentObject(AuthState())
+        UserProfileView().environmentObject(
+            AuthState())
     }
 }

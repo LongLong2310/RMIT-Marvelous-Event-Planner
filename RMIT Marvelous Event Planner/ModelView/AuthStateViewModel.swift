@@ -153,14 +153,28 @@ class AuthState: ObservableObject {
     }
     
     // Async data settings
-    public func setisMajorFilterSetting(isMajorFilterSetting: Bool){
+    public func setisMajorFilterSetting(){
+        let isMajorFilteringSetting = !account!.isMajorFilterSetting
         let data:[String:AnyObject] = [
-            "isMajorFilterSetting": isMajorFilterSetting as AnyObject
+            "isMajorFilterSetting": isMajorFilteringSetting as AnyObject
         ]
         self.updateAccountDataFirebase(data: data)
     }
     
     private func updateAccountDataFirebase(data: [String:AnyObject]){
+        var userData = [
+            "email": account?.email as Any,
+            "name": account?.name as Any,
+            "profilePicture":  account?.profilePicture as Any,
+            "major": account?.major as Any,
+            "darkModeSetting": account?.darkModeSetting as Any,
+            "isMajorFilterSetting": account?.isMajorFilterSetting as Any
+        ] as [String : Any]
+        
+        for (key,value) in data {
+            userData[key] = value
+        }
+        
         // Find user id
         if let uid = auth.currentUser?.uid {
             let ref = self.db.collection("user").document(uid)
@@ -172,10 +186,7 @@ class AuthState: ObservableObject {
                     // Return error true to log error
                     self.errorMessage = "Cannot save user data"
                 } else {
-                    for (key,value) in data {
-                        print("\(key) = \(value)")
-                        self.account?.setValue(value, forKey: key)
-                    }
+                    self.account?.setAttribute(data: data)
                 }
             }
         }
@@ -186,7 +197,7 @@ class AuthState: ObservableObject {
     }
     
     // ----------- FAKE DATA TO FIREBASE HELPER --------------------//
-    private func create_fake_accounts(){
+    public func create_fake_accounts(){
         // Create fake account
         for index in 1...15{
             self.signUp(email: "user_\(index)@example.com", password: "123456")

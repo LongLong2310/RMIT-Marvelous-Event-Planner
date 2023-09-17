@@ -38,4 +38,28 @@ class Account: NSObject, Identifiable {
         self.darkModeSetting = darkModeSetting
         self.isMajorFilterSetting = isMajorFilterSetting
     }
+    
+    func setAttribute(data: [String:AnyObject]){
+        for (key,value) in data {
+            switch key {
+                case "name":
+                    self.name = value as! String
+                    break
+                case "profilePicture":
+                    self.profilePicture = value as! String
+                    break
+                case "major":
+                    self.major = value as! String
+                    break
+                case "darkModeSetting":
+                    self.darkModeSetting = value as! Bool
+                    break
+                case "isMajorFilterSetting":
+                    self.isMajorFilterSetting = value as! Bool
+                    break
+                default:
+                    break
+            }
+        }
+    }
 }
