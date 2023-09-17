@@ -13,15 +13,19 @@
 import SwiftUI
 
 struct DetailView: View {
+    @EnvironmentObject private var authState: AuthState
     @Environment(\.dismiss) var dismiss
-    var event: Event
+    @State var isEditEvent: Bool = false
+    @State private var showingPopupAlert = false
+    
+    @StateObject var formViewModel: EventFormViewModel
     
     var body: some View {
         ZStack {
             // MARK: - Event details view
             VStack(spacing: 0) {
                 // Image view
-                Image(event.imageUrl)
+                Image(formViewModel.event.imageUrl)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
@@ -33,13 +37,13 @@ struct DetailView: View {
                         // Event specs
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
-                                Text(event.name)
+                                Text(formViewModel.event.name)
                                     .font(Font.custom("Poppins-SemiBold", size: 24))
                                 Spacer()
                             }
                             
-                            ListItem(icon: "clock.fill", content: "\(event.date) - \(event.time)", size: 18)
-                            ListItem(icon: "mappin.and.ellipse", content: event.location, size: 18)
+                            ListItem(icon: "clock.fill", content: "\(formViewModel.event.date) - \(formViewModel.event.time)", size: 18)
+                            ListItem(icon: "mappin.and.ellipse", content: formViewModel.event.location, size: 18)
                             ListItem(icon: "person.3.fill", content: "\(123) participants", size: 18)
                         }
                         .padding(.top, 10)
@@ -51,7 +55,7 @@ struct DetailView: View {
                                     .font(Font.custom("Poppins-Medium", size: 20))
                                 Spacer()
                             }
-                            Text(event.description)
+                            Text(formViewModel.event.description)
                                 .font(Font.custom("Poppins-Regular", size: 15))
                         }
                         .padding(.vertical, 10)
@@ -74,7 +78,7 @@ struct DetailView: View {
                                 VStack(alignment: .leading) {
                                     Text("Username")
                                         .font(Font.custom("Poppins-Regular", size: 15))
-                                    Text(event.organizerRole)
+                                    Text(formViewModel.event.organizerRole)
                                         .font(Font.custom("Poppins-Regular", size: 12))
                                 }
                             }
@@ -113,29 +117,83 @@ struct DetailView: View {
                 
                 // Action buttons
                 HStack(spacing: 20) {
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.arrow.down")
-                                .rotationEffect(.degrees(-90))
-                            Text("Join")
-                                .font(Font.custom("Poppins-Regular", size: 18))
+                    if (authState.account!.id == formViewModel.event.ownerId){
+                        HStack{
+                            Button {
+                                isEditEvent = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "pencil")
+                                        .rotationEffect(.degrees(-90))
+                                    Text("Edit")
+                                        .font(Font.custom("Poppins-Regular", size: 18))
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(PrimaryButton())
+                            
+                            Button{
+                                showingPopupAlert = true
+                            }label:{
+                                HStack{
+                                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    Text("Log out")
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(WarningButton())
+                            .alert(isPresented: $showingPopupAlert) {
+                                  Alert(title: Text("Are you sure to delete event?"), message: Text("This action is permanent."), primaryButton: .destructive(Text("Confirm"), action: {
+                                    // Perform the action.
+                                  }), secondaryButton: .cancel())
+                            }
                         }
-                        .frame(maxWidth: .infinity)
+                        
                     }
-                    .buttonStyle(PrimaryButton())
+                    else{
+                        Button {
+                            
+                        } label: {
+                            HStack {
+                                Image(systemName: "square.and.arrow.down")
+                                    .rotationEffect(.degrees(-90))
+                                Text("Join")
+                                    .font(Font.custom("Poppins-Regular", size: 18))
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(PrimaryButton())
+                    }
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color("opacity-background"))
             }
         }
+        .sheet(isPresented: $isEditEvent) {
+            EventForm(formViewModel: formViewModel)
+        }
+        .onChange(of: isEditEvent, perform: { newValue in
+            formViewModel.fetchEvent()
+        })
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", date: "24 Dec 2020", time: "9:00", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
+        DetailView(
+            formViewModel: EventFormViewModel(event: Event(
+                id: "1",
+                name: "Family reunion",
+                description: "Anh em mot nha",
+                dateTime: Date().formatted(
+                    .dateTime
+                        .day().month(.wide).year()
+                        .hour().minute()),
+                location: "Quang Binh",
+                imageUrl: "sample-image",
+                organizerRole: OrganizerRole.personal.rawValue,
+                major: SchoolDepartment.SBM.rawValue))
+        )
     }
 }

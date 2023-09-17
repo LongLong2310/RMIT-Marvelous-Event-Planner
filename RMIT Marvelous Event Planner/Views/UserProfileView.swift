@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct UserProfileView: View {
-    @State var account: Account
+    @EnvironmentObject private var authState: AuthState
+    @StateObject var eventVM: EventViewModel = EventViewModel()
     
     @State var Phase = 1
     @State private var currentTab: String = "Events"
@@ -85,14 +86,12 @@ struct UserProfileView: View {
             if(Phase == 1){
                 VStack(spacing:20){
                     
-                    HeaderBar()
-                    
                     HStack(spacing: 10){
-                        UserProfileImage(image: Image("\(account.profilePicture)"))
+                        UserProfileImage(image: Image("\(authState.account!.profilePicture)"))
                         VStack(alignment: .leading,spacing:5){
-                            Text(account.name)
+                            Text("\(authState.account!.name)")
                                 .font(Font.custom("Poppins-Regular", size: 24))
-                            Text(account.email)
+                            Text("\(authState.account!.email)")
                                 .font(Font.custom("Poppins-Regular", size: 15))
                         }
                         
@@ -137,15 +136,16 @@ struct UserProfileView: View {
                             ScrollView {
                                 VStack(spacing:10){
                                     UserProfileRow(title: "Birthday", content: "04/04/2002")
-                                    UserProfileRow(title: "Major", content: "\(account.major)")
+                                    UserProfileRow(title: "Major", content: "\(authState.account!.major)")
                                     UserProfileRow(title: "Join date", content: "12/09/2023")
                                 }
                                 .padding(.vertical, 10)
                                 .padding(.horizontal, 20)
                             }
                         }
-                        
-                        Text("Content for second tab")
+                        else{
+                            EventList(events: $eventVM.events, listType: currentTab)
+                        }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                     Spacer()
@@ -212,11 +212,16 @@ struct UserProfileView: View {
                 }
             }
         }
+        .onAppear(){
+            authState.fetchUser()
+            self.eventVM.queryOwnedEvents()
+        }
     }
+        
 }
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView(account: Account(id:"1", email: "haoconboha@gmail.com", name: "Pham Viet Hao", profilePicture: "", major: "Information Technology", darkModeSetting: false, isMajorFilterSetting: false))
+        UserProfileView().environmentObject(AuthState())
     }
 }

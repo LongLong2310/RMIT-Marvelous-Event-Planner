@@ -25,7 +25,7 @@ struct EventList: View {
                     VStack(spacing: 20) {
                         ForEach(events, id: \.id) { event in
                             NavigationLink {
-                                DetailView(event: event).navigationBarBackButtonHidden(true)
+                                DetailView(formViewModel: EventFormViewModel(event: event)).navigationBarBackButtonHidden(true)
                             } label: {
                                 EventCard(event: event)
                             }

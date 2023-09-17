@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct EventCard: View {
+    @EnvironmentObject private var authState: AuthState
     var event: Event
     
     var body: some View {
@@ -37,17 +38,20 @@ struct EventCard: View {
                     
                     Spacer()
                     
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.arrow.down")
-                                .rotationEffect(.degrees(-90))
-                            Text("Join")
-                                .font(Font.custom("Poppins-Regular", size: 18))
+                    if (authState.account!.id != event.ownerId){
+                        Button {
+                            
+                        } label: {
+                            HStack {
+                                Image(systemName: "square.and.arrow.down")
+                                    .rotationEffect(.degrees(-90))
+                                Text("Join")
+                                    .font(Font.custom("Poppins-Regular", size: 18))
+                            }
                         }
+                        .buttonStyle(PrimaryButton())
                     }
-                    .buttonStyle(PrimaryButton())
+                    
                 }
                 .padding(.all, 10)
                 .background(Color("opacity-background"))
@@ -62,6 +66,6 @@ struct EventCard: View {
 
 struct EventCard_Previews: PreviewProvider {
     static var previews: some View {
-        EventCard(event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", date: "24 Dec 2020", time: "9:00", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
+        EventCard(event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", dateTime: "May 26, 2022, 8:30 PM", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
     }
 }
