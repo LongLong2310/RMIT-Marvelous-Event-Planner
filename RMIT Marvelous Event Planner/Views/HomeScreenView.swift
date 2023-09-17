@@ -36,7 +36,7 @@ struct HomeScreenView: View {
                 
                 
                 // Profiles
-                UserProfileView()
+                Text("Profile Tab")
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }
