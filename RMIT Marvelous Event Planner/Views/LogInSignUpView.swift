@@ -24,7 +24,7 @@ struct LogInSignUpView: View {
     @State private var showPassword: Bool = false
     @State private var showConfirmPassword: Bool = false
     @State private var confirmPasswordInput: String = ""
-
+    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -144,6 +144,8 @@ struct LogInSignUpView: View {
                     } label: {
                         Text(isSignUp ? "Sign Up" : "Login")
                             .frame(maxWidth: .infinity)
+                    }.alert(Text(isSignUp ? "Sign up info is wrong" : "Login info is wrong"), isPresented: $showingAlert) {
+                        Button("OK", role: .cancel) { }
                     }
                     .buttonStyle(PrimaryButton())
                     .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
@@ -237,15 +239,38 @@ struct LogInSignUpView: View {
     
     func signIn(){
         Task {
+            //if email and password right format then log in else show alert
+            if isValidEmail(emailInput)==true && isValidPassword(passwordInput)==true {authState.signIn(email: emailInput, password: passwordInput)}
+            else {
+                showingAlert=true
+            }
             // TODO: Han - Add try catch and await for authenticated
-            authState.signIn(email: emailInput, password: passwordInput)
+            
         }
+    }
+    //email validation function
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+    //password format validation
+    func isValidPassword(_ password: String) -> Bool {
+        if password.count<6 { return false}
+        else {return true}
     }
     
     func signUp(){
         Task {
+            //if email and password right format and password match confirm password then sign up
+            if isValidEmail(emailInput)==true && isValidPassword(passwordInput)==true && passwordInput==confirmPasswordInput {authState.signUp(email: emailInput, password: passwordInput)}
+            else {
+                showingAlert=true
+            }
+            
             // TODO: Han - Add try catch and await for authenticated
-            authState.signUp(email: emailInput, password: passwordInput)
+            
         }
     }
 }
