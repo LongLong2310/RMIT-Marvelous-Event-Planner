@@ -40,8 +40,8 @@ class AuthService {
                             ref.setData(
                                 [
                                     "email": email,
-                                    "name": "",
-                                    "profilePicture": "",
+                                    "name": "Username",
+                                    "profilePicture": "profile_picture_1",
                                     "major": "",
                                     "darkModeSetting": false,
                                     "isMajorFilterSetting": false

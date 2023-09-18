@@ -15,11 +15,18 @@ import Foundation
 
 struct JoinedEventsView: View {
     @ObservedObject var eventVM: EventViewModel = EventViewModel()
-    @State private var queriedEvents: [Event] = []
     
     @State private var today: Date = Date()
     @State private var currentTab: String = "Upcoming"
     @Namespace var animation
+    
+    // Filtered events based on the search text
+    private var filteredEvents: [Event] {
+        if eventVM.events.isEmpty {
+            return []
+        }
+        return eventVM.events
+    }
     
     var body: some View {
         NavigationStack {
@@ -32,10 +39,10 @@ struct JoinedEventsView: View {
                 
                 // List of joined events
                 if currentTab == "Upcoming" {
-                    EventList(events: $eventVM.events, listType: currentTab)
+                    EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: currentTab)
                 }
                 else if currentTab == "Past" {
-                    EventList(events: $eventVM.events, listType: currentTab)
+                    EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: currentTab)
                 }
             }
         }
