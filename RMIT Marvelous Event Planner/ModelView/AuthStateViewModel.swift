@@ -227,4 +227,9 @@ class AuthState: ObservableObject {
           }
         }
     }
+    
+    // Function to clear the error message
+    public func clearErrorMessage() {
+        errorMessage = ""
+    }
 }

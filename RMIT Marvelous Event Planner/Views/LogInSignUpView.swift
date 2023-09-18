@@ -3,7 +3,7 @@
  Course: COSC2659 iOS Development
  Semester: 2023B
  Assessment: Assignment 3
- Author: Nguyen Quang Duy, Long Trinh Hoang Pham, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
+ Author: Nguyen Quang Duy, Pham Trinh Hoang Long, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
  ID: s3877991, s3879366, s3877457, s3891710, s3750789
  Created  date: 8/09/2023
  Last modified: 27/09/2023
@@ -94,7 +94,8 @@ struct LogInSignUpView: View {
                         title: "Email",
                         hint: "Email ID",
                         value: $emailInput,
-                        showPassword: .constant(false)
+                        showPassword: .constant(false),
+                        errorMessage: authState.errorMessage
                     )
                     .padding(.top, 15)
                     
@@ -103,7 +104,8 @@ struct LogInSignUpView: View {
                         title: "Password",
                         hint: "Password",
                         value: $passwordInput,
-                        showPassword: $showPassword
+                        showPassword: $showPassword,
+                        errorMessage: authState.errorMessage
                     )
                     .padding(.top, 10)
                     
@@ -114,7 +116,8 @@ struct LogInSignUpView: View {
                             title: "Confirm Password",
                             hint: "Confirm Password",
                             value: $confirmPasswordInput,
-                            showPassword: $showConfirmPassword
+                            showPassword: $showConfirmPassword,
+                            errorMessage: authState.errorMessage
                         )
                         .padding(.top, 10)
                     }
@@ -150,6 +153,9 @@ struct LogInSignUpView: View {
                     .buttonStyle(PrimaryButton())
                     .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
                     .padding(.top, 25)
+                    
+                    Text(authState.errorMessage)
+                        .foregroundColor(Color.red)
                     // A VStackwith text and a button for toggling between login and signup modes.
                     // It displays either "Have an account?" or "Don't have an account?" based on the isSignUp state.
                     VStack (spacing: 10) {
@@ -160,6 +166,7 @@ struct LogInSignUpView: View {
                                 // Toggle the isSignUp state with animation when the button is pressed.
                                 withAnimation {
                                     isSignUp.toggle()
+                                    authState.clearErrorMessage()
                                 }
                             } label: {
                                 // The button label dynamically changes between "Login" and "Sign up."
@@ -190,8 +197,13 @@ struct LogInSignUpView: View {
         title: String,
         hint: String,
         value: Binding<String>,
-        showPassword: Binding<Bool>
+        showPassword: Binding<Bool>,
+        errorMessage: String
     ) -> some View {
+        // Define a conditional border color based on the error message.
+        let dividerColor: Color = errorMessage.isEmpty ? .gray : .red
+        let dividerHeight: CGFloat = errorMessage.isEmpty ? 0.5 : 2
+        
         // Create a VStack to arrange the components vertically.
         VStack (alignment: .leading, spacing: 12) {
             // Label for the text field, displaying the title.
@@ -214,6 +226,8 @@ struct LogInSignUpView: View {
             
             // Divider line below the text input.
             Divider()
+                .frame(minHeight: dividerHeight)
+                .background(dividerColor)
         }
         // Overlay a button to toggle password visibility (visible only for password fields).
         .overlay(
