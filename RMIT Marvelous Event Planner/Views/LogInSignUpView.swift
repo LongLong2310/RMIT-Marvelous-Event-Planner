@@ -24,7 +24,6 @@ struct LogInSignUpView: View {
     @State private var showPassword: Bool = false
     @State private var showConfirmPassword: Bool = false
     @State private var confirmPasswordInput: String = ""
-    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -147,8 +146,6 @@ struct LogInSignUpView: View {
                     } label: {
                         Text(isSignUp ? "Sign Up" : "Login")
                             .frame(maxWidth: .infinity)
-                    }.alert(Text(isSignUp ? "Sign up info is wrong" : "Login info is wrong"), isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { }
                     }
                     .buttonStyle(PrimaryButton())
                     .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
@@ -164,9 +161,13 @@ struct LogInSignUpView: View {
                             // Register User button
                             Button {
                                 // Toggle the isSignUp state with animation when the button is pressed.
+                                // Clear error and input
                                 withAnimation {
                                     isSignUp.toggle()
                                     authState.clearErrorMessage()
+                                    emailInput = ""
+                                    passwordInput = ""
+                                    confirmPasswordInput = ""
                                 }
                             } label: {
                                 // The button label dynamically changes between "Login" and "Sign up."
@@ -254,38 +255,63 @@ struct LogInSignUpView: View {
     func signIn(){
         Task {
             //if email and password right format then log in else show alert
-            if isValidEmail(emailInput)==true && isValidPassword(passwordInput)==true {authState.signIn(email: emailInput, password: passwordInput)}
-            else {
-                showingAlert=true
+            if emailInput.isEmpty || passwordInput.isEmpty{
+                authState.errorMessage = "Email/Password cannot be empty"
+                return
             }
-            // TODO: Han - Add try catch and await for authenticated
             
+            if !isValidEmail(emailInput) {
+                authState.errorMessage = "Email format is wrong."
+                return
+            }
+            
+            if !isValidPassword(passwordInput) == true{
+                authState.errorMessage = "Password should be more than 6 characters"
+                return
+            }
+            
+            authState.signIn(email: emailInput, password: passwordInput)
         }
     }
+
+    func signUp(){
+        //if email and password right format and password match confirm password then sign up
+        Task {
+            if emailInput.isEmpty || passwordInput.isEmpty{
+                authState.errorMessage = "Email/Password cannot be empty"
+                return
+            }
+            
+            if !isValidEmail(emailInput) {
+                authState.errorMessage = "Email format is wrong."
+                return
+            }
+            
+            if !isValidPassword(passwordInput) == true{
+                authState.errorMessage = "Password should be more than 6 characters"
+                return
+            }
+            
+            if passwordInput != confirmPasswordInput{
+                authState.errorMessage = "Password and Password confirm are not the same"
+                return
+            }
+            authState.signUp(email: emailInput, password: passwordInput)
+        }
+    }
+    
+    
     //email validation function
-    func isValidEmail(_ email: String) -> Bool {
+    private func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
     //password format validation
-    func isValidPassword(_ password: String) -> Bool {
+    private func isValidPassword(_ password: String) -> Bool {
         if password.count<6 { return false}
         else {return true}
-    }
-    
-    func signUp(){
-        Task {
-            //if email and password right format and password match confirm password then sign up
-            if isValidEmail(emailInput)==true && isValidPassword(passwordInput)==true && passwordInput==confirmPasswordInput {authState.signUp(email: emailInput, password: passwordInput)}
-            else {
-                showingAlert=true
-            }
-            
-            // TODO: Han - Add try catch and await for authenticated
-            
-        }
     }
 }
 
