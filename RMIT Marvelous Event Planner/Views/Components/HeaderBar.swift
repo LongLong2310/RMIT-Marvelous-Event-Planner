@@ -13,14 +13,8 @@
 import SwiftUI
 
 struct HeaderBar: View {
-//    @EnvironmentObject private var authState: AuthState
+    @EnvironmentObject private var authState: AuthState
     @State private var isDarkMode: Bool = false
-    
-//    init() {
-//        if let darkModeSettings = authState.account?.darkModeSetting {
-//            isDarkMode = darkModeSettings
-//        }
-//    }
     
     var body: some View {
         HStack {
@@ -43,7 +37,7 @@ struct HeaderBar: View {
                 // Dark mode toggle button
                 Button {
                     isDarkMode.toggle()
-//                    authState.setDarkModeSetting(darkModeSetting: isDarkMode)
+                    authState.setDarkModeSetting(darkModeSetting: isDarkMode)
                 } label: {
                     Image(systemName: isDarkMode ? "sun.max.fill" : "moon")
                         .resizable()
@@ -55,6 +49,9 @@ struct HeaderBar: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 5)
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        .task {
+            isDarkMode = authState.account?.darkModeSetting ?? false
+        }
     }
 }
 

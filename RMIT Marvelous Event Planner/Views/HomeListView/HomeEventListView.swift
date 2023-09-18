@@ -20,7 +20,7 @@ struct HomeEventListView: View {
     @State private var buttonColor: Color = Color.blue
     @State private var activeFilter = ""
     @State public var preselectedIndex: Int = 0
-    @AppStorage("isDarkMode") private var isDark = false
+    @State private var isMajorFilterSetting: Bool = false
     @ObservedObject var eventVM: EventViewModel = EventViewModel()
     
     // Filtered events based on the search text
@@ -46,17 +46,18 @@ struct HomeEventListView: View {
                         .frame(width: 25, height: 25)
                         .cornerRadius(5.0)
                         .overlay {
-                            Image(systemName: authState.account?.isMajorFilterSetting ?? true ? "checkmark" : "")
+                            Image(systemName: isMajorFilterSetting ? "checkmark" : "")
                         }
                         .onTapGesture {
                             withAnimation(.spring()) {
-                                authState.setisMajorFilterSetting()
+                                isMajorFilterSetting.toggle()
+                                authState.setisMajorFilterSetting(isMajorFilterSetting: isMajorFilterSetting)
                             }
                         }
                     Text("Filter By Major")
                 }
                 
-                CustomSegmentedControl(preselectedIndex: $preselectedIndex, isDarkMode: $isDark, options: OrganizerRole.allCases.map { $0.rawValue })
+                CustomSegmentedControl(preselectedIndex: $preselectedIndex, options: OrganizerRole.allCases.map { $0.rawValue })
                     .padding(.leading)
                     .padding(.trailing)
                 
@@ -79,7 +80,6 @@ struct HomeEventListView_Previews: PreviewProvider {
 
 struct CustomSegmentedControl: View {
     @Binding var preselectedIndex: Int
-    @Binding var isDarkMode: Bool
     var options: [String]
     let color = Color("primary-button")
     let textColor = Color("text-color")
