@@ -17,8 +17,10 @@ struct DetailView: View {
     @Environment(\.dismiss) var dismiss
     @State var isEditEvent: Bool = false
     @State private var showingPopupAlert = false
+    @State var isJoinedEvent: Bool = false
     
     @StateObject var formViewModel: EventFormViewModel
+    @StateObject var eventViewModel: EventViewModel = EventViewModel()
     
     var body: some View {
         ZStack {
@@ -44,7 +46,7 @@ struct DetailView: View {
                             
                             ListItem(icon: "clock.fill", content: "\(formViewModel.event.date) - \(formViewModel.event.time)", size: 18)
                             ListItem(icon: "mappin.and.ellipse", content: formViewModel.event.location, size: 18)
-                            ListItem(icon: "person.3.fill", content: "\(123) participants", size: 18)
+                            ListItem(icon: "person.3.fill", content: "\(String(describing: formViewModel.event.particitpationNumber)) participants", size: 18)
                         }
                         .padding(.top, 10)
                         
@@ -69,14 +71,14 @@ struct DetailView: View {
                             }
                             
                             HStack(spacing: 10) {
-                                Image("sample-avatar")
+                                Image(formViewModel.event.ownerImage )
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 40, height: 40)
                                     .clipShape(Circle())
                                     .clipped()
                                 VStack(alignment: .leading) {
-                                    Text("Username")
+                                    Text(formViewModel.event.ownerName )
                                         .font(Font.custom("Poppins-Regular", size: 15))
                                     Text(formViewModel.event.organizerRole)
                                         .font(Font.custom("Poppins-Regular", size: 12))
@@ -154,15 +156,23 @@ struct DetailView: View {
                     }
                     else{
                         Button {
-                            
+                            if isJoinedEvent{
+                                eventViewModel.removeAccountFromEventParticipation(event: formViewModel.event)
+                                formViewModel.event.increaseDecreaseParticipation(number: -1)
+                            }
+                            else {
+                                
+                                eventViewModel.addEventToJoinEvents(event: formViewModel.event)
+                                formViewModel.event.increaseDecreaseParticipation(number: 1)
+                            }
+                            isJoinedEvent.toggle()
                         } label: {
                             HStack {
                                 Image(systemName: "square.and.arrow.down")
-                                    .rotationEffect(.degrees(-90))
-                                Text("Join")
+                                    .rotationEffect(.degrees(isJoinedEvent ? 90 : -90))
+                                Text(isJoinedEvent ? "Leave" : "Join")
                                     .font(Font.custom("Poppins-Regular", size: 18))
                             }
-                            .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(PrimaryButton())
                     }
@@ -178,6 +188,9 @@ struct DetailView: View {
         .onChange(of: isEditEvent, perform: { newValue in
             formViewModel.fetchEvent()
         })
+        .onAppear(){
+            formViewModel.fetchEvent()
+        }
     }
 }
 

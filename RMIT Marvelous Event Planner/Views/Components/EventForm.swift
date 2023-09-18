@@ -17,7 +17,6 @@ struct EventForm: View {
     @StateObject var formViewModel: EventFormViewModel
     
     let type = ["SSET", "SBM", "SCD"]
-    let imageUrls = ["event_image_1","event_image_2","event_image_3","event_image_4","event_image_5","event_image_6","event_image_7","event_image_8","event_image_9","event_image_10","event_image_11","event_image_12","event_image_13","event_image_14","event_image_15"]   // Add actual value of images here (URL name should be meaningful)
     
     var body: some View {
         Form {
@@ -59,14 +58,17 @@ struct EventForm: View {
                     .textFieldStyle(CustomTextField())
                 
                 // Date time input
-                DatePicker(selection: $formViewModel.event.dateTimeFormat) {
+                VStack (alignment: .leading){
                     Text("Date and time")
                         .font(Font.custom("Poppins-Regular", size: 12))
+                    DatePicker(selection: $formViewModel.event.dateTimeFormat) {
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(Color("list-background"))
+                    .cornerRadius(10)
                 }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(Color("list-background"))
-                .cornerRadius(10)
+                
                 
                 // Location input
                 TextField("Location (required)", text: $formViewModel.event.location)
