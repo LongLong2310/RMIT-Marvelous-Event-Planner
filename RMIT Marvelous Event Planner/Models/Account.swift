@@ -19,6 +19,8 @@ enum SchoolDepartment: String, CaseIterable{
     case SBM
 }
 
+let profilePictures = ["profile_picture_1","profile_picture_2","profile_picture_3","profile_picture_4","profile_picture_5"]
+
 class Account: NSObject, Identifiable {
     
     var id: String?

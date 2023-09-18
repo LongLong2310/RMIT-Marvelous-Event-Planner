@@ -20,6 +20,8 @@ enum OrganizerRole: String, CaseIterable{
     case department
 }
 
+let imageUrls = ["event_image_1","event_image_2","event_image_3","event_image_4","event_image_5","event_image_6","event_image_7","event_image_8","event_image_9","event_image_10","event_image_11","event_image_12","event_image_13","event_image_14","event_image_15"]
+
 struct Event: Identifiable{
 
     var id: String
@@ -30,8 +32,9 @@ struct Event: Identifiable{
     var imageUrl: String
     var organizerRole: String
     var ownerId: String
-    var ownerName: String?
-    var ownerImage: String?
+    var ownerName: String = "Username"
+    var ownerImage: String = "profile_picture_1"
+    var particitpationNumber: Int = 0
     var major: String
     
     let dateTimeFormatter = DateFormatter()
@@ -84,8 +87,16 @@ struct Event: Identifiable{
     }
     
     mutating func updateOwner( ownerName: String = "", ownerImage: String = ""){
-        self.ownerName = ownerName == "" ? "Username" : ownerName
-        self.ownerImage = ownerImage == "" ? "profile_picture_1" : ownerImage
+        self.ownerName = ownerName
+        self.ownerImage = ownerImage
+    }
+    
+    mutating func updateParticipation(number: Int){
+        self.particitpationNumber = number
+    }
+    
+    mutating func increaseDecreaseParticipation(number: Int){
+        self.particitpationNumber += number
     }
     
     func getDateTime() -> String{

@@ -17,7 +17,6 @@ struct EventForm: View {
     @StateObject var formViewModel: EventFormViewModel
     
     let type = ["SSET", "SBM", "SCD"]
-    let imageUrls = ["event_image_1","event_image_2","event_image_3","event_image_4","event_image_5","event_image_6","event_image_7","event_image_8","event_image_9","event_image_10","event_image_11","event_image_12","event_image_13","event_image_14","event_image_15"]   // Add actual value of images here (URL name should be meaningful)
     
     var body: some View {
         Form {

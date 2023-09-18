@@ -29,8 +29,6 @@ class FakeDataHelper {
         Generate fake data with faker libary
      */
     public func generateFakeData(amounts: Int) -> [Event]{
-        let default_image_list = self.generate_image_list()
-        
         for _ in 0...amounts{
             let randomDateTime: String = self.generateRandomDateTimeRange()
             let event = Event(
@@ -39,7 +37,7 @@ class FakeDataHelper {
                 description: faker.lorem.paragraphs(amount: Int.random(in: 1..<3)),
                 dateTime: randomDateTime,
                 location: faker.address.streetAddress(includeSecondary: Bool()),
-                imageUrl: default_image_list.randomElement() ?? "event_image_1",
+                imageUrl: imageUrls.randomElement() ?? "event_image_1",
                 organizerRole: OrganizerRole.allCases.randomElement()!.rawValue,
                 major: SchoolDepartment.allCases.randomElement()!.rawValue)
             
@@ -68,14 +66,4 @@ class FakeDataHelper {
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         return formatter.string(from: randomDateTime)
     }
-    
-    
-    private func generate_image_list() -> [String] {
-        var image_str_list: [String] = []
-        for index in 0...10{
-            image_str_list.append("event_image_\(index)")
-        }
-        return image_str_list
-    }
-    
 }

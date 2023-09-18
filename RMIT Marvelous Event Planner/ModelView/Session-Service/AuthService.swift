@@ -41,7 +41,7 @@ class AuthService {
                                 [
                                     "email": email,
                                     "name": email,
-                                    "profilePicture": "profile_picture_1",
+                                    "profilePicture": "",
                                     "major": "",
                                     "darkModeSetting": false,
                                     "isMajorFilterSetting": false

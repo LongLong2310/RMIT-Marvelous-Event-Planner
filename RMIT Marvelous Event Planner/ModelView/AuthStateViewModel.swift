@@ -238,4 +238,44 @@ class AuthState: ObservableObject {
           }
         }
     }
+    
+    public func update_other_detail(){
+        // Fetch all accounts and add events to the account
+        db.collectionGroup("user").getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            if let snapshot = snapshot {
+                let eventVM = EventFormViewModel(event: nil)
+                
+                for document in snapshot.documents {
+                    // Find user id
+                    if let uid = self.auth.currentUser?.uid {
+                        let ref = self.db.collection("user").document(document.documentID)
+                        let data = document.data()
+                        
+                        // Update data with document with user id
+                        ref.setData(
+                            [
+                                "email": data["email"] as? String ?? "",
+                                "name": FakeDataHelper().faker.name.name(),
+                                "profilePicture":  profilePictures.randomElement() as Any,
+                                "major": SchoolDepartment.allCases.randomElement()?.rawValue as Any,
+                                "darkModeSetting": false,
+                                "isMajorFilterSetting": false
+                            ]
+                        )
+                    }
+                    else {
+                        // Not find the user then return error to true to log error
+                        self.errorMessage = "User does not exist"
+                    }
+                }
+                
+                
+          }
+        }
+    }
 }

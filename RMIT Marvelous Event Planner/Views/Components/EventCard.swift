@@ -14,8 +14,10 @@ import SwiftUI
 
 struct EventCard: View {
     @EnvironmentObject private var authState: AuthState
+    @State var isJoinedEvent: Bool = false
     var event: Event
     
+    @StateObject var eventViewModel: EventViewModel = EventViewModel()
     var body: some View {
         ZStack {
             Image(event.imageUrl)
@@ -40,12 +42,18 @@ struct EventCard: View {
                     
                     if (authState.account != nil && authState.account!.id != event.ownerId){
                         Button {
-                            
+                            if isJoinedEvent{
+                                eventViewModel .addEventToJoinEvents(event: event)
+                            }
+                            else {
+                                eventViewModel.removeAccountFromEventParticipation(event: event)
+                            }
+                            isJoinedEvent.toggle()
                         } label: {
                             HStack {
                                 Image(systemName: "square.and.arrow.down")
-                                    .rotationEffect(.degrees(-90))
-                                Text("Join")
+                                    .rotationEffect(.degrees(isJoinedEvent ? 90 : -90))
+                                Text(isJoinedEvent ? "Leave" : "Join")
                                     .font(Font.custom("Poppins-Regular", size: 18))
                             }
                         }
@@ -66,6 +74,6 @@ struct EventCard: View {
 
 struct EventCard_Previews: PreviewProvider {
     static var previews: some View {
-        EventCard(event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", dateTime: "May 26, 2022, 8:30 PM", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
+        EventCard(isJoinedEvent: false, event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", dateTime: "May 26, 2022, 8:30 PM", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
     }
 }

@@ -60,6 +60,7 @@ class EventFormViewModel: ObservableObject {
     public func fetchEvent(){
         self.fetchEventData()
         self.fetchOwnerNameImage()
+        self.fetchParticipationNumber()
     }
     
     private func fetchEventData(){
@@ -93,11 +94,25 @@ class EventFormViewModel: ObservableObject {
                 if let data = data {
                     // Pass data account to published user details
                     self.event.updateOwner(
-                        ownerName: data["email"] as? String ?? "",
+                        ownerName: data["name"] as? String ?? "",
                         ownerImage: data["profilePicture"] as? String ?? ""
                     )
                 }
             }
+        }
+    }
+    
+    private func fetchParticipationNumber(){
+        // Create a query against the collection.
+        let queryEventParticipation = db.collection("eventParticipation").whereField("eventID", isEqualTo: event.id)
+        // Execute the query
+        queryEventParticipation.addSnapshotListener { [self] (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            
+            event.updateParticipation(number: documents.count)
         }
     }
     

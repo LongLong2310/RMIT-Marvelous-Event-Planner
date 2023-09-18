@@ -91,7 +91,7 @@ class EventViewModel: ObservableObject {
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create a query against the collection.
-        let query = db.collection("events").whereField("ownerId", isNotEqualTo: uid).whereField("eventID", isEqualTo: event.id)
+        let query = db.collection("eventParticipation").whereField("accountID", isEqualTo: uid).whereField("eventID", isEqualTo: event.id)
         
         query.addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -99,9 +99,8 @@ class EventViewModel: ObservableObject {
                 return
             }
             
-            let _ = documents.map { (queryDocumentSnapshot) in
-                let documentID = queryDocumentSnapshot.data()["eventID"] as? String ?? ""
-                self.db.collection("eventParticipation").document(documentID).delete(){ error in
+            for document in documents {
+                self.db.collection("eventParticipation").document(document.documentID).delete(){ error in
                     if error == nil {
                         print("Leave suscessfully!")
                         self.events = self.events.filter { $0.id != event.id }
