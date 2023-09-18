@@ -153,14 +153,28 @@ class AuthState: ObservableObject {
     }
     
     // Async data settings
-    public func setisMajorFilterSetting(isMajorFilterSetting: Bool){
+    public func setisMajorFilterSetting(){
+        let isMajorFilteringSetting = !account!.isMajorFilterSetting
         let data:[String:AnyObject] = [
-            "isMajorFilterSetting": isMajorFilterSetting as AnyObject
+            "isMajorFilterSetting": isMajorFilteringSetting as AnyObject
         ]
         self.updateAccountDataFirebase(data: data)
     }
     
     private func updateAccountDataFirebase(data: [String:AnyObject]){
+        var userData = [
+            "email": account?.email as Any,
+            "name": account?.name as Any,
+            "profilePicture":  account?.profilePicture as Any,
+            "major": account?.major as Any,
+            "darkModeSetting": account?.darkModeSetting as Any,
+            "isMajorFilterSetting": account?.isMajorFilterSetting as Any
+        ] as [String : Any]
+        
+        for (key,value) in data {
+            userData[key] = value
+        }
+        
         // Find user id
         if let uid = auth.currentUser?.uid {
             let ref = self.db.collection("user").document(uid)
@@ -172,10 +186,7 @@ class AuthState: ObservableObject {
                     // Return error true to log error
                     self.errorMessage = "Cannot save user data"
                 } else {
-                    for (key,value) in data {
-                        print("\(key) = \(value)")
-                        self.account?.setValue(value, forKey: key)
-                    }
+                    self.account?.setAttribute(data: data)
                 }
             }
         }
@@ -186,7 +197,7 @@ class AuthState: ObservableObject {
     }
     
     // ----------- FAKE DATA TO FIREBASE HELPER --------------------//
-    private func create_fake_accounts(){
+    public func create_fake_accounts(){
         // Create fake account
         for index in 1...15{
             self.signUp(email: "user_\(index)@example.com", password: "123456")
@@ -227,9 +238,47 @@ class AuthState: ObservableObject {
           }
         }
     }
-    
     // Function to clear the error message
     public func clearErrorMessage() {
         errorMessage = ""
+     }
+    public func update_other_detail(){
+        // Fetch all accounts and add events to the account
+        db.collectionGroup("user").getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            if let snapshot = snapshot {
+                let eventVM = EventFormViewModel(event: nil)
+                
+                for document in snapshot.documents {
+                    // Find user id
+                    if let uid = self.auth.currentUser?.uid {
+                        let ref = self.db.collection("user").document(document.documentID)
+                        let data = document.data()
+                        
+                        // Update data with document with user id
+                        ref.setData(
+                            [
+                                "email": data["email"] as? String ?? "",
+                                "name": FakeDataHelper().faker.name.name(),
+                                "profilePicture":  profilePictures.randomElement() as Any,
+                                "major": SchoolDepartment.allCases.randomElement()?.rawValue as Any,
+                                "darkModeSetting": false,
+                                "isMajorFilterSetting": false
+                            ]
+                        )
+                    }
+                    else {
+                        // Not find the user then return error to true to log error
+                        self.errorMessage = "User does not exist"
+                    }
+                }
+                
+                
+          }
+        }
     }
 }

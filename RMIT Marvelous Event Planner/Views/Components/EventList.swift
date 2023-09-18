@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct EventList: View {
+    @State var isJoinedEvent: Bool = false
     @Binding var events: [Event]
     var listType: String
     
@@ -25,9 +26,9 @@ struct EventList: View {
                     VStack(spacing: 20) {
                         ForEach(events, id: \.id) { event in
                             NavigationLink {
-                                DetailView(formViewModel: EventFormViewModel(event: event)).navigationBarBackButtonHidden(true)
+                                DetailView(isJoinedEvent: isJoinedEvent, formViewModel: EventFormViewModel(event: event)).navigationBarBackButtonHidden(true)
                             } label: {
-                                EventCard(event: event)
+                                EventCard(isJoinedEvent: isJoinedEvent, event: event)
                             }
                         }
                     }

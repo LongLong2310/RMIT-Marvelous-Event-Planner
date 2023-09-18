@@ -32,10 +32,10 @@ struct JoinedEventsView: View {
                 
                 // List of joined events
                 if currentTab == "Upcoming" {
-                    EventList(events: $eventVM.events, listType: currentTab)
+                    EventList(isJoinedEvent: true, events: $eventVM.events, listType: currentTab)
                 }
                 else if currentTab == "Past" {
-                    EventList(events: $eventVM.events, listType: currentTab)
+                    EventList(isJoinedEvent: true, events: $eventVM.events, listType: currentTab)
                 }
             }
         }

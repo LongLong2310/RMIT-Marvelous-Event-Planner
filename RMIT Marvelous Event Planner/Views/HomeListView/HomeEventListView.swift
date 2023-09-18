@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct HomeEventListView: View {
+    @EnvironmentObject private var authState: AuthState
     @State private var searchText = ""
     @State private var didTap:Bool = false
     @State private var selectedEvent: Event?
@@ -39,7 +40,23 @@ struct HomeEventListView: View {
                 SearchBar(text: $searchText, placeholder: "Search")
                     .padding(.top)
                 
-                CustomSegmentedControl(preselectedIndex: $preselectedIndex, isDarkMode: $isDark, options: Filter.allCases.map { $0.rawValue })
+                HStack{
+                    RoundedRectangle(cornerRadius: 5.0)
+                        .stroke(lineWidth: 2)
+                        .frame(width: 25, height: 25)
+                        .cornerRadius(5.0)
+                        .overlay {
+                            Image(systemName: authState.account?.isMajorFilterSetting ?? true ? "checkmark" : "")
+                        }
+                        .onTapGesture {
+                            withAnimation(.spring()) {
+                                authState.setisMajorFilterSetting()
+                            }
+                        }
+                    Text("Filter By Major")
+                }
+                
+                CustomSegmentedControl(preselectedIndex: $preselectedIndex, isDarkMode: $isDark, options: OrganizerRole.allCases.map { $0.rawValue })
                     .padding(.leading)
                     .padding(.trailing)
                 
