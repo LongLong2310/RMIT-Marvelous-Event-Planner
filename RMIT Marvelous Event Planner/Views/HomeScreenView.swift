@@ -35,7 +35,6 @@ struct HomeScreenView: View {
                             Label("Joined", systemImage: "calendar")
                         }
                     
-                    
                     // Profiles
                     UserProfileView()
                         .tabItem {

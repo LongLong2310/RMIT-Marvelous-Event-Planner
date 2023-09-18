@@ -20,6 +20,8 @@ enum OrganizerRole: String, CaseIterable{
     case department
 }
 
+let imageUrls = ["event_image_1","event_image_2","event_image_3","event_image_4","event_image_5","event_image_6","event_image_7","event_image_8","event_image_9","event_image_10","event_image_11","event_image_12","event_image_13","event_image_14","event_image_15"]
+
 struct Event: Identifiable{
 
     var id: String
@@ -30,6 +32,9 @@ struct Event: Identifiable{
     var imageUrl: String
     var organizerRole: String
     var ownerId: String
+    var ownerName: String = "Username"
+    var ownerImage: String = "profile_picture_1"
+    var particitpationNumber: Int = 0
     var major: String
     
     let dateTimeFormatter = DateFormatter()
@@ -53,7 +58,7 @@ struct Event: Identifiable{
         return timeFormatter.string(from: dateTimeFormat)
     }
     
-    init(id: String = "", name: String = "", description: String = "", dateTime: String = "", time: String = "", location: String = "", imageUrl: String = "", organizerRole: String = "Personal", ownerId: String = "", major: String="SSET") {
+    init(id: String = "", name: String = "", description: String = "", dateTime: String = "", time: String = "", location: String = "", imageUrl: String = "event_image_1", organizerRole: String = "Personal", ownerId: String = "", major: String="SSET") {
         self.id = id
         self.name = name
         self.description = description
@@ -69,7 +74,7 @@ struct Event: Identifiable{
         timeFormatter.dateFormat = "HH:mm"
     }
     
-    mutating func updateEvent(name: String, description: String, dateTime: String, location: String, imageUrl: String, organizerRole: String, major: String=""){
+    mutating func updateEvent(name: String, description: String, dateTime: String, location: String, imageUrl: String, organizerRole: String, major: String="", ownerName: String = "", ownerImage: String = ""){
         self.name = name
         self.description = description
         self.dateTime = date
@@ -77,6 +82,21 @@ struct Event: Identifiable{
         self.imageUrl = imageUrl
         self.organizerRole = organizerRole
         self.major = major
+        self.ownerName = ownerName
+        self.ownerImage = ownerImage
+    }
+    
+    mutating func updateOwner( ownerName: String = "", ownerImage: String = ""){
+        self.ownerName = ownerName
+        self.ownerImage = ownerImage
+    }
+    
+    mutating func updateParticipation(number: Int){
+        self.particitpationNumber = number
+    }
+    
+    mutating func increaseDecreaseParticipation(number: Int){
+        self.particitpationNumber += number
     }
     
     func getDateTime() -> String{

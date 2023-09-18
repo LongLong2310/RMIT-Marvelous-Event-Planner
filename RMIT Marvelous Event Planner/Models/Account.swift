@@ -19,6 +19,8 @@ enum SchoolDepartment: String, CaseIterable{
     case SBM
 }
 
+let profilePictures = ["profile_picture_1","profile_picture_2","profile_picture_3","profile_picture_4","profile_picture_5"]
+
 class Account: NSObject, Identifiable {
     
     var id: String?
@@ -37,5 +39,29 @@ class Account: NSObject, Identifiable {
         self.major = major
         self.darkModeSetting = darkModeSetting
         self.isMajorFilterSetting = isMajorFilterSetting
+    }
+    
+    func setAttribute(data: [String:AnyObject]){
+        for (key,value) in data {
+            switch key {
+                case "name":
+                    self.name = value as! String
+                    break
+                case "profilePicture":
+                    self.profilePicture = value as! String
+                    break
+                case "major":
+                    self.major = value as! String
+                    break
+                case "darkModeSetting":
+                    self.darkModeSetting = value as! Bool
+                    break
+                case "isMajorFilterSetting":
+                    self.isMajorFilterSetting = value as! Bool
+                    break
+                default:
+                    break
+            }
+        }
     }
 }
