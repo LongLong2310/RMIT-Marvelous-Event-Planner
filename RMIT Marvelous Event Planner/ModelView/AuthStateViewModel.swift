@@ -179,7 +179,7 @@ class AuthState: ObservableObject {
         if let uid = auth.currentUser?.uid {
             let ref = self.db.collection("user").document(uid)
             // Update data with document with user id
-            ref.setData(
+            ref.updateData(
                 data
             ){ err in
                 if err != nil {

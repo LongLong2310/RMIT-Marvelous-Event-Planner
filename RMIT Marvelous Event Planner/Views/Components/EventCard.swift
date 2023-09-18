@@ -40,7 +40,7 @@ struct EventCard: View {
                     
                     Spacer()
                     
-                    if (authState.account != nil && authState.account!.id != event.ownerId){
+                    if (authState.account?.id != event.ownerId){
                         Button {
                             if isJoinedEvent{
                                 eventViewModel .addEventToJoinEvents(event: event)

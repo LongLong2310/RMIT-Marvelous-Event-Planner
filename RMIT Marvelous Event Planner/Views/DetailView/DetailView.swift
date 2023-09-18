@@ -138,7 +138,7 @@ struct DetailView: View {
                                 showingPopupAlert = true
                             }label:{
                                 HStack{
-                                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    Image(systemName: "trash.fill")
                                     Text("Delete Event")
                                 }
                                 .frame(maxWidth: .infinity)

@@ -21,7 +21,7 @@ struct HomeScreenView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                HeaderBar()
+                HeaderBar()               
                 TabView {
                     // Home Events
                     HomeEventListView()

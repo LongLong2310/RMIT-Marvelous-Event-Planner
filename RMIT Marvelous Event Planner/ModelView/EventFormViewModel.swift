@@ -22,7 +22,7 @@ class EventFormViewModel: ObservableObject {
     private let auth = Auth.auth()
     
     init(event: Event?){
-        self.event = event ?? Event()
+        self.event = event ?? Event(imageUrl: "event_image_1")
     }
     
     /**
