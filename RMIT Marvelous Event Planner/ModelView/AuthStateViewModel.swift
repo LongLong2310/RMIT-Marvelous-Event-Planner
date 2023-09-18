@@ -110,8 +110,7 @@ class AuthState: ObservableObject {
                     default: break
                 }
             } receiveValue: { [weak self] in
-                // Success message then will direct to home page
-                self?.value = .authenticated
+                self?.errorMessage = "Sign Up successful"
             }
             .store(in: &subscriptions)
     }
@@ -129,7 +128,7 @@ class AuthState: ObservableObject {
                 }
             } receiveValue: { [weak self] in
                 // Success message then will direct to home page
-                self?.value = .authenticated
+                self?.errorMessage = "Log in successful"
             }
             .store(in: &subscriptions)
     }
@@ -153,10 +152,9 @@ class AuthState: ObservableObject {
     }
     
     // Async data settings
-    public func setisMajorFilterSetting(){
-        let isMajorFilteringSetting = !account!.isMajorFilterSetting
+    public func setisMajorFilterSetting(isMajorFilterSetting: Bool){
         let data:[String:AnyObject] = [
-            "isMajorFilterSetting": isMajorFilteringSetting as AnyObject
+            "isMajorFilterSetting": isMajorFilterSetting as AnyObject
         ]
         self.updateAccountDataFirebase(data: data)
     }

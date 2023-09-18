@@ -31,9 +31,7 @@ struct ContentView: View {
                         .environmentObject(eventVM)
                         .environmentObject(authState)
             }
-      
         }.overlay{
-            // TODO: Quan - Add splash screen view and exist and reset showSplashScreen
             if isSplashScreenShown{
                 SplashScreenView().onAppear {
                     //dissapear after 2 second by setting isActive to true
@@ -43,7 +41,8 @@ struct ContentView: View {
                         }
                     }
                 }
-            }}
+            }
+        }
     }
 }
 
