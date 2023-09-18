@@ -238,7 +238,10 @@ class AuthState: ObservableObject {
           }
         }
     }
-    
+    // Function to clear the error message
+    public func clearErrorMessage() {
+        errorMessage = ""
+     }
     public func update_other_detail(){
         // Fetch all accounts and add events to the account
         db.collectionGroup("user").getDocuments { (snapshot, error) in

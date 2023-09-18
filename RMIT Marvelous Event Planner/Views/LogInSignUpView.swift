@@ -3,7 +3,7 @@
  Course: COSC2659 iOS Development
  Semester: 2023B
  Assessment: Assignment 3
- Author: Nguyen Quang Duy, Long Trinh Hoang Pham, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
+ Author: Nguyen Quang Duy, Pham Trinh Hoang Long, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
  ID: s3877991, s3879366, s3877457, s3891710, s3750789
  Created  date: 8/09/2023
  Last modified: 27/09/2023
@@ -24,7 +24,6 @@ struct LogInSignUpView: View {
     @State private var showPassword: Bool = false
     @State private var showConfirmPassword: Bool = false
     @State private var confirmPasswordInput: String = ""
-    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -94,7 +93,8 @@ struct LogInSignUpView: View {
                         title: "Email",
                         hint: "Email ID",
                         value: $emailInput,
-                        showPassword: .constant(false)
+                        showPassword: .constant(false),
+                        errorMessage: authState.errorMessage
                     )
                     .padding(.top, 15)
                     
@@ -103,7 +103,8 @@ struct LogInSignUpView: View {
                         title: "Password",
                         hint: "Password",
                         value: $passwordInput,
-                        showPassword: $showPassword
+                        showPassword: $showPassword,
+                        errorMessage: authState.errorMessage
                     )
                     .padding(.top, 10)
                     
@@ -114,7 +115,8 @@ struct LogInSignUpView: View {
                             title: "Confirm Password",
                             hint: "Confirm Password",
                             value: $confirmPasswordInput,
-                            showPassword: $showConfirmPassword
+                            showPassword: $showConfirmPassword,
+                            errorMessage: authState.errorMessage
                         )
                         .padding(.top, 10)
                     }
@@ -144,12 +146,13 @@ struct LogInSignUpView: View {
                     } label: {
                         Text(isSignUp ? "Sign Up" : "Login")
                             .frame(maxWidth: .infinity)
-                    }.alert(Text(isSignUp ? "Sign up info is wrong" : "Login info is wrong"), isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { }
                     }
                     .buttonStyle(PrimaryButton())
                     .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
                     .padding(.top, 25)
+                    
+                    Text(authState.errorMessage)
+                        .foregroundColor(Color.red)
                     // A VStackwith text and a button for toggling between login and signup modes.
                     // It displays either "Have an account?" or "Don't have an account?" based on the isSignUp state.
                     VStack (spacing: 10) {
@@ -158,8 +161,13 @@ struct LogInSignUpView: View {
                             // Register User button
                             Button {
                                 // Toggle the isSignUp state with animation when the button is pressed.
+                                // Clear error and input
                                 withAnimation {
                                     isSignUp.toggle()
+                                    authState.clearErrorMessage()
+                                    emailInput = ""
+                                    passwordInput = ""
+                                    confirmPasswordInput = ""
                                 }
                             } label: {
                                 // The button label dynamically changes between "Login" and "Sign up."
@@ -190,8 +198,13 @@ struct LogInSignUpView: View {
         title: String,
         hint: String,
         value: Binding<String>,
-        showPassword: Binding<Bool>
+        showPassword: Binding<Bool>,
+        errorMessage: String
     ) -> some View {
+        // Define a conditional border color based on the error message.
+        let dividerColor: Color = errorMessage.isEmpty ? .gray : .red
+        let dividerHeight: CGFloat = errorMessage.isEmpty ? 0.5 : 2
+        
         // Create a VStack to arrange the components vertically.
         VStack (alignment: .leading, spacing: 12) {
             // Label for the text field, displaying the title.
@@ -214,6 +227,8 @@ struct LogInSignUpView: View {
             
             // Divider line below the text input.
             Divider()
+                .frame(minHeight: dividerHeight)
+                .background(dividerColor)
         }
         // Overlay a button to toggle password visibility (visible only for password fields).
         .overlay(
@@ -240,38 +255,63 @@ struct LogInSignUpView: View {
     func signIn(){
         Task {
             //if email and password right format then log in else show alert
-            if isValidEmail(emailInput)==true && isValidPassword(passwordInput)==true {authState.signIn(email: emailInput, password: passwordInput)}
-            else {
-                showingAlert=true
+            if emailInput.isEmpty || passwordInput.isEmpty{
+                authState.errorMessage = "Email/Password cannot be empty"
+                return
             }
-            // TODO: Han - Add try catch and await for authenticated
             
+            if !isValidEmail(emailInput) {
+                authState.errorMessage = "Email format is wrong."
+                return
+            }
+            
+            if !isValidPassword(passwordInput) == true{
+                authState.errorMessage = "Password should be more than 6 characters"
+                return
+            }
+            
+            authState.signIn(email: emailInput, password: passwordInput)
         }
     }
+
+    func signUp(){
+        //if email and password right format and password match confirm password then sign up
+        Task {
+            if emailInput.isEmpty || passwordInput.isEmpty{
+                authState.errorMessage = "Email/Password cannot be empty"
+                return
+            }
+            
+            if !isValidEmail(emailInput) {
+                authState.errorMessage = "Email format is wrong."
+                return
+            }
+            
+            if !isValidPassword(passwordInput) == true{
+                authState.errorMessage = "Password should be more than 6 characters"
+                return
+            }
+            
+            if passwordInput != confirmPasswordInput{
+                authState.errorMessage = "Password and Password confirm are not the same"
+                return
+            }
+            authState.signUp(email: emailInput, password: passwordInput)
+        }
+    }
+    
+    
     //email validation function
-    func isValidEmail(_ email: String) -> Bool {
+    private func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
     //password format validation
-    func isValidPassword(_ password: String) -> Bool {
+    private func isValidPassword(_ password: String) -> Bool {
         if password.count<6 { return false}
         else {return true}
-    }
-    
-    func signUp(){
-        Task {
-            //if email and password right format and password match confirm password then sign up
-            if isValidEmail(emailInput)==true && isValidPassword(passwordInput)==true && passwordInput==confirmPasswordInput {authState.signUp(email: emailInput, password: passwordInput)}
-            else {
-                showingAlert=true
-            }
-            
-            // TODO: Han - Add try catch and await for authenticated
-            
-        }
     }
 }
 
