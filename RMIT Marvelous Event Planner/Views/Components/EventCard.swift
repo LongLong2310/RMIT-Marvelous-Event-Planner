@@ -74,6 +74,6 @@ struct EventCard: View {
 
 struct EventCard_Previews: PreviewProvider {
     static var previews: some View {
-        EventCard(isJoinedEvent: false, event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", dateTime: "May 26, 2022, 8:30 PM", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.personal.rawValue))
+        EventCard(isJoinedEvent: false, event: Event(id: "1",name: "Family reunion", description: "Anh em mot nha", dateTime: "May 26, 2022, 8:30 PM", location: "Quang Binh", imageUrl: "sample-image", organizerRole: OrganizerRole.Personal.rawValue))
     }
 }
