@@ -23,14 +23,30 @@ struct HomeEventListView: View {
     @State private var isMajorFilterSetting: Bool = false
     @ObservedObject var eventVM: EventViewModel = EventViewModel()
     
-    // Filtered events based on the search text
+    // Filtered events based on the search text and major filter and role
     var filteredEvents: [Event] {
-        if searchText.isEmpty || eventVM.events.isEmpty{
-            return eventVM.events
-        } else {
-            return eventVM.events.filter { event in
+        var eventsMatchingSearchText = eventVM.events
+
+        // Filter based on searchText
+        if !searchText.isEmpty {
+            eventsMatchingSearchText = eventsMatchingSearchText.filter { event in
                 event.name.localizedCaseInsensitiveContains(searchText)
             }
+        }
+
+        // Filter based on preselectedIndex (organizerRole)
+        let selectedOrganizerRole = OrganizerRole.allCases[preselectedIndex].rawValue.lowercased()
+        eventsMatchingSearchText = eventsMatchingSearchText.filter { event in
+            event.organizerRole.lowercased() == selectedOrganizerRole
+        }
+
+        // Filter based on isMajorFilterSetting
+        if isMajorFilterSetting, let accountMajor = authState.account?.major.lowercased() {
+            return eventsMatchingSearchText.filter { event in
+                event.major.lowercased() == accountMajor
+            }
+        } else {
+            return eventsMatchingSearchText
         }
     }
     

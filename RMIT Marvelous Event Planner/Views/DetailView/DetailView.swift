@@ -207,7 +207,7 @@ struct DetailView_Previews: PreviewProvider {
                         .hour().minute()),
                 location: "Quang Binh",
                 imageUrl: "sample-image",
-                organizerRole: OrganizerRole.personal.rawValue,
+                organizerRole: OrganizerRole.Personal.rawValue,
                 major: SchoolDepartment.SBM.rawValue))
         )
     }
