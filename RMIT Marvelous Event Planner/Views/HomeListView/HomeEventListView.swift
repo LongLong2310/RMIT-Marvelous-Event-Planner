@@ -83,6 +83,7 @@ struct HomeEventListView: View {
         }
         .onAppear(){
             self.eventVM.queryEventsHomePage()
+            isMajorFilterSetting = authState.account?.isMajorFilterSetting ?? false
         }
     }
 }
