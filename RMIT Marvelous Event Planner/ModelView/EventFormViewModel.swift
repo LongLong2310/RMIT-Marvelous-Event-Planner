@@ -20,6 +20,7 @@ class EventFormViewModel: ObservableObject {
     @Published var event: Event
     private var db = Firestore.firestore()
     private let auth = Auth.auth()
+    @Published var showingAlert: Bool = false
     
     init(event: Event?){
         self.event = event ?? Event(imageUrl: "event_image_1")
@@ -29,29 +30,31 @@ class EventFormViewModel: ObservableObject {
         Add event to firestore
      */
     public func addNewEventData(){
-        
-        // Initialize dcoument ID in firestore by letting in generate
-        let id = db.collection("events").document().documentID
-        
-        self.event.id = id
-        
-        guard let uid = auth.currentUser?.uid else {return}
-        
-        // Add data process to firestore
-        self.postPutFirestore(event: event, uid: uid)
-        
+        self.emtyCheck()
+        if !self.showingAlert{
+            // Initialize dcoument ID in firestore by letting in generate
+            let id = db.collection("events").document().documentID
+            
+            self.event.id = id
+            
+            guard let uid = auth.currentUser?.uid else {return}
+            
+            // Add data process to firestore
+            self.postPutFirestore(event: event, uid: uid)
+        }
     }
     
     /**
         Update event to firestore
      */
     public func updateEventData(){
-        
-        guard let uid = auth.currentUser?.uid else {return}
-        
-        // Update data event in firestore
-        self.postPutFirestore(event: event, uid: uid)
-        
+        self.emtyCheck()
+        if self.showingAlert{
+            guard let uid = auth.currentUser?.uid else {return}
+            
+            // Update data event in firestore
+            self.postPutFirestore(event: event, uid: uid)
+        }
     }
     
     /**
@@ -222,4 +225,14 @@ class EventFormViewModel: ObservableObject {
         }
     }
     
+    //  Function to validate if any field is emty
+    private func emtyCheck(){
+        if event.name.trimmingCharacters(in: .whitespaces).isEmpty ||
+            event.description.trimmingCharacters(in: .whitespaces).isEmpty ||
+            event.location.trimmingCharacters(in: .whitespaces).isEmpty{
+            showingAlert = true
+        }else{
+            showingAlert = false
+        }
+    }
 }

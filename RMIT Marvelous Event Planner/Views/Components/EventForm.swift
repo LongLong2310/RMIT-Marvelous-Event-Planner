@@ -106,6 +106,7 @@ struct EventForm: View {
                 TextField("Description (optional)", text: $formViewModel.event.description, axis: .vertical)
                     .textFieldStyle(CustomTextField())
                 
+                Text(formViewModel.showingAlert ? "Field should be filled" : "")
                 // User actions
                 HStack {
                     // Discard button
@@ -125,11 +126,15 @@ struct EventForm: View {
                     Button {
                         if (formViewModel.event.id != ""){
                             formViewModel.updateEventData()
-                            dismiss()
+                            if(formViewModel.showingAlert == false){
+                                    dismiss()
+                            }
                         }
                         else {
                             formViewModel.addNewEventData()
-                            dismiss()
+                            if(formViewModel.showingAlert == false){
+                                    dismiss()
+                            }
                         }
                     } label: {
                         HStack {
@@ -142,6 +147,8 @@ struct EventForm: View {
                     .buttonStyle(PrimaryButton())
                 }
             }
+        }.alert(" Please enter all the require field", isPresented: $formViewModel.showingAlert) {
+            Button("OK", role: .cancel) { }
         }
     }
 }
