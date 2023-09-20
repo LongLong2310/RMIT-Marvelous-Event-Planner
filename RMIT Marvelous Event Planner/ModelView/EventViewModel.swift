@@ -66,6 +66,9 @@ class EventViewModel: ObservableObject {
                 return
             }
             
+            if documents.isEmpty{
+                return
+            }
             let eventIDs = documents.map { (queryDocumentSnapshot) -> String in
                 return queryDocumentSnapshot.data()["eventID"] as? String ?? ""
             }
@@ -104,6 +107,7 @@ class EventViewModel: ObservableObject {
                     if error == nil {
                         print("Leave suscessfully!")
                         self.events = self.events.filter { $0.id != event.id }
+                        
                     } else {
                         print("Error leaving events")
                     }

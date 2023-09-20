@@ -18,14 +18,34 @@ struct JoinedEventsView: View {
     
     @State private var today: Date = Date()
     @State private var currentTab: String = "Upcoming"
+    @State private var filteredEvents: [Event] = []
     @Namespace var animation
     
     // Filtered events based on the search text
-    private var filteredEvents: [Event] {
-        if eventVM.events.isEmpty {
-            return []
+//    init() {
+//        self.eventVM.queryEventParticipation()
+//    }
+    
+    func compareEventsByToday() {
+        // Avoid duplication
+        filteredEvents = []
+        
+        if !eventVM.events.isEmpty {
+            if currentTab == "Upcoming" {
+                for event in eventVM.events {
+                    if getDateFromString(dateString: event.dateTime) >= today {
+                        filteredEvents.append(event)
+                    }
+                }
+            }
+            else if currentTab == "Past" {
+                for event in eventVM.events {
+                    if getDateFromString(dateString: event.dateTime) < today {
+                        filteredEvents.append(event)
+                    }
+                }
+            }
         }
-        return eventVM.events
     }
     
     var body: some View {
@@ -39,15 +59,21 @@ struct JoinedEventsView: View {
                 
                 // List of joined events
                 if currentTab == "Upcoming" {
-                    EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: currentTab)
+                    EventList(events: $filteredEvents, listType: currentTab)
                 }
                 else if currentTab == "Past" {
-                    EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: currentTab)
+                    EventList(events: $filteredEvents, listType: currentTab)
                 }
             }
         }
         .onAppear(){
             self.eventVM.queryEventParticipation()
+        }
+        .onChange(of: currentTab) { _ in
+            compareEventsByToday()
+        }
+        .onChange(of: self.eventVM.events) { newValue in
+            compareEventsByToday()
         }
     }
 }
@@ -56,4 +82,21 @@ struct JoinedView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+func getDateFromString(dateString: String) -> Date {
+    var finalDate: Date = Date()
+    
+    // Create Date Formatter
+    let dateFormatter = DateFormatter()
+
+    // Set Date Format
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+    // Convert Date to String
+    if let convertedDate = dateFormatter.date(from: dateString) {
+        finalDate = convertedDate
+    }
+    
+    return finalDate
 }
