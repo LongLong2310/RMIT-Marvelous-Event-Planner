@@ -72,6 +72,9 @@ struct JoinedEventsView: View {
         .onChange(of: currentTab) { _ in
             compareEventsByToday()
         }
+        .onChange(of: self.eventVM.events) { newValue in
+            compareEventsByToday()
+        }
     }
 }
 
