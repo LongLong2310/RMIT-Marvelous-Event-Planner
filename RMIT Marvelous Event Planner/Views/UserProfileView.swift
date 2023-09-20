@@ -10,8 +10,7 @@ import SwiftUI
 struct UserProfileView: View {
     @EnvironmentObject private var authState: AuthState
     @StateObject var eventVM: EventViewModel = EventViewModel()
-    
-    @State var avatarName = "Avatar"
+    @State var avatarName = "Avatar 1"
     @State var Phase = 1
     @State private var currentTab: String = "Events"
     @State private var username: String = ""
@@ -21,6 +20,7 @@ struct UserProfileView: View {
     @State private var showPasswordL: Bool = false
     @State private var showingAlert = false
     @State private var showingPopupLogoutAlert = false
+    let type = ["SSET", "SBM", "SCD"]
     
     @Namespace var animation
 //  Function to return to the profile information page
@@ -44,6 +44,7 @@ struct UserProfileView: View {
             showingAlert = true
             return "Please fill all the field"
         }else{
+            authState.setAccountData(name: username, profilePicture: avatarName, major: major);
             previousPhase()
         }
         return nil
@@ -113,6 +114,8 @@ struct UserProfileView: View {
                                 .font(Font.custom("Poppins-Regular", size: 24))
                             Text("\(authState.account!.email)")
                                 .font(Font.custom("Poppins-Regular", size: 15))
+                            Text("\(authState.account!.major)")
+                                .font(Font.custom("Poppins-Regular", size: 15))
                         }
                         Spacer()
                     }.padding(.horizontal,20)
@@ -151,36 +154,15 @@ struct UserProfileView: View {
                         }
                     }
                     .padding(.horizontal,20)
-                    
-                    HStack{
-                        TabBarButton(current: $currentTab, label: "Events", icon: "calendar", animation: animation)
-                        TabBarButton(current: $currentTab, label: "About", icon: "person", animation: animation)
-                    }
-                    
-                    TabView(selection: $currentTab) {
-//  Check if current tab is equal to "About" then display profile information
-                        if(currentTab == "About"){
-                            ScrollView {
-                                VStack(spacing:10){
-                                    UserProfileRow(title: "Birthday", content: "04/04/2002")
-                                    UserProfileRow(title: "Major", content: "\(authState.account!.major)")
-                                    UserProfileRow(title: "Join date", content: "12/09/2023")
-                                }
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 20)
-                            }
-//  Check if current tab is equal to "Events" then display joined event list
-                        }else if(currentTab == "Events"){
+
                             VStack {
                                 EventList(events: $eventVM.events, listType: currentTab)
                             }
                             .frame(width: UIScreen.main.bounds.size.width)
                             .background(Color("list-background"))
                         }
-                    }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                     Spacer()
-                }
 
 // If phase is equal to 2 display the edit profile
             }else if(Phase == 2){
@@ -215,13 +197,18 @@ struct UserProfileView: View {
                             value: $username,
                             showPassword: .constant(false)
                         )
-                        CustomTextField(
-                            title: "Major",
-                            hint: "\(authState.account!.major)",
-                            value: $major,
-                            showPassword: .constant(false)
-                        )
-
+                        HStack{
+                            Text("Select school major")
+                                .foregroundColor(Color.black.opacity(0.8))
+                            Picker(selection: $major) {
+                                ForEach(type, id: \.self) {
+                                    Text($0)
+                                }
+                            } label: {
+                                Text("Select School major")
+                                    .font(Font.custom("Poppins-Regular", size: 15))
+                            }
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 20)
@@ -234,7 +221,6 @@ struct UserProfileView: View {
                                 previousPhase()
                               
                             }label:{
-//  Button
                                 HStack{
                                     Image(systemName: "multiply")
                                     Text("Discard")
