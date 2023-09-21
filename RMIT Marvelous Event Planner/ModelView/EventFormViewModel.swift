@@ -228,7 +228,6 @@ class EventFormViewModel: ObservableObject {
     //  Function to validate if any field is emty
     private func emtyCheck(){
         if event.name.trimmingCharacters(in: .whitespaces).isEmpty ||
-            event.description.trimmingCharacters(in: .whitespaces).isEmpty ||
             event.location.trimmingCharacters(in: .whitespaces).isEmpty{
             showingAlert = true
         }else{

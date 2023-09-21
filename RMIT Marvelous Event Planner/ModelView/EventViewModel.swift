@@ -46,7 +46,7 @@ class EventViewModel: ObservableObject {
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create a query against the collection.
-        let query = db.collection("events").whereField("ownerId", isEqualTo: uid)
+        let query = db.collection("events").whereField("ownerId", isEqualTo: uid).order(by: "dateTime")
         self.queryEventsFirestore(query: query)
     }
     
