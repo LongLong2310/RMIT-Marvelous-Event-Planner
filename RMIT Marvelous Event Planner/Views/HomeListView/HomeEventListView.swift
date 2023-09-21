@@ -21,6 +21,7 @@ struct HomeEventListView: View {
     @State private var activeFilter = ""
     @State public var preselectedIndex: Int = 0
     @State private var isMajorFilterSetting: Bool = false
+    @State private var hasAppeared = false
     @ObservedObject var eventVM: EventViewModel = EventViewModel()
     
     // Filtered events based on the search text and major filter and role
@@ -72,18 +73,20 @@ struct HomeEventListView: View {
                         }
                     Text("Filter By Major")
                 }
-                
+                if hasAppeared {
                 CustomSegmentedControl(preselectedIndex: $preselectedIndex, options: OrganizerRole.allCases.map { $0.rawValue })
                     .padding(.leading)
                     .padding(.trailing)
                 
-                
-                EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: "Home Event")
+              
+                    EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: "Home Event")
+            }
             }
         }
         .onAppear(){
             self.eventVM.queryEventsHomePage()
             isMajorFilterSetting = authState.account?.isMajorFilterSetting ?? false
+            hasAppeared=true
         }
     }
 }
