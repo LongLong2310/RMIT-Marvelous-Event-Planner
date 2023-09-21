@@ -26,7 +26,7 @@ class EventViewModel: ObservableObject {
     /**
         Add event user join to firestore
      */
-    public func addEventToJoinEvents(event: Event) {
+    public func addEventToJoinEvents(event: Event, isHomePage: Bool = false) {
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create new document in eventParticipation collection
@@ -37,6 +37,7 @@ class EventViewModel: ObservableObject {
             "eventID": event.id,
             "accountID": uid
         ])
+        
     }
 
     /**
@@ -48,6 +49,7 @@ class EventViewModel: ObservableObject {
         // Create a query against the collection.
         let query = db.collection("events").whereField("ownerId", isEqualTo: uid).order(by: "dateTime")
         self.queryEventsFirestore(query: query)
+        
     }
     
     /**
@@ -87,7 +89,11 @@ class EventViewModel: ObservableObject {
         
         // Create a query against the collection.
         let query = db.collection("events").whereField("ownerId", isNotEqualTo: uid)
-        self.queryEventsFirestore(query: query)
+        let queue = DispatchQueue.global(qos: .background)
+        queue.sync {
+            self.queryEventsFirestore(query: query)
+        }
+        self.filterEventsParticipationHelper()
     }
     
     public func removeAccountFromEventParticipation(event: Event){
@@ -103,11 +109,12 @@ class EventViewModel: ObservableObject {
             }
             
             for document in documents {
-                self.db.collection("eventParticipation").document(document.documentID).delete(){ error in
+                self.db.collection("eventParticipation").document(document.documentID).delete{ error in
                     if error == nil {
-                        print("Leave suscessfully!")
-                        self.events = self.events.filter { $0.id != event.id }
-                        
+                        self.events.removeAll { e in
+                            // Check for the event to remove
+                            return e.id == event.id
+                        }
                     } else {
                         print("Error leaving events")
                     }
@@ -121,7 +128,6 @@ class EventViewModel: ObservableObject {
         Update events list from query
      */
     private func queryEventsFirestore(query: Query){
-        self.events = []
         // Execute the query
         query.addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -173,10 +179,10 @@ class EventViewModel: ObservableObject {
             // Get all id of the event participation and filter out of the all events
             let eventParticipateIDs = documents.map { (queryDocumentSnapshot) -> String in
                 let data = queryDocumentSnapshot.data()
-                return data["id"] as? String ?? ""
+                return data["eventID"] as? String ?? ""
             }
             self.events = self.events.filter{!eventParticipateIDs.contains($0.id)}
-            
         }
     }
+    
 }
