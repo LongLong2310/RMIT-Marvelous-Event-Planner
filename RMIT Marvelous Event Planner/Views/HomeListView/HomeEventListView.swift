@@ -89,6 +89,8 @@ struct HomeEventListView: View {
             self.eventVM.queryEventsHomePage()
             isMajorFilterSetting = authState.account?.isMajorFilterSetting ?? false
             hasAppeared=true
+        }.onDisappear(){
+            hasAppeared=false
         }
     }
 }
