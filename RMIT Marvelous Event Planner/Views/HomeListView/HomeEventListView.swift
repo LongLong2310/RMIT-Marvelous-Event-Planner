@@ -53,34 +53,36 @@ struct HomeEventListView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .center) {
-                SearchBar(text: $searchText, placeholder: "Search")
-                    .padding(.top)
-                
-                HStack{
-                    RoundedRectangle(cornerRadius: 5.0)
-                        .stroke(lineWidth: 2)
-                        .frame(width: 25, height: 25)
-                        .cornerRadius(5.0)
-                        .overlay {
-                            Image(systemName: isMajorFilterSetting ? "checkmark" : "")
-                        }
-                        .onTapGesture {
-                            withAnimation(.spring()) {
-                                isMajorFilterSetting.toggle()
-                                authState.setisMajorFilterSetting(isMajorFilterSetting: isMajorFilterSetting)
+            if hasAppeared {
+                VStack(alignment: .center) {
+                    SearchBar(text: $searchText, placeholder: "Search")
+                        .padding(.top)
+                    
+                    HStack{
+                        RoundedRectangle(cornerRadius: 5.0)
+                            .stroke(lineWidth: 2)
+                            .frame(width: 25, height: 25)
+                            .cornerRadius(5.0)
+                            .overlay {
+                                Image(systemName: isMajorFilterSetting ? "checkmark" : "")
                             }
-                        }
-                    Text("Filter By Major")
-                }
-                if hasAppeared {
-                CustomSegmentedControl(preselectedIndex: $preselectedIndex, options: OrganizerRole.allCases.map { $0.rawValue })
-                    .padding(.leading)
-                    .padding(.trailing)
-                
-              
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    isMajorFilterSetting.toggle()
+                                    authState.setisMajorFilterSetting(isMajorFilterSetting: isMajorFilterSetting)
+                                }
+                            }
+                        Text("Filter By Major")
+                    }
+                    
+                    CustomSegmentedControl(preselectedIndex: $preselectedIndex, options: OrganizerRole.allCases.map { $0.rawValue })
+                        .padding(.leading)
+                        .padding(.trailing)
+                    
+                    
                     EventList(events: Binding(get: { filteredEvents }, set: { _ in }), listType: "Home Event")
-            }
+                    
+                }
             }
         }
         .onAppear(){

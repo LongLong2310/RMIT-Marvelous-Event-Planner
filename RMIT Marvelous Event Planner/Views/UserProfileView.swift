@@ -21,7 +21,7 @@ struct UserProfileView: View {
     @State private var showingAlert = false
     @State private var showingPopupLogoutAlert = false
     let type = ["SSET", "SBM", "SCD"]
-    
+    @State private var hasAppeared = false
     @Namespace var animation
 //  Function to return to the profile information page
     func previousPhase() {
@@ -128,7 +128,7 @@ struct UserProfileView: View {
                                 HStack{
                                     Image(systemName: "pencil")
                                     Text("Edit profile")
-                                        
+                                    
                                 }
                                 .frame(maxWidth: .infinity)
                             }.buttonStyle(PrimaryButton())
@@ -146,20 +146,21 @@ struct UserProfileView: View {
                             }
                             .buttonStyle(WarningButton())
                             .alert(isPresented: $showingPopupLogoutAlert) {
-                                  Alert(title: Text("Are you sure to logout?"), primaryButton: .destructive(Text("Confirm"), action: {
+                                Alert(title: Text("Are you sure to logout?"), primaryButton: .destructive(Text("Confirm"), action: {
                                     // Perform the action.
-                                      authState.logout()
-                                  }), secondaryButton: .cancel())
+                                    authState.logout()
+                                }), secondaryButton: .cancel())
                             }
                         }
                     }
                     .padding(.horizontal,20)
-
-                            VStack {
-                                EventList(events: $eventVM.events, listType: currentTab)
-                            }
-                            .frame(width: UIScreen.main.bounds.size.width)
-                            .background(Color("list-background"))
+                    if hasAppeared{
+                        VStack {
+                        EventList(events: $eventVM.events, listType: currentTab)
+                    }
+                        .frame(width: UIScreen.main.bounds.size.width)
+                        .background(Color("list-background"))
+                }
                         }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                     Spacer()
@@ -251,6 +252,7 @@ struct UserProfileView: View {
         .onAppear(){
             authState.fetchUser()
             self.eventVM.queryOwnedEvents()
+            hasAppeared=true
         }
     }
         
