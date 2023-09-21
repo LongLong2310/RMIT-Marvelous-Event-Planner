@@ -74,7 +74,7 @@ struct Event: Identifiable, Equatable{
         timeFormatter.dateFormat = "HH:mm"
     }
     
-    mutating func updateEvent(name: String, description: String, dateTime: String, location: String, imageUrl: String, organizerRole: String, major: String="", ownerName: String = "", ownerImage: String = ""){
+    mutating func updateEvent(name: String, description: String, dateTime: String, location: String, imageUrl: String, organizerRole: String, major: String=""){
         self.name = name
         self.description = description
         self.dateTime = date
@@ -82,8 +82,6 @@ struct Event: Identifiable, Equatable{
         self.imageUrl = imageUrl
         self.organizerRole = organizerRole
         self.major = major
-        self.ownerName = ownerName
-        self.ownerImage = ownerImage
     }
     
     mutating func updateOwner( ownerName: String = "", ownerImage: String = ""){

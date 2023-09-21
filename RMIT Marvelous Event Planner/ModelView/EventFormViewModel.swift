@@ -96,6 +96,7 @@ class EventFormViewModel: ObservableObject {
                 let data = document.data()
                 if let data = data {
                     // Pass data account to published user details
+                    
                     self.event.updateOwner(
                         ownerName: data["name"] as? String ?? "",
                         ownerImage: data["profilePicture"] as? String ?? ""

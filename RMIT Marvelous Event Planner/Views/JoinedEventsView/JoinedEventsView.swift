@@ -21,11 +21,6 @@ struct JoinedEventsView: View {
     @State private var filteredEvents: [Event] = []
     @Namespace var animation
     
-    // Filtered events based on the search text
-//    init() {
-//        self.eventVM.queryEventParticipation()
-//    }
-    
     func compareEventsByToday() {
         // Avoid duplication
         filteredEvents = []
@@ -59,10 +54,10 @@ struct JoinedEventsView: View {
                 
                 // List of joined events
                 if currentTab == "Upcoming" {
-                    EventList(events: $filteredEvents, listType: currentTab)
+                    EventList(isJoinedEvent: true, events: $filteredEvents, listType: currentTab)
                 }
                 else if currentTab == "Past" {
-                    EventList(events: $filteredEvents, listType: currentTab)
+                    EventList(isJoinedEvent: true, events: $filteredEvents, listType: currentTab)
                 }
             }
         }
