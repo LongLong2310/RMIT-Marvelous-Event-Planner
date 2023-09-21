@@ -161,14 +161,10 @@ struct DetailView: View {
                                     eventViewModel.removeAccountFromEventParticipation(event: formViewModel.event)
                                 }
                                 else {
-                                    DispatchQueue.global(qos: .background).sync {
-                                        eventViewModel.addEventToJoinEvents(event: formViewModel.event)
-                                    }
+                                    eventViewModel.addEventToJoinEvents(event: formViewModel.event)
                                 }
                             }
-                            
-                            formViewModel.fetchEvent()
-                            isJoinedEvent.toggle()
+                            dismiss()
                         } label: {
                             HStack {
                                 Image(systemName: "square.and.arrow.down")
