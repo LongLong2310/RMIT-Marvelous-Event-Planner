@@ -49,7 +49,7 @@ class EventFormViewModel: ObservableObject {
      */
     public func updateEventData(){
         self.emtyCheck()
-        if self.showingAlert{
+        if !self.showingAlert{
             guard let uid = auth.currentUser?.uid else {return}
             
             // Update data event in firestore

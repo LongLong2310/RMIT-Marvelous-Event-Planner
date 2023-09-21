@@ -124,17 +124,17 @@ struct EventForm: View {
                     
                     // Save button
                     Button {
-                        if (formViewModel.event.id != ""){
-                            formViewModel.updateEventData()
-                            if(formViewModel.showingAlert == false){
-                                    dismiss()
+                        DispatchQueue.global(qos: .background).sync {
+                            if (formViewModel.event.id != ""){
+                                formViewModel.updateEventData()
+                            }
+                            else {
+                                formViewModel.addNewEventData()
                             }
                         }
-                        else {
-                            formViewModel.addNewEventData()
-                            if(formViewModel.showingAlert == false){
-                                    dismiss()
-                            }
+                        
+                        if(formViewModel.showingAlert == false){
+                            dismiss()
                         }
                     } label: {
                         HStack {

@@ -44,6 +44,7 @@ class EventViewModel: ObservableObject {
         Query the owned events by the ownerID
      */
     public func queryOwnedEvents(){
+        self.events = []
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create a query against the collection.
@@ -85,6 +86,7 @@ class EventViewModel: ObservableObject {
         And the events that user have not joined
      */
     public func queryEventsHomePage(){
+        self.events = []
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create a query against the collection.
