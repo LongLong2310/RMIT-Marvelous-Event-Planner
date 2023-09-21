@@ -47,9 +47,7 @@ struct EventCard: View {
                                     eventViewModel.removeAccountFromEventParticipation(event: event)
                                 }
                                 else {
-                                    DispatchQueue.global(qos: .background).sync {
-                                        eventViewModel.addEventToJoinEvents(event: event)
-                                    }
+                                    eventViewModel.addEventToJoinEvents(event: event)
                                 }
                                 isJoinedEvent.toggle()
                             }

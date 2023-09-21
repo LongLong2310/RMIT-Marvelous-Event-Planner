@@ -156,14 +156,19 @@ struct UserProfileView: View {
                     .padding(.horizontal,20)
                     if hasAppeared{
                         VStack {
-                        EventList(events: $eventVM.events, listType: currentTab)
-                    }
+                            EventList(events: $eventVM.events, listType: currentTab)
+                        }
                         .frame(width: UIScreen.main.bounds.size.width)
                         .background(Color("list-background"))
+                    }
                 }
-                        }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
-                    Spacer()
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .onAppear(){
+                    authState.fetchUser()
+                    self.eventVM.queryOwnedEvents()
+                    hasAppeared=true
+                }
+                Spacer()
 
 // If phase is equal to 2 display the edit profile
             }else if(Phase == 2){
@@ -247,12 +252,12 @@ struct UserProfileView: View {
                 } .alert(" Please enter all the require field", isPresented: $showingAlert) {
                     Button("OK", role: .cancel) { }
                 }
+                .onAppear(){
+                    self.username = self.authState.account?.name ?? ""
+                    self.avatarName = self.authState.account?.profilePicture ?? ""
+                    self.major = self.authState.account?.major ?? ""
+                }
             }
-        }
-        .onAppear(){
-            authState.fetchUser()
-            self.eventVM.queryOwnedEvents()
-            hasAppeared=true
         }
     }
         
