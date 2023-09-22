@@ -1,13 +1,13 @@
 /*
-  RMIT University Vietnam
-  Course: COSC2659 iOS Development
-  Semester: 2023B
-  Assessment: Assignment 3
-  Author: Nguyen Quang Duy, Long Trinh Hoang Pham, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
-  ID: s3877991, s3879366, s3877457, s3891710, s3750789
-  Created  date: 12/09/2023
-  Last modified: dd/09/2023
-  Acknowledgement: None
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 3
+ Author: Nguyen Quang Duy, Pham Trinh Hoang Long, Le Anh Quan, Pham Viet Hao, Tran Mach So Han
+ ID: s3877991, s3879366, s3877457, s3891710, s3750789
+ Created  date: 12/09/2023
+ Last modified: dd/09/2023
+ Acknowledgement: None
 */
 
 import SwiftUI
@@ -18,27 +18,23 @@ struct JoinedEventsView: View {
     
     @State private var today: Date = Date()
     @State private var currentTab: String = "Upcoming"
-    @State private var filteredEvents: [Event] = []
     @Namespace var animation
     
-    func compareEventsByToday() {
-        // Avoid duplication
-        filteredEvents = []
-        
-        if !eventVM.events.isEmpty {
-            if currentTab == "Upcoming" {
-                for event in eventVM.events {
-                    if getDateFromString(dateString: event.dateTime) >= today {
-                        filteredEvents.append(event)
-                    }
-                }
+    var filteredEvents: [Event] {
+        guard let today = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else {
+            return []
+        }
+
+        return eventVM.events.compactMap { event in
+            guard let eventDate = getDateFromString(dateString: event.dateTime) else {
+                return nil // Skip events with invalid date format
             }
-            else if currentTab == "Past" {
-                for event in eventVM.events {
-                    if getDateFromString(dateString: event.dateTime) < today {
-                        filteredEvents.append(event)
-                    }
-                }
+
+            if (currentTab == "Upcoming" && eventDate >= today) ||
+               (currentTab == "Past" && eventDate < today) {
+                return event
+            } else {
+                return nil
             }
         }
     }
@@ -54,21 +50,15 @@ struct JoinedEventsView: View {
                 
                 // List of joined events
                 if currentTab == "Upcoming" {
-                    EventList(isJoinedEvent: true, events: $filteredEvents, listType: currentTab)
+                    EventList(isJoinedEvent: true, events: Binding(get: { filteredEvents }, set: { _ in }), listType: currentTab)
                 }
                 else if currentTab == "Past" {
-                    EventList(isJoinedEvent: true, events: $filteredEvents, listType: currentTab)
+                    EventList(isJoinedEvent: true, events: Binding(get: { filteredEvents }, set: { _ in }), listType: currentTab)
                 }
             }
         }
         .onAppear(){
             self.eventVM.queryEventParticipation()
-        }
-        .onChange(of: currentTab) { _ in
-            compareEventsByToday()
-        }
-        .onChange(of: self.eventVM.events) { newValue in
-            compareEventsByToday()
         }
     }
 }
@@ -79,9 +69,7 @@ struct JoinedView_Previews: PreviewProvider {
     }
 }
 
-func getDateFromString(dateString: String) -> Date {
-    var finalDate: Date = Date()
-    
+func getDateFromString(dateString: String) -> Date? {
     // Create Date Formatter
     let dateFormatter = DateFormatter()
 
@@ -90,8 +78,8 @@ func getDateFromString(dateString: String) -> Date {
 
     // Convert Date to String
     if let convertedDate = dateFormatter.date(from: dateString) {
-        finalDate = convertedDate
+        return convertedDate
+    } else {
+        return nil // Parsing failed
     }
-    
-    return finalDate
 }
