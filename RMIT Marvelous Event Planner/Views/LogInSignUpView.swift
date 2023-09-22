@@ -120,19 +120,7 @@ struct LogInSignUpView: View {
                         )
                         .padding(.top, 10)
                     }
-                    
-                    // "Forgot Password" button (visible only in login mode).
-                    if !isSignUp {
-                        Button {
 
-                        } label: {
-                            Text("Forgot password?")
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color("primary-button"))
-                        }
-                        .padding(.top, 8)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
                     
                     // Login or Signup Button.
                     Button {
