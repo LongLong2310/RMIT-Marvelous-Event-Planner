@@ -90,8 +90,8 @@ struct EventForm: View {
                 
                 // Organizer role input
                 Picker(selection: $formViewModel.event.organizerRole) {
-                    ForEach(OrganizerRole.allCases, id: \.self) {
-                        Text($0.rawValue)
+                    ForEach(OrganizerRole.allCases.map{ $0.rawValue }, id: \.self) {
+                        Text($0)
                     }
                 } label: {
                     Text("Organizer role")
