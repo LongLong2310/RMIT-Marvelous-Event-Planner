@@ -17,6 +17,7 @@ import SwiftUI
 
 struct HomeScreenView: View {
     @EnvironmentObject private var authState: AuthState
+    @EnvironmentObject private var eventVM: EventViewModel
     
     var body: some View {
         NavigationStack {
@@ -30,6 +31,7 @@ struct HomeScreenView: View {
                             Label("Home", systemImage: "house.fill")
                         }
                     
+                    
                     // Events Participate
                     JoinedEventsView()
                         .tabItem {
@@ -41,7 +43,6 @@ struct HomeScreenView: View {
                         .tabItem {
                             Label("Profile", systemImage: "person.fill")
                         }
-                        .environmentObject(authState)
                 }
             }
         }
@@ -54,5 +55,6 @@ struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreenView()
             .environmentObject(AuthState())
+            .environmentObject(EventViewModel())
     }
 }

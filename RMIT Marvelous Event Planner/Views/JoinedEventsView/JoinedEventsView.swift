@@ -14,7 +14,7 @@ import SwiftUI
 import Foundation
 
 struct JoinedEventsView: View {
-    @ObservedObject var eventVM: EventViewModel = EventViewModel()
+    @EnvironmentObject private var eventVM: EventViewModel
     
     @State private var today: Date = Date()
     @State private var currentTab: String = "Upcoming"
@@ -28,14 +28,14 @@ struct JoinedEventsView: View {
         if !eventVM.events.isEmpty {
             if currentTab == "Upcoming" {
                 for event in eventVM.events {
-                    if getDateFromString(dateString: event.dateTime) >= today {
+                    if event.dateTimeFormat >= today {
                         filteredEvents.append(event)
                     }
                 }
             }
             else if currentTab == "Past" {
                 for event in eventVM.events {
-                    if getDateFromString(dateString: event.dateTime) < today {
+                    if event.dateTimeFormat < today {
                         filteredEvents.append(event)
                     }
                 }
@@ -79,19 +79,3 @@ struct JoinedView_Previews: PreviewProvider {
     }
 }
 
-func getDateFromString(dateString: String) -> Date {
-    var finalDate: Date = Date()
-    
-    // Create Date Formatter
-    let dateFormatter = DateFormatter()
-
-    // Set Date Format
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-    // Convert Date to String
-    if let convertedDate = dateFormatter.date(from: dateString) {
-        finalDate = convertedDate
-    }
-    
-    return finalDate
-}
