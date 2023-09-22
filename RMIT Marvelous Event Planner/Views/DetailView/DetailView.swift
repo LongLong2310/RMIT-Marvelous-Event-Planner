@@ -156,15 +156,13 @@ struct DetailView: View {
                     }
                     else{
                         Button {
-                            DispatchQueue.global(qos: .background).sync {
-                                if isJoinedEvent{
-                                    eventViewModel.removeAccountFromEventParticipation(event: formViewModel.event)
-                                }
-                                else {
-                                    eventViewModel.addEventToJoinEvents(event: formViewModel.event)
-                                }
+                            if isJoinedEvent{
+                                eventViewModel.removeAccountFromEventParticipation(event: formViewModel.event)
                             }
-                            dismiss()
+                            else {
+                                eventViewModel.addEventToJoinEvents(event: formViewModel.event)
+                            }
+                            isJoinedEvent.toggle()
                         } label: {
                             HStack {
                                 Image(systemName: "square.and.arrow.down")

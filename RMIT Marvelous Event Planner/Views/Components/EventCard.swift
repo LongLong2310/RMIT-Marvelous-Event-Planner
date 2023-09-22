@@ -42,15 +42,13 @@ struct EventCard: View {
                     
                     if (authState.account?.id != event.ownerId){
                         Button {
-                            DispatchQueue.global(qos: .background).sync {
-                                if isJoinedEvent{
-                                    eventViewModel.removeAccountFromEventParticipation(event: event)
-                                }
-                                else {
-                                    eventViewModel.addEventToJoinEvents(event: event)
-                                }
-                                isJoinedEvent.toggle()
+                            if isJoinedEvent{
+                                eventViewModel.removeAccountFromEventParticipation(event: event)
                             }
+                            else {
+                                eventViewModel.addEventToJoinEvents(event: event)
+                            }
+                            isJoinedEvent.toggle()
                         } label: {
                             HStack {
                                 Image(systemName: "square.and.arrow.down")
