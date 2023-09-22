@@ -63,7 +63,7 @@ struct UserProfileView: View {
         // Create a VStack to arrange the components vertically.
         VStack (alignment: .leading, spacing: 12) {
                 Text(title)
-                .font(Font.custom("Poppins-Regular", size: 15))
+                  .font(Font.custom("Poppins-Regular", size: 15))
             // Depending on the title (e.g., if it contains "Password") and showPassword state,
             // either show a SecureField (password) or TextField (non-password) input.
             if (title.contains("Password") && !showPassword.wrappedValue) {
@@ -73,7 +73,6 @@ struct UserProfileView: View {
                 TextField(hint, text: value)
                     .padding(.top, 2)
             }
-            
             // Divider line below the text input.
             Divider()
                 .background(Color.black.opacity(0.4))
