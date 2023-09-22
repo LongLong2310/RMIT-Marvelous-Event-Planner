@@ -26,6 +26,7 @@ struct ContentView: View {
                 case .authenticated:
                     HomeScreenView()
                         .environmentObject(authState)
+                        .environmentObject(eventVM)
                 default:
                     LogInSignUpView()
                         .environmentObject(eventVM)

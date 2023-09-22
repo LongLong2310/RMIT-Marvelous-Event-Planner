@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @EnvironmentObject private var authState: AuthState
-    @StateObject var eventVM: EventViewModel = EventViewModel()
+    @EnvironmentObject private var eventVM: EventViewModel
     @State var avatarName = "Avatar 1"
     @State var Phase = 1
     @State private var currentTab: String = "Events"
@@ -265,7 +265,10 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView().environmentObject(
+        UserProfileView()
+            .environmentObject(
             AuthState())
+            .environmentObject(
+                EventViewModel())
     }
 }

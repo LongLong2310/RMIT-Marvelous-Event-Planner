@@ -14,13 +14,13 @@ import SwiftUI
 
 struct DetailView: View {
     @EnvironmentObject private var authState: AuthState
+    @EnvironmentObject private var eventVM: EventViewModel
     @Environment(\.dismiss) var dismiss
     @State var isEditEvent: Bool = false
     @State private var showingPopupAlert = false
     @State var isJoinedEvent: Bool = false
     
     @StateObject var formViewModel: EventFormViewModel
-    @StateObject var eventViewModel: EventViewModel = EventViewModel()
     
     var body: some View {
         ZStack {
@@ -157,10 +157,10 @@ struct DetailView: View {
                     else{
                         Button {
                             if isJoinedEvent{
-                                eventViewModel.removeAccountFromEventParticipation(event: formViewModel.event)
+                                self.eventVM.removeAccountFromEventParticipation(event: formViewModel.event)
                             }
                             else {
-                                eventViewModel.addEventToJoinEvents(event: formViewModel.event)
+                                self.eventVM.addEventToJoinEvents(event: formViewModel.event)
                             }
                             isJoinedEvent.toggle()
                         } label: {

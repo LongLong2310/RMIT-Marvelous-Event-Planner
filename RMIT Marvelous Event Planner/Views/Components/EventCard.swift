@@ -17,7 +17,7 @@ struct EventCard: View {
     @State var isJoinedEvent: Bool = false
     var event: Event
     
-    @StateObject var eventViewModel: EventViewModel = EventViewModel()
+    @EnvironmentObject private var eventVM: EventViewModel
     var body: some View {
         ZStack {
             Image(event.imageUrl)
@@ -43,10 +43,10 @@ struct EventCard: View {
                     if (authState.account?.id != event.ownerId){
                         Button {
                             if isJoinedEvent{
-                                eventViewModel.removeAccountFromEventParticipation(event: event)
+                                self.eventVM.removeAccountFromEventParticipation(event: event)
                             }
                             else {
-                                eventViewModel.addEventToJoinEvents(event: event)
+                                self.eventVM.addEventToJoinEvents(event: event)
                             }
                             isJoinedEvent.toggle()
                         } label: {

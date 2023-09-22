@@ -14,6 +14,7 @@ import SwiftUI
 
 struct HomeEventListView: View {
     @EnvironmentObject private var authState: AuthState
+    @EnvironmentObject private var eventVM: EventViewModel
     @State private var searchText = ""
     @State private var didTap:Bool = false
     @State private var selectedEvent: Event?
@@ -22,7 +23,6 @@ struct HomeEventListView: View {
     @State public var preselectedIndex: Int = 0
     @State private var isMajorFilterSetting: Bool = false
     @State private var hasAppeared = false
-    @ObservedObject var eventVM: EventViewModel = EventViewModel()
     
     // Filtered events based on the search text and major filter and role
     var filteredEvents: [Event] {
@@ -86,10 +86,13 @@ struct HomeEventListView: View {
             }
         }
         .onAppear(){
+            self.eventVM.isHomePage = true
             self.eventVM.queryEventsHomePage()
             isMajorFilterSetting = authState.account?.isMajorFilterSetting ?? false
+            
             hasAppeared=true
         }.onDisappear(){
+            self.eventVM.isHomePage = false
             hasAppeared=false
         }
     }

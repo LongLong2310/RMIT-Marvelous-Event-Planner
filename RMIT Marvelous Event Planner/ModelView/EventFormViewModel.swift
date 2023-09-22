@@ -130,11 +130,24 @@ class EventFormViewModel: ObservableObject {
             }
         }
         
-        /* Remove all events from event participation collection*/
-        /**
-             Since we don't display number of participation so no need to remove
-             If we do have then do the delete function here
-         **/
+        // Find that event from eventParticipation and remove
+        let query = db.collection("eventParticipation").whereField("eventID", isEqualTo: event.id)
+        query.getDocuments() { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            
+            for document in documents {
+                self.db.collection("eventParticipation").document(document.documentID).delete{ error in
+                    if error == nil {
+                        print("Leave successfully")
+                    } else {
+                        print("Error leaving events")
+                    }
+                }
+            }
+        }
     }
     
     /**
