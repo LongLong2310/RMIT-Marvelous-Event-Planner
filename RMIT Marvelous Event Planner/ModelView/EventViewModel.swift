@@ -18,6 +18,7 @@ import FirebaseAuth
 
 class EventViewModel: ObservableObject {
     @Published var events = [Event]()
+    @Published var isHomePage: Bool = false
     
     private var db = Firestore.firestore()
     private let auth = Auth.auth()
@@ -26,7 +27,7 @@ class EventViewModel: ObservableObject {
     /**
         Add event user join to firestore
      */
-    public func addEventToJoinEvents(event: Event, isHomePage: Bool = false) {
+    public func addEventToJoinEvents(event: Event) {
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create new document in eventParticipation collection
@@ -37,7 +38,6 @@ class EventViewModel: ObservableObject {
             "eventID": event.id,
             "accountID": uid
         ])
-        
     }
 
     /**
@@ -48,36 +48,38 @@ class EventViewModel: ObservableObject {
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create a query against the collection.
-        let query = db.collection("events").whereField("ownerId", isEqualTo: uid).order(by: "dateTime")
+        let query = db.collection("events").whereField("ownerId", isEqualTo: uid)
         self.queryEventsFirestore(query: query)
-        
     }
     
     /**
         Query the owned events user had joined
      */
     public func queryEventParticipation(){
-        self.events = []
         guard let uid = auth.currentUser?.uid else {return}
         
         // Create a query against the collection.
         let queryEventParticipation = db.collection("eventParticipation").whereField("accountID", isEqualTo: uid)
         // Execute the query
-        queryEventParticipation.addSnapshotListener { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                print("No documents")
-                return
+        queryEventParticipation.addSnapshotListener() { (querySnapshot, error) in
+            if !self.isHomePage{
+                self.events = []
+                
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+                
+                if documents.isEmpty{
+                    return
+                }
+                let eventIDs = documents.map { (queryDocumentSnapshot) -> String in
+                    return queryDocumentSnapshot.data()["eventID"] as? String ?? ""
+                }
+                
+                let queryEvents = self.db.collection("events").whereField("id", in: eventIDs)
+                self.queryEventsFirestore(query: queryEvents)
             }
-            
-            if documents.isEmpty{
-                return
-            }
-            let eventIDs = documents.map { (queryDocumentSnapshot) -> String in
-                return queryDocumentSnapshot.data()["eventID"] as? String ?? ""
-            }
-            
-            let queryEvents = self.db.collection("events").whereField("id", in: eventIDs)
-            self.queryEventsFirestore(query: queryEvents)
         }
     }
     
@@ -91,11 +93,7 @@ class EventViewModel: ObservableObject {
         
         // Create a query against the collection.
         let query = db.collection("events").whereField("ownerId", isNotEqualTo: uid)
-        let queue = DispatchQueue.global(qos: .background)
-        queue.sync {
-            self.queryEventsFirestore(query: query)
-        }
-        self.filterEventsParticipationHelper()
+        self.queryEventsFirestore(query: query)
     }
     
     public func removeAccountFromEventParticipation(event: Event){
@@ -104,7 +102,7 @@ class EventViewModel: ObservableObject {
         // Create a query against the collection.
         let query = db.collection("eventParticipation").whereField("accountID", isEqualTo: uid).whereField("eventID", isEqualTo: event.id)
         
-        query.addSnapshotListener { (querySnapshot, error) in
+        query.getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
@@ -113,16 +111,12 @@ class EventViewModel: ObservableObject {
             for document in documents {
                 self.db.collection("eventParticipation").document(document.documentID).delete{ error in
                     if error == nil {
-                        self.events.removeAll { e in
-                            // Check for the event to remove
-                            return e.id == event.id
-                        }
+                        print("Leave successfully")
                     } else {
                         print("Error leaving events")
                     }
                 }
             }
-            
         }
     }
     
@@ -131,7 +125,9 @@ class EventViewModel: ObservableObject {
      */
     private func queryEventsFirestore(query: Query){
         // Execute the query
-        query.addSnapshotListener { (querySnapshot, error) in
+        query.addSnapshotListener() { (querySnapshot, error) in
+            self.events = []
+            
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
@@ -162,6 +158,15 @@ class EventViewModel: ObservableObject {
                 
                 self.events.append(event)
             }
+            
+            if self.isHomePage{
+                self.filterEventsParticipationHelper()
+                self.events = self.events.filter({ event in
+                    event.dateTimeFormat >= Date()
+                })
+            }
+            
+            self.events = self.events.sorted(by: {$0.dateTimeFormat < $1.dateTimeFormat})
         }
     }
     
@@ -172,18 +177,21 @@ class EventViewModel: ObservableObject {
         
         // Filter out events that user already join
         let query = db.collection("eventParticipation").whereField("accountID", isEqualTo: uid)
-        query.addSnapshotListener { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                // No existing events that user had participated
-                return
-            }
+        query.addSnapshotListener() { (querySnapshot, error) in
+            if self.isHomePage{
+                guard let documents = querySnapshot?.documents else {
+                    // No existing events that user had participated
+                    return
+                }
             
-            // Get all id of the event participation and filter out of the all events
-            let eventParticipateIDs = documents.map { (queryDocumentSnapshot) -> String in
-                let data = queryDocumentSnapshot.data()
-                return data["eventID"] as? String ?? ""
+                // Get all id of the event participation and filter out of the all events
+                let eventParticipateIDs = documents.map { (queryDocumentSnapshot) -> String in
+                    let data = queryDocumentSnapshot.data()
+                    return data["eventID"] as? String ?? ""
+                }
+                
+                self.events = self.events.filter{!eventParticipateIDs.contains($0.id)}
             }
-            self.events = self.events.filter{!eventParticipateIDs.contains($0.id)}
         }
     }
     

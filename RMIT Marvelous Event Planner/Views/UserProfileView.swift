@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @EnvironmentObject private var authState: AuthState
-    @StateObject var eventVM: EventViewModel = EventViewModel()
+    @EnvironmentObject private var eventVM: EventViewModel
     @State var avatarName = "Avatar 1"
     @State var Phase = 1
     @State private var currentTab: String = "Events"
@@ -63,7 +63,7 @@ struct UserProfileView: View {
         // Create a VStack to arrange the components vertically.
         VStack (alignment: .leading, spacing: 12) {
                 Text(title)
-                    .foregroundColor(Color.black.opacity(0.8))
+                  .font(Font.custom("Poppins-Regular", size: 15))
             // Depending on the title (e.g., if it contains "Password") and showPassword state,
             // either show a SecureField (password) or TextField (non-password) input.
             if (title.contains("Password") && !showPassword.wrappedValue) {
@@ -73,7 +73,6 @@ struct UserProfileView: View {
                 TextField(hint, text: value)
                     .padding(.top, 2)
             }
-            
             // Divider line below the text input.
             Divider()
                 .background(Color.black.opacity(0.4))
@@ -184,6 +183,7 @@ struct UserProfileView: View {
 
 //  Select an avatar for edit profile
                         Text("Select an avatar")
+                            .font(Font.custom("Poppins-Regular", size: 15))
                                     Picker("Pick your avatar:", selection: $avatarName) {
                                         Text("Avatar 1").tag("profile_picture_1")
                                         Text("Avatar 2").tag("profile_picture_2")
@@ -205,7 +205,7 @@ struct UserProfileView: View {
                         )
                         HStack{
                             Text("Select school major")
-                                .foregroundColor(Color.black.opacity(0.8))
+                                .font(Font.custom("Poppins-Regular", size: 15))
                             Picker(selection: $major) {
                                 ForEach(type, id: \.self) {
                                     Text($0)
@@ -265,7 +265,10 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView().environmentObject(
+        UserProfileView()
+            .environmentObject(
             AuthState())
+            .environmentObject(
+                EventViewModel())
     }
 }

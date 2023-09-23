@@ -120,11 +120,10 @@ struct LogInSignUpView: View {
                         )
                         .padding(.top, 10)
                     }
-                    
                     // "Forgot Password" button (visible only in login mode).
                     if !isSignUp {
                         Button {
-
+                            authState.errorMessage = "Function coming soon."
                         } label: {
                             Text("Forgot password?")
                                 .fontWeight(.semibold)
