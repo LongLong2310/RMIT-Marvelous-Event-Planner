@@ -158,7 +158,7 @@ class EventViewModel: ObservableObject {
                 
                 self.events.append(event)
             }
-            
+
             if self.isHomePage{
                 self.filterEventsParticipationHelper()
                 self.events = self.events.filter({ event in

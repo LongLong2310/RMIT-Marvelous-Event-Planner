@@ -15,8 +15,6 @@ import Foundation
 
 struct JoinedEventsView: View {
     @EnvironmentObject private var eventVM: EventViewModel
-    
-    @State private var today: Date = Date()
     @State private var currentTab: String = "Upcoming"
     @Namespace var animation
     
@@ -54,6 +52,7 @@ struct JoinedEventsView: View {
             }
         }
         .onAppear(){
+            self.eventVM.isHomePage = false
             self.eventVM.queryEventParticipation()
         }
     }

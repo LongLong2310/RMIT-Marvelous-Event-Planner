@@ -154,7 +154,7 @@ struct DetailView: View {
                         }
                         
                     }
-                    else{
+                    else if (formViewModel.event.dateTimeFormat >= Date()){
                         Button {
                             if isJoinedEvent{
                                 self.eventVM.removeAccountFromEventParticipation(event: formViewModel.event)

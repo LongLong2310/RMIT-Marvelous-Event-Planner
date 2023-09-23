@@ -163,6 +163,7 @@ struct UserProfileView: View {
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .onAppear(){
+                    self.eventVM.isHomePage = false
                     authState.fetchUser()
                     self.eventVM.queryOwnedEvents()
                     hasAppeared=true

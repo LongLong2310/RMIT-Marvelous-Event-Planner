@@ -101,12 +101,4 @@ struct Event: Identifiable, Equatable{
     func getDateTime() -> String{
         return dateTimeFormatter.string(from: self.dateTimeFormat)
     }
-    
-    func getDate() -> String {
-        return dateFormatter.string(from: dateTimeFormat)
-    }
-    
-    func getTime() -> String {
-        return timeFormatter.string(from: dateTimeFormat)
-    }
 }

@@ -40,7 +40,7 @@ struct EventCard: View {
                     
                     Spacer()
                     
-                    if (authState.account?.id != event.ownerId){
+                    if (authState.account?.id != event.ownerId && event.dateTimeFormat >= Date()){
                         Button {
                             if isJoinedEvent{
                                 self.eventVM.removeAccountFromEventParticipation(event: event)

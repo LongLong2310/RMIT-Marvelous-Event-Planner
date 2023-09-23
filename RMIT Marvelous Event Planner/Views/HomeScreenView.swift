@@ -30,9 +30,6 @@ struct HomeScreenView: View {
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
-                        .onTapGesture {
-                            eventVM.isHomePage = true
-                        }
                     
                     
                     // Events Participate
@@ -40,17 +37,11 @@ struct HomeScreenView: View {
                         .tabItem {
                             Label("Joined", systemImage: "calendar")
                         }
-                        .onTapGesture {
-                            eventVM.isHomePage = false
-                        }
                     
                     // Profiles
                     UserProfileView()
                         .tabItem {
                             Label("Profile", systemImage: "person.fill")
-                        }
-                        .onTapGesture {
-                            eventVM.isHomePage = false
                         }
                 }
             }
