@@ -49,6 +49,7 @@ struct Event: Identifiable, Equatable{
             self.dateTime = dateTimeFormatter.string(from: value)
         }
     }
+
     
     var date: String{
         return dateFormatter.string(from: dateTimeFormat)
@@ -77,7 +78,7 @@ struct Event: Identifiable, Equatable{
     mutating func updateEvent(name: String, description: String, dateTime: String, location: String, imageUrl: String, organizerRole: String, major: String=""){
         self.name = name
         self.description = description
-        self.dateTime = date
+        self.dateTime = dateTime
         self.location = location
         self.imageUrl = imageUrl
         self.organizerRole = organizerRole
@@ -99,5 +100,13 @@ struct Event: Identifiable, Equatable{
     
     func getDateTime() -> String{
         return dateTimeFormatter.string(from: self.dateTimeFormat)
+    }
+    
+    func getDate() -> String {
+        return dateFormatter.string(from: dateTimeFormat)
+    }
+    
+    func getTime() -> String {
+        return timeFormatter.string(from: dateTimeFormat)
     }
 }
