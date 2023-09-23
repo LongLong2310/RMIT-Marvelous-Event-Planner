@@ -26,10 +26,6 @@ struct JoinedEventsView: View {
         }
 
         return eventVM.events.compactMap { event in
-            guard let eventDate = getDateFromString(dateString: event.dateTime) else {
-                return nil // Skip events with invalid date format
-            }
-
             if (currentTab == "Upcoming" && event.dateTimeFormat >= today) ||
                (currentTab == "Past" && event.dateTimeFormat < today) {
                 return event
