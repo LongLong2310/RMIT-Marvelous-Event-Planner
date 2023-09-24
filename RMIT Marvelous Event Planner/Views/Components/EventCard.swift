@@ -17,6 +17,8 @@ struct EventCard: View {
     @State var isJoinedEvent: Bool = false
     var event: Event
     
+    let today = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+    
     @EnvironmentObject private var eventVM: EventViewModel
     var body: some View {
         ZStack {
@@ -40,7 +42,7 @@ struct EventCard: View {
                     
                     Spacer()
                     
-                    if (authState.account?.id != event.ownerId && event.dateTimeFormat >= Date()){
+                    if (authState.account?.id != event.ownerId && event.dateTimeFormat >= today!){
                         Button {
                             if isJoinedEvent{
                                 self.eventVM.removeAccountFromEventParticipation(event: event)

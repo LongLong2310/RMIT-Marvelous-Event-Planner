@@ -160,9 +160,11 @@ class EventViewModel: ObservableObject {
             }
 
             if self.isHomePage{
+                let today = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+                
                 self.filterEventsParticipationHelper()
                 self.events = self.events.filter({ event in
-                    event.dateTimeFormat >= Date()
+                    event.dateTimeFormat >= today!
                 })
             }
             

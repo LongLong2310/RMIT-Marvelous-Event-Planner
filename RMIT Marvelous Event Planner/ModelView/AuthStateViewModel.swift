@@ -249,11 +249,9 @@ class AuthState: ObservableObject {
             }
 
             if let snapshot = snapshot {
-                let eventVM = EventFormViewModel(event: nil)
-                
                 for document in snapshot.documents {
                     // Find user id
-                    if let uid = self.auth.currentUser?.uid {
+                    if (self.auth.currentUser?.uid) != nil {
                         let ref = self.db.collection("user").document(document.documentID)
                         let data = document.data()
                         
